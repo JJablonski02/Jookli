@@ -10,6 +10,7 @@ namespace Jookli.Domain.Entities.Message
     {
         public Guid MessageId { get; set; }
         public DateTime MessageTime { get; set; }
+        public int MessagePhoneNumber { get; set;  }
         public string? MessageContent { get; set; }
     }
 }
