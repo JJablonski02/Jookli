@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.Domain.Entities.Message
 {
-    public class MessageReceived
+    public class Message
     {
         public Guid MessageId { get; set; }
         public DateTime MessageTime { get; set; }
