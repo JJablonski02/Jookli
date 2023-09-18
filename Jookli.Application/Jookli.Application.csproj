@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Jookli.Domain\Jookli.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -13,7 +13,6 @@ namespace Jookli.Domain.Entities.User
         public string? Email { get; set; }
         public bool IsSystemAccount { get; set; }
         public bool Premium { get; set; }
-        public ICollection<MessageReceived>? MessagesReceived { get; set; }
-        public ICollection<MessageSent>? MessagesSent { get; set; }
+        public ICollection<MessageEntity>? MessagesReceived { get; set; }
     }
 }

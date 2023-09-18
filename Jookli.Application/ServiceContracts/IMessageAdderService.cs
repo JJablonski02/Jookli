@@ -9,6 +9,6 @@ namespace Jookli.Application.ServiceContracts
 {
     internal interface IMessageAdderService
     {
-        Task<MessageResponse> AddMessage(MessageAddRequest? messageAddRequest);
+        Task<MessageResponse> AddMessage(MessageRequest? messageRequest);
     }
 }

@@ -8,7 +8,9 @@ namespace Jookli.Application.DTO
 {
     public class MessageResponse
     {
-        public int PhoneNumber { get; set; }
-        public string? Message {  get; set; }
+        public Guid MessageId { get; set; }
+        public DateTime MessageTime { get; set; } 
+        public int MessagePhoneNumber { get; set; }
+        public string? MessageContent {  get; set; }
     }
 }
