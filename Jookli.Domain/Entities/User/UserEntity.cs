@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Jookli.Domain.Entities.User
 {
-    public class User
+    public class UserEntity
     {
         [Key]
         public Guid UserID { get; set; }
