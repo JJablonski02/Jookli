@@ -5,8 +5,6 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E19A2480-7688-47E7-957A-18B6F0D40EF1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Core", "Jookli.Core\Jookli.Core.csproj", "{9ACFC3AD-91C4-4381-9F4E-1709D95D8FD1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Infrastructure", "Jookli.Infrastructure\Jookli.Infrastructure.csproj", "{F9824A9B-0C4B-48F1-9CE6-089C47459048}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Application", "Jookli.Application\Jookli.Application.csproj", "{BB36D439-9293-4E8D-BEAE-1D3F0912F96F}"
@@ -15,16 +13,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6970ABA4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Api", "Jookli.Api\Jookli.Api.csproj", "{B32AE4FE-5AAD-4C3F-B4C8-B01D1B539E15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Domain", "Jookli.Domain\Jookli.Domain.csproj", "{4E8AE784-4F5F-4B7C-9025-D1E515B73EF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9ACFC3AD-91C4-4381-9F4E-1709D95D8FD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9ACFC3AD-91C4-4381-9F4E-1709D95D8FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9ACFC3AD-91C4-4381-9F4E-1709D95D8FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9ACFC3AD-91C4-4381-9F4E-1709D95D8FD1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F9824A9B-0C4B-48F1-9CE6-089C47459048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F9824A9B-0C4B-48F1-9CE6-089C47459048}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9824A9B-0C4B-48F1-9CE6-089C47459048}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,12 +33,15 @@ Global
 		{B32AE4FE-5AAD-4C3F-B4C8-B01D1B539E15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B32AE4FE-5AAD-4C3F-B4C8-B01D1B539E15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B32AE4FE-5AAD-4C3F-B4C8-B01D1B539E15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E8AE784-4F5F-4B7C-9025-D1E515B73EF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E8AE784-4F5F-4B7C-9025-D1E515B73EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E8AE784-4F5F-4B7C-9025-D1E515B73EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E8AE784-4F5F-4B7C-9025-D1E515B73EF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{9ACFC3AD-91C4-4381-9F4E-1709D95D8FD1} = {E19A2480-7688-47E7-957A-18B6F0D40EF1}
 		{F9824A9B-0C4B-48F1-9CE6-089C47459048} = {E19A2480-7688-47E7-957A-18B6F0D40EF1}
 		{BB36D439-9293-4E8D-BEAE-1D3F0912F96F} = {E19A2480-7688-47E7-957A-18B6F0D40EF1}
 		{B32AE4FE-5AAD-4C3F-B4C8-B01D1B539E15} = {E19A2480-7688-47E7-957A-18B6F0D40EF1}
