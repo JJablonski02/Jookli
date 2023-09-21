@@ -12,5 +12,19 @@ namespace Jookli.Application.DTO
         public DateTime MessageTime { get; set; } 
         public int MessagePhoneNumber { get; set; }
         public string? MessageContent {  get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            if(obj.GetType() != typeof(MessageResponse))
+            {
+                return false;
+            }
+            MessageResponse messageResponse = (MessageResponse)obj;
+
+            return this.MessageId == messageResponse.MessageId &&
+                this.MessageTime == messageResponse.MessageTime &&
+                this.MessagePhoneNumber == messageResponse.MessagePhoneNumber &&
+                this.MessageContent == messageResponse.MessageContent;
+        }
     }
 }
