@@ -15,7 +15,7 @@ namespace Jookli.Api.Modules.Messages
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetMessage(Guid messageId)
+        public async Task<JsonResult> GetMessageById(Guid messageId)
         {
             MessageResponse? messageResponse = await _messageGetterService.GetMessageById(messageId);
 
