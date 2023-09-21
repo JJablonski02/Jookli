@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.Application.ServiceContracts
 {
-    internal interface IMessageAdderService
+    public interface IMessageAdderService
     {
         Task<MessageResponse> AddMessage(MessageRequest? messageRequest);
     }
