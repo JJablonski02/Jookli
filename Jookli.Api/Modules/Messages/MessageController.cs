@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Jookli.Api.Modules.Messages
 {
+    [Route("[controller]")]
     public class MessageController : Controller
     {
         private readonly IMessageGetterService _messageGetterService;
@@ -14,6 +15,7 @@ namespace Jookli.Api.Modules.Messages
             
         }
 
+        [Route("[action]")]
         [HttpGet]
         public async Task<JsonResult> GetMessageById(Guid messageId)
         {
@@ -22,6 +24,7 @@ namespace Jookli.Api.Modules.Messages
             return Json(messageResponse);
         }
 
+        [Route("[action]")]
         [HttpPost]
         public async Task<IActionResult> PostMessage(MessageRequest messageRequest)
         {
@@ -30,6 +33,7 @@ namespace Jookli.Api.Modules.Messages
             return Ok();
         }
 
+        [Route("[action]")]
         [HttpGet]
 
         public async Task<JsonResult> GetMessage(MessageRequest messageRequest)
