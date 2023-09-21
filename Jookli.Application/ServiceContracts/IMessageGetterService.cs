@@ -9,14 +9,14 @@ namespace Jookli.Application.ServiceContracts
         /// </summary>
         /// <param name="messageResponse"></param>
         /// <returns>Returns all found matching messages</returns>
-        Task<MessageRequest> GetMessage(MessageResponse? messageResponse);
+        Task<MessageResponse> GetMessage(MessageRequest? messageRequest);
 
         /// <summary>
         /// Get message by Id
         /// </summary>
         /// <param name="messageId"></param>
         /// <returns>Returns message details</returns>
-        Task<MessageRequest> GetMessageById(Guid messageId);
+        Task<MessageResponse> GetMessageById(Guid messageId);
 
     }
 }
