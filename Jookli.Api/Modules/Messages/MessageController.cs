@@ -29,5 +29,15 @@ namespace Jookli.Api.Modules.Messages
 
             return Ok();
         }
+
+        [HttpGet]
+
+        public async Task<JsonResult> GetMessage(MessageRequest messageRequest)
+        {
+            MessageResponse messageResponse = await _messageGetterService.GetMessage(messageRequest);
+            return Json(messageResponse);
+        }
+
+
     }
 }
