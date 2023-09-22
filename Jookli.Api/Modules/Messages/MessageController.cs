@@ -10,9 +10,10 @@ namespace Jookli.Api.Modules.Messages
         private readonly IMessageGetterService _messageGetterService;
         private readonly IMessageAdderService _messageAdderService;
 
-        public MessageController()
+        public MessageController(IMessageGetterService messageGetterService, IMessageAdderService messageAdderService)
         {
-            
+            _messageGetterService = messageGetterService;
+            _messageAdderService = messageAdderService;
         }
 
         [Route("[action]")]
