@@ -50,7 +50,7 @@ namespace Jookli.Api
 
             services.AddVersionedApiExplorer(options =>
             {
-                options.GroupNameFormat = "v'VVV";
+                options.GroupNameFormat = "'v'VVV";
                 options.SubstituteApiVersionInUrl= true;
             });
         }
@@ -78,9 +78,17 @@ namespace Jookli.Api
                 app.UseHsts();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1.0");
+            });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
