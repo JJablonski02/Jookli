@@ -1,12 +1,15 @@
 ﻿using Jookli.Application.DTO;
 using Jookli.Application.ServiceContracts;
+using Jookli.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Jookli.Api.Modules.Messages
+namespace Jookli.Api.Controllers.v1
 {
-    [Route("[controller]")]
-    public class MessageController : Controller
+    [ApiVersion("1.0")]
+    public class MessageController : CustomControllerBase
     {
+        private readonly ApplicationDbContext _context;
+
         private readonly IMessageGetterService _messageGetterService;
         private readonly IMessageAdderService _messageAdderService;
 
@@ -16,16 +19,14 @@ namespace Jookli.Api.Modules.Messages
             _messageAdderService = messageAdderService;
         }
 
-        [Route("[action]")]
-        [HttpGet]
-        public async Task<JsonResult> GetMessageById(Guid messageId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<MessageResponse>> GetMessageById(Guid messageId)
         {
             MessageResponse? messageResponse = await _messageGetterService.GetMessageById(messageId);
 
-            return Json(messageResponse);
+            return messageResponse;
         }
 
-        [Route("[action]")]
         [HttpPost]
         public async Task<IActionResult> PostMessage(MessageRequest messageRequest)
         {
@@ -37,12 +38,10 @@ namespace Jookli.Api.Modules.Messages
         [Route("[action]")]
         [HttpGet]
 
-        public async Task<JsonResult> GetMessage(MessageRequest messageRequest)
+        public async Task<ActionResult<MessageResponse>> GetMessage(MessageRequest messageRequest)
         {
             MessageResponse messageResponse = await _messageGetterService.GetMessage(messageRequest);
-            return Json(messageResponse);
+            return messageResponse;
         }
-
-
     }
 }
