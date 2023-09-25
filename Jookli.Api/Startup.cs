@@ -1,6 +1,9 @@
-﻿using Jookli.Infrastructure.Data;
+﻿using Autofac.Extensions.DependencyInjection;
+using Jookli.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+using Serilog.Formatting.Compact;
 
 namespace Jookli.Api
 {
@@ -8,8 +11,10 @@ namespace Jookli.Api
     {
         private readonly IConfiguration _configuration;
         private static Serilog.ILogger _logger;
+
         public Startup(IWebHostEnvironment webHostEnvironment)
         {
+            ConfigureLogger();
             _configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 //.AddEnvironmentVariables("_Jookli")
@@ -52,6 +57,16 @@ namespace Jookli.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment, IServiceProvider provider)
         {
+
+            var autofacRoot = app.ApplicationServices.GetAutofacRoot();
+
+            app.UseCors(options =>
+            {
+                options.WithOrigins("http://localhost:61385", "https://localhost:7133", "http://localhost:5107").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+            });
+
+            app.UseDefaultFiles();
+
             app.UseStaticFiles();
 
             if (!webHostEnvironment.IsDevelopment())
@@ -62,15 +77,26 @@ namespace Jookli.Api
             {
                 app.UseHsts();
             }
+
+            app.UseHttpsRedirection();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+        }
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+        public void ConfigureLogger()
+        {
+            _logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.Console(
+                    outputTemplate:
+                    "[{Timestamp:HH:mm:ss} {Level:u3}] [{Module}] [{Context}] {Message:lj}{NewLine}{Exception}")
+                .WriteTo.RollingFile(new CompactJsonFormatter(), "logs/logs")
+                .CreateLogger();
         }
     }
 }
