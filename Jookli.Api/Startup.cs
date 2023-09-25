@@ -28,8 +28,20 @@ namespace Jookli.Api
                 config.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
                 config.AssumeDefaultVersionWhenUnspecified = true;
             });
-            
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+            });
+
             services.AddEndpointsApiExplorer();
+
+            services.AddSwaggerGen(options =>
+            {
+                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "api.xml"));
+
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() { Title = "Jookli API", Version = "1.0" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment, IServiceProvider provider)
