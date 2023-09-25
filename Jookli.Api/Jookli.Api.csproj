@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\v2\" />
     <Folder Include="Modules\Messages\" />
   </ItemGroup>
 

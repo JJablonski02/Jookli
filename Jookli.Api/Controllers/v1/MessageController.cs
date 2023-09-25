@@ -1,7 +1,10 @@
 ﻿using Jookli.Application.DTO;
 using Jookli.Application.ServiceContracts;
+using Jookli.Domain.Entities.Message;
+using Jookli.Domain.Entities.User;
 using Jookli.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jookli.Api.Controllers.v1
 {
@@ -19,6 +22,15 @@ namespace Jookli.Api.Controllers.v1
             _messageAdderService = messageAdderService;
         }
 
+        //public async Task<ActionResult<IEnumerable<UserEntity>>> GetUsers()
+        //{
+        //    if(_context.User == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return await _context.User.ToListAsync();
+        //}
+
         [HttpGet("{id}")]
         public async Task<ActionResult<MessageResponse>> GetMessageById(Guid messageId)
         {
@@ -35,7 +47,6 @@ namespace Jookli.Api.Controllers.v1
             return Ok();
         }
 
-        [Route("[action]")]
         [HttpGet]
 
         public async Task<ActionResult<MessageResponse>> GetMessage(MessageRequest messageRequest)
