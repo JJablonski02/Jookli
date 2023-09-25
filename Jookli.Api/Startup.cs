@@ -34,13 +34,19 @@ namespace Jookli.Api
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddEndpointsApiExplorer();
+            services.AddEndpointsApiExplorer(); //Generates description for all endpoints
 
             services.AddSwaggerGen(options =>
             {
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "api.xml"));
 
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() { Title = "Jookli API", Version = "1.0" });
+            });
+
+            services.AddVersionedApiExplorer(options =>
+            {
+                options.GroupNameFormat = "v'VVV";
+                options.SubstituteApiVersionInUrl= true;
             });
         }
 
