@@ -1,30 +1,40 @@
 ﻿using Jookli.Infrastructure.Data;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 
 namespace Jookli.Api
 {
     public class Startup
     {
-        public void  ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        private readonly IConfiguration _configuration;
+        private static Serilog.ILogger _logger;
+        public Startup(IWebHostEnvironment webHostEnvironment)
         {
-            services.AddControllers(options =>
-            {
-                
-            });
+            _configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                //.AddEnvironmentVariables("_Jookli")
+                .Build();
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            _logger.Information("Connection string: " + _configuration.GetConnectionString("DefaultConnection"));
+        }
+        public void  ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllers();
+
+            services.AddApiVersioning(config =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                config.ApiVersionReader = new UrlSegmentApiVersionReader(); // Reads version number from request url at "apiVersion" constraint
+
+                config.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+                config.AssumeDefaultVersionWhenUnspecified = true;
             });
             
             services.AddEndpointsApiExplorer();
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment, IServiceProvider provider)
         {
             app.UseStaticFiles();
-           
 
             if (!webHostEnvironment.IsDevelopment())
             {
