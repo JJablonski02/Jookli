@@ -1,4 +1,6 @@
 ﻿using Autofac.Extensions.DependencyInjection;
+using Jookli.Application.Features.User.Register.Command;
+using Jookli.Application.ServiceContracts;
 using Jookli.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
@@ -53,6 +55,8 @@ namespace Jookli.Api
                 options.GroupNameFormat = "'v'VVV";
                 options.SubstituteApiVersionInUrl= true;
             });
+
+            //services.AddScoped<IUserService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment, IServiceProvider provider)
