@@ -15,9 +15,10 @@ namespace Jookli.Domain.Entities.User
         public string Surname { get; set; }
         public int PhoneNumber { get; set; } 
         public string Email { get; set; }
+        public DateTime DateOfLastLogin { get; set; }
         public bool Premium { get; set; }
         public bool IsMicrophoneAllowed { get; set; }
-        public DateTime DateOfLastLogin { get; set; }  
+        public bool PushNotifications { get; set; }
 
         public ICollection<MessageEntity>? MessagesReceived { get; set; }
         public ICollection<VoiceMessageEntity>? VoiceMessagesReceived { get; set; } 
