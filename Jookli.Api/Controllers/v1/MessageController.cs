@@ -1,4 +1,4 @@
-﻿using Jookli.Application.DTO;
+﻿using Jookli.Application.Features.Message;
 using Jookli.Application.ServiceContracts;
 using Jookli.Domain.Entities.Message;
 using Jookli.Domain.Entities.User;
