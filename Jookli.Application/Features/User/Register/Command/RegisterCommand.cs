@@ -14,7 +14,7 @@ namespace Jookli.Application.Features.User.Register.Command
         public string Surname { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
-        public string PhoneNumber { get; set; }
+        public int PhoneNumber { get; set; }
         public string Password { get; set; }
         [Compare("Password", ErrorMessage =("Password and Confirm password must match"))]
         public string ConfirmPassword { get; set; }
