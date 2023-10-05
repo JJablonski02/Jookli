@@ -1,4 +1,4 @@
-﻿using Jookli.Application.DTO;
+﻿using Jookli.Application.Features.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;

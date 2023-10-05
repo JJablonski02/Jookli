@@ -1,4 +1,4 @@
-﻿using Jookli.Application.DTO;
+﻿using Jookli.Application.Features.Message;
 
 namespace Jookli.Application.ServiceContracts
 {
