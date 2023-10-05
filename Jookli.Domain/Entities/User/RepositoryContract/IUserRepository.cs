@@ -19,5 +19,6 @@ namespace Jookli.Domain.Entities.User.RepositoryContract
         /// <param name="user"></param>
         /// <returns>Returns the person object from the table</returns>
         Task<UserEntity?> GetByUserIdAsync(Guid userID);
+        Task<UserEntity?> GetByUserEmailAsync(string email);
     }
 }
