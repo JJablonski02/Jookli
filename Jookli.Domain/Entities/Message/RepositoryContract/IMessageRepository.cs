@@ -13,13 +13,13 @@ namespace Jookli.Domain.Entities.Message.RepositoryContract
         /// </summary>
         /// <param name="message"></param>
         /// <returns>Returns the message object after adding it to the table</returns>
-        Task<MessageEntity> AddMessage(MessageEntity message);
+        Task AddMessageAsync(MessageEntity message);
 
         /// <summary>
         /// Returns message in the data store
         /// </summary>
         /// <param name="messageID"></param>
         /// <returns>Returns message from table</returns>
-        Task<MessageEntity> GetMessage(Guid messageID);
+        Task<MessageEntity?> GetMessageByIdAsync(Guid messageID);
     }
 }
