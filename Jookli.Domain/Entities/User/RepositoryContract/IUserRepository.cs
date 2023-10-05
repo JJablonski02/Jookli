@@ -11,13 +11,13 @@ namespace Jookli.Domain.Entities.User.RepositoryContract
         /// </summary>
         /// <param name="user"></param>
         /// <returns>Returns the person object after adding it to the table</returns>
-        Task<UserEntity?> AddUser(UserEntity user);
+        Task AddUserAsync(UserEntity user);
 
         /// <summary>
         /// Gets a user object from the data store
         /// </summary>
         /// <param name="user"></param>
         /// <returns>Returns the person object from the table</returns>
-        Task<UserEntity?> GetUser(Guid userID);
+        Task<UserEntity?> GetByUserIdAsync(Guid userID);
     }
 }
