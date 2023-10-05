@@ -1,4 +1,5 @@
-﻿using Jookli.Domain.Entities.User.RepositoryContract;
+﻿using Jookli.Domain.Entities.User;
+using Jookli.Domain.Entities.User.RepositoryContract;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,18 @@ namespace Jookli.Application.Features.User.Register.Command
                 throw new ArgumentException($"User with email: {command.Email} exists");
             }
 
+            var user = new UserEntity()
+            {
+                UserID = Guid.NewGuid(),
+                UserName = command.Username,
+                Name = command.Name,
+                Surname = command.Surname,
+                Email = command.Email,
+                Password = command.Password,
+                PhoneNumber = command.PhoneNumber,
+            };
 
+            await _userRepository.AddUserAsync(user);
 
             return Unit.Value;
         }
