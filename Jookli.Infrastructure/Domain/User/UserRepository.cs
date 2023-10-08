@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.Infrastructure.Domain.User
 {
-    public class UserRepository : IUserRepository
+    public sealed class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _dbContext;
         public UserRepository(ApplicationDbContext dbContext)
