@@ -1,7 +1,9 @@
 ﻿using Autofac.Extensions.DependencyInjection;
 using Jookli.Application.Features.User.Register.Command;
 using Jookli.Application.ServiceContracts;
+using Jookli.Domain.Entities.User.RepositoryContract;
 using Jookli.Infrastructure.Data;
+using Jookli.Infrastructure.Domain.User;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -56,7 +58,7 @@ namespace Jookli.Api
                 options.SubstituteApiVersionInUrl= true;
             });
 
-            //services.AddScoped<IUserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment, IServiceProvider provider)

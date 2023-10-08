@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Jookli.Application\Jookli.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Domain\Message\" />
+  </ItemGroup>
+
 </Project>
