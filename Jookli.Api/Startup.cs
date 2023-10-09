@@ -2,6 +2,7 @@
 using Jookli.Application.Features.User.Register.Command;
 using Jookli.Application.ServiceContracts;
 using Jookli.Domain.Entities.User.RepositoryContract;
+using Jookli.Infrastructure;
 using Jookli.Infrastructure.Data;
 using Jookli.Infrastructure.Domain.User;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -59,6 +60,7 @@ namespace Jookli.Api
             });
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IIdentityService, IdentityService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment, IServiceProvider provider)

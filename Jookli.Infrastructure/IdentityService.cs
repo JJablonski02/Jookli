@@ -9,9 +9,9 @@ namespace Jookli.Infrastructure
 {
     public class IdentityService : IIdentityService
     {
-        public Task ExecuteCommandAsync<TRequest>(TRequest request)
+        public async Task ExecuteCommandAsync<TRequest>(TRequest request)
         {
-            throw new NotImplementedException();
+            return 
         }
     }
 }
