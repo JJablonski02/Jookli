@@ -1,8 +1,10 @@
 ﻿
+using MediatR;
+
 namespace Jookli.Application.ServiceContracts
 {
     public interface IIdentityService
     {
-        Task ExecuteCommandAsync<TRequest>(TRequest request);
+        Task ExecuteCommandAsync (IRequest request);
     }
 }
