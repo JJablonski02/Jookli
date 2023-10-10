@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.Application.ServiceContracts
 {
-    public abstract class CommandBase
+    public abstract class CommandBase : ICommand
     {
         public Guid Id { get; set; }
 

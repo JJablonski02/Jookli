@@ -2,6 +2,7 @@
 using Jookli.Application.ServiceContracts;
 using Jookli.Domain.Entities.User;
 using Jookli.Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,6 +30,7 @@ namespace Jookli.Api.Controllers.v1
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateUser(RegisterCommand command)
         {
             await _userService.ExecuteCommandAsync(command);
