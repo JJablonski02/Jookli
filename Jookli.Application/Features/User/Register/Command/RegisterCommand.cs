@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Jookli.Application.ServiceContracts;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.Application.Features.User.Register.Command
 {
-    public record RegisterCommand : IRequest
+    public class RegisterCommand : CommandBase
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
