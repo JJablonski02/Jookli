@@ -12,8 +12,9 @@ namespace Jookli.Api.Controllers.v1
     {
         private readonly ApplicationDbContext _context;
         private readonly IIdentityService _userService;
-        public UserController(ApplicationDbContext context)
+        public UserController(ApplicationDbContext context, IIdentityService identityService)
         {
+            _userService = identityService;
             _context = context;
         }
 
