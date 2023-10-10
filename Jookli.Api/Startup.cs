@@ -1,8 +1,9 @@
-﻿using Autofac.Extensions.DependencyInjection;
-using Jookli.Application.Features.User.Register.Command;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Jookli.Application.ServiceContracts;
 using Jookli.Domain.Entities.User.RepositoryContract;
 using Jookli.Infrastructure;
+using Jookli.Infrastructure.Configuration;
 using Jookli.Infrastructure.Data;
 using Jookli.Infrastructure.Domain.User;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -16,6 +17,7 @@ namespace Jookli.Api
     {
         private readonly IConfiguration _configuration;
         private static Serilog.ILogger _logger;
+        private static IContainer _container;
 
         public Startup(IWebHostEnvironment webHostEnvironment)
         {
@@ -24,6 +26,7 @@ namespace Jookli.Api
                 .AddJsonFile("appsettings.json")
                 //.AddEnvironmentVariables("_Jookli")
                 .Build();
+
 
             _logger.Information("Connection string: " + _configuration.GetConnectionString("DefaultConnection"));
         }
@@ -59,14 +62,17 @@ namespace Jookli.Api
                 options.SubstituteApiVersionInUrl= true;
             });
 
+
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<IIdentityService, IdentityModule>();
+
+           
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment, IServiceProvider provider)
         {
 
-            var autofacRoot = app.ApplicationServices.GetAutofacRoot();
+            var container = app.ApplicationServices.GetAutofacRoot();
 
             app.UseCors(options =>
             {
@@ -76,6 +82,8 @@ namespace Jookli.Api
             app.UseDefaultFiles();
 
             app.UseStaticFiles();
+
+            InitalizeComponents(container);
 
             if (!webHostEnvironment.IsDevelopment())
             {
@@ -113,6 +121,11 @@ namespace Jookli.Api
                     "[{Timestamp:HH:mm:ss} {Level:u3}] [{Module}] [{Context}] {Message:lj}{NewLine}{Exception}")
                 .WriteTo.RollingFile(new CompactJsonFormatter(), "logs/logs")
                 .CreateLogger();
+        }
+
+        private void InitalizeComponents(ILifetimeScope containerLifeTime)
+        {
+            IdentityStartup.Initialize(connectionString: _configuration.GetConnectionString("DefaultConnection"), logger: _logger);
         }
     }
 }
