@@ -11,9 +11,13 @@ namespace Jookli.Infrastructure
 {
     public class IdentityModule : IIdentityService
     {
-        public async Task ExecuteCommandAsync (IRequest request)
+        public async Task ExecuteCommandAsync(ICommand command)
         {
-             await CommandsExecutor.Execute(request);
+            await CommandsExecutor.Execute(command);
+        }
+        public async Task<TResult> ExecuteCommandAsync<TResult>(ICommand<TResult> command)
+        {
+            return await CommandsExecutor.Execute(command);
         }
     }
 }
