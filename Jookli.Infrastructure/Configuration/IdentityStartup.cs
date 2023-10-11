@@ -1,5 +1,6 @@
 ﻿using Autofac;
-using Jookli.Infrastructure.Configuration.Mediator;
+using Jookli.Application.Features.User.Register.Command;
+using Jookli.Infrastructure.Configuration.Mediation;
 using Jookli.Infrastructure.Configuration.Processing;
 using Serilog;
 
