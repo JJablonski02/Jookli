@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Jookli.Api.Modules.Module;
 using Jookli.Application.ServiceContracts;
 using Jookli.Domain.Entities.User.RepositoryContract;
 using Jookli.Infrastructure;
@@ -61,12 +62,11 @@ namespace Jookli.Api
                 options.GroupNameFormat = "'v'VVV";
                 options.SubstituteApiVersionInUrl= true;
             });
+        }
 
-
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IIdentityService, IdentityModule>();
-
-           
+        public void ConfigureContainer(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.RegisterModule(new IdentityAutofacModule());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment, IServiceProvider provider)
@@ -83,7 +83,7 @@ namespace Jookli.Api
 
             app.UseStaticFiles();
 
-            InitalizeComponents(container);
+            InitializeModules(container);
 
             if (!webHostEnvironment.IsDevelopment())
             {
@@ -102,9 +102,10 @@ namespace Jookli.Api
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
-
             app.UseAuthorization();
+            app.UseAuthentication();
+
+            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
@@ -123,7 +124,7 @@ namespace Jookli.Api
                 .CreateLogger();
         }
 
-        private void InitalizeComponents(ILifetimeScope containerLifeTime)
+        private void InitializeModules(ILifetimeScope containerLifeTime)
         {
             IdentityStartup.Initialize(connectionString: _configuration.GetConnectionString("DefaultConnection"), logger: _logger);
         }
