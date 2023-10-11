@@ -2,11 +2,6 @@
 using Jookli.Domain.Entities.User;
 using Jookli.Domain.Entities.User.RepositoryContract;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jookli.Application.Features.User.Register.Command
 {
@@ -19,12 +14,7 @@ namespace Jookli.Application.Features.User.Register.Command
             _userRepository= userRepository;
         }
 
-        //public async Task<Unit> Handle(RegisterCommand command, CancellationToken cancellationToken)
-        //{
-            
-        //}
-
-        async Task IRequestHandler<RegisterCommand>.Handle(RegisterCommand command, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
             var userEmail = _userRepository.GetByUserEmailAsync(command.Email);
 
@@ -45,6 +35,8 @@ namespace Jookli.Application.Features.User.Register.Command
             };
 
             await _userRepository.AddUserAsync(user);
+
+            return Unit.Value;
         }
     }
 }
