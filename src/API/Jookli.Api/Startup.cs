@@ -1,12 +1,12 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Jookli.Api.Modules.Module;
-using Jookli.Application.ServiceContracts;
-using Jookli.Domain.Entities.User.RepositoryContract;
-using Jookli.Infrastructure;
-using Jookli.Infrastructure.Configuration;
-using Jookli.Infrastructure.Data;
-using Jookli.Infrastructure.Domain.User;
+using Jookli.UserAccess.Application.Contracts;
+using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
+using Jookli.UserAccess.Infrastructure;
+using Jookli.UserAccess.Infrastructure.Configuration;
+using Jookli.UserAccess.Infrastructure.Data;
+using Jookli.UserAccess.Infrastructure.Domain.User;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -66,7 +66,7 @@ namespace Jookli.Api
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
-            containerBuilder.RegisterModule(new IdentityAutofacModule());
+            containerBuilder.RegisterModule(new UserAccessAutofacModule());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment, IServiceProvider provider)
@@ -126,7 +126,7 @@ namespace Jookli.Api
 
         private void InitializeModules(ILifetimeScope containerLifeTime)
         {
-            IdentityStartup.Initialize(connectionString: _configuration.GetConnectionString("DefaultConnection"), logger: _logger);
+            UserAccessStartup.Initialize(connectionString: _configuration.GetConnectionString("DefaultConnection"), logger: _logger);
         }
     }
 }

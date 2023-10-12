@@ -1,11 +1,11 @@
-﻿using Jookli.Application.Features.Message;
+﻿using Jookli.UserAccess.Application.Features.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Application.ServiceContracts
+namespace Jookli.UserAccess.Application.Contracts
 {
     public interface IMessageAdderService
     {

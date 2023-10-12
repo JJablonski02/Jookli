@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Domain.Entities.Message
+namespace Jookli.UserAccess.Domain.Entities.Message
 {
     public class MessageEntity
     {

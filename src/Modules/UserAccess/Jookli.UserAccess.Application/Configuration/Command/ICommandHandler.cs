@@ -1,7 +1,7 @@
-﻿using Jookli.Application.ServiceContracts;
+﻿using Jookli.UserAccess.Application.Contracts;
 using MediatR;
 
-namespace Jookli.Application.Configuration.Command
+namespace Jookli.UserAccess.Application.Configuration.Command
 {
     public interface ICommandHandler<in TCommand> :
         IRequestHandler<TCommand> 

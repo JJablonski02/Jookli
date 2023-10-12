@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Application.ServiceContracts
+namespace Jookli.UserAccess.Application.Contracts
 {
     public abstract class CommandBase : ICommand
     {

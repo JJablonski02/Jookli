@@ -1,12 +1,12 @@
 ﻿using Autofac;
-using Jookli.Application.Features.User.Register.Command;
+using Jookli.UserAccess.Application.Features.User.Register.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Infrastructure.Configuration.Processing
+namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
 {
     internal class ProcessingModule : Module
     {

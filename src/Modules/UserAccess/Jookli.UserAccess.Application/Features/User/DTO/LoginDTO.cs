@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Application.Features.User.DTO
+namespace Jookli.UserAccess.Application.Features.User.DTO
 {
     public class LoginDTO
     {

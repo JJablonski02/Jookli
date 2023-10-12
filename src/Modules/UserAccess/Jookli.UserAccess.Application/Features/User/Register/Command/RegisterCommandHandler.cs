@@ -1,9 +1,9 @@
-﻿using Jookli.Application.Configuration.Command;
-using Jookli.Domain.Entities.User;
-using Jookli.Domain.Entities.User.RepositoryContract;
+﻿using Jookli.UserAccess.Application.Configuration.Command;
+using Jookli.UserAccess.Domain.Entities.User;
+using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
 using MediatR;
 
-namespace Jookli.Application.Features.User.Register.Command
+namespace Jookli.UserAccess.Application.Features.User.Register.Command
 {
     public class RegisterCommandHandler : ICommandHandler<RegisterCommand>
     {

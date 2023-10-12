@@ -1,12 +1,12 @@
 ﻿using Autofac;
-using Jookli.Application.Features.User.Register.Command;
-using Jookli.Infrastructure.Configuration.Mediation;
-using Jookli.Infrastructure.Configuration.Processing;
+using Jookli.UserAccess.Infrastructure.Configuration.Mediation;
+using Jookli.UserAccess.Infrastructure.Configuration.Processing;
+using Jookli.UserAccess.Infrastructure.Configuration;
 using Serilog;
 
-namespace Jookli.Infrastructure.Configuration
+namespace Jookli.UserAccess.Infrastructure.Configuration
 {
-    public class IdentityStartup
+    public class UserAccessStartup
     {
         private static IContainer _container;
 
@@ -23,7 +23,7 @@ namespace Jookli.Infrastructure.Configuration
 
             _container= containerBuilder.Build();
 
-            UserCompositionRoot.SetContainer(_container);
+            UserAccessCompositionRoot.SetContainer(_container);
         }
     }
 }

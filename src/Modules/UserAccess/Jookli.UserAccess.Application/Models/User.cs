@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Application.Models
+namespace Jookli.UserAccess.Application.Models
 {
     public class User
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Domain.Entities.VoiceMessage
+namespace Jookli.UserAccess.Domain.Entities.VoiceMessage
 {
     public class VoiceMessageEntity
     {

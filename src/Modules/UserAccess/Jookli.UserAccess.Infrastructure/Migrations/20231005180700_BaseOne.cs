@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Jookli.Infrastructure.Migrations
+namespace Jookli.UserAccess.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class BaseOne : Migration

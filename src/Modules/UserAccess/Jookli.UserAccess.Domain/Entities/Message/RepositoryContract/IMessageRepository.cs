@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Domain.Entities.Message.RepositoryContract
+namespace Jookli.UserAccess.Domain.Entities.Message.RepositoryContract
 {
     public interface IMessageRepository
     {

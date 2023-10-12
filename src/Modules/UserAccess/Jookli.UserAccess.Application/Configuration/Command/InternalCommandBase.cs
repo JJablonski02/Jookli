@@ -1,11 +1,11 @@
-﻿using Jookli.Application.ServiceContracts;
+﻿using Jookli.UserAccess.Application.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Application.Configuration.Command
+namespace Jookli.UserAccess.Application.Configuration.Command
 {
     public abstract class InternalCommandBase : ICommand
     {

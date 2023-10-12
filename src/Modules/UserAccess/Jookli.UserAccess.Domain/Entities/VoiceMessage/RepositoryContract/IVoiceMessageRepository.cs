@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Domain.Entities.VoiceMessage.RepositoryContract
+namespace Jookli.UserAccess.Domain.Entities.VoiceMessage.RepositoryContract
 {
     public interface IVoiceMessageRepository
     {

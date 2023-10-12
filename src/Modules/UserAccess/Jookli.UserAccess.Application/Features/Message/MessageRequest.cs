@@ -1,11 +1,11 @@
-﻿using Jookli.Domain.Entities.Message;
+﻿using Jookli.UserAccess.Domain.Entities.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Application.Features.Message
+namespace Jookli.UserAccess.Application.Features.Message
 {
     public class MessageRequest
     {

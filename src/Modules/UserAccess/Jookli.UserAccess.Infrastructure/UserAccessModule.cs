@@ -1,5 +1,5 @@
-﻿using Jookli.Application.ServiceContracts;
-using Jookli.Infrastructure.Configuration.Processing;
+﻿using Jookli.UserAccess.Application.Contracts;
+using Jookli.UserAccess.Infrastructure.Configuration.Processing;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Infrastructure
+namespace Jookli.UserAccess.Infrastructure
 {
-    public class IdentityService : IIdentityService
+    public class UserAccessModule : IUserAccessModule
     {
         public async Task ExecuteCommandAsync(ICommand command)
         {

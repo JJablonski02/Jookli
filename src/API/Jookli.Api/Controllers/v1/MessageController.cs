@@ -1,8 +1,8 @@
-﻿using Jookli.Application.Features.Message;
-using Jookli.Application.ServiceContracts;
-using Jookli.Domain.Entities.Message;
-using Jookli.Domain.Entities.User;
-using Jookli.Infrastructure.Data;
+﻿using Jookli.UserAccess.Application.Features.Message;
+using Jookli.UserAccess.Application.Contracts;
+using Jookli.UserAccess.Domain.Entities.Message;
+using Jookli.UserAccess.Domain.Entities.User;
+using Jookli.UserAccess.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

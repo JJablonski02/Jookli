@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace Jookli.Domain.Entities.User.RepositoryContract
+namespace Jookli.UserAccess.Domain.Entities.User.RepositoryContract
 {
     public interface IUserRepository
     {

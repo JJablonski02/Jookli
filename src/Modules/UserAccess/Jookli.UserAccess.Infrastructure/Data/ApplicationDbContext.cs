@@ -1,12 +1,12 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Jookli.Domain.Entities.User;
-using Jookli.Domain.Entities.VoiceMessage;
-using Jookli.Domain.Entities.Message;
+using Jookli.UserAccess.Domain.Entities.User;
+using Jookli.UserAccess.Domain.Entities.VoiceMessage;
+using Jookli.UserAccess.Domain.Entities.Message;
 using Microsoft.Extensions.Logging;
 
-namespace Jookli.Infrastructure.Data
+namespace Jookli.UserAccess.Infrastructure.Data
 {
     public class ApplicationDbContext : DbContext
     {

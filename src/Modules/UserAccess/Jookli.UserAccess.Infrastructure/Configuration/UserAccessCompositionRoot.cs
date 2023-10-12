@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Infrastructure.Configuration.Processing
+namespace Jookli.UserAccess.Infrastructure.Configuration
 {
-    internal static class UserCompositionRoot
+    internal static class UserAccessCompositionRoot
     {
         private static IContainer _container;
 

@@ -1,6 +1,6 @@
-﻿using Jookli.Application.Features.Message;
+﻿using Jookli.UserAccess.Application.Features.Message;
 
-namespace Jookli.Application.ServiceContracts
+namespace Jookli.UserAccess.Application.Contracts
 {
     public interface IMessageGetterService
     {

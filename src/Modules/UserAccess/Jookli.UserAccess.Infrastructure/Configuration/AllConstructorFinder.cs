@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 using System.Reflection;
 
-namespace Jookli.Infrastructure.Configuration
+namespace Jookli.UserAccess.Infrastructure.Configuration
 {
     internal class AllConstructorFinder : IConstructorFinder
     {

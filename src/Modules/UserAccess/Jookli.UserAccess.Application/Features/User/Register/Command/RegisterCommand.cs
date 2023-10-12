@@ -1,4 +1,4 @@
-﻿using Jookli.Application.ServiceContracts;
+﻿using Jookli.UserAccess.Application.Contracts;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Application.Features.User.Register.Command
+namespace Jookli.UserAccess.Application.Features.User.Register.Command
 {
     public class RegisterCommand : CommandBase
     {

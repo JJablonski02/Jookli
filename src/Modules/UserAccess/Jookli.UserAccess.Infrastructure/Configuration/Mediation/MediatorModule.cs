@@ -6,7 +6,7 @@ using MediatR;
 using MediatR.Pipeline;
 using System.Reflection;
 
-namespace Jookli.Infrastructure.Configuration.Mediation
+namespace Jookli.UserAccess.Infrastructure.Configuration.Mediation
 {
     public class MediatorModule : Autofac.Module
     {

@@ -1,7 +1,7 @@
-﻿using Jookli.Application.Features.User.Register.Command;
-using Jookli.Application.ServiceContracts;
-using Jookli.Domain.Entities.User;
-using Jookli.Infrastructure.Data;
+﻿using Jookli.UserAccess.Application.Features.User.Register.Command;
+using Jookli.UserAccess.Application.Contracts;
+using Jookli.UserAccess.Domain.Entities.User;
+using Jookli.UserAccess.Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,8 +12,8 @@ namespace Jookli.Api.Controllers.v1
     public class UserController : CustomControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly IIdentityService _userService;
-        public UserController(ApplicationDbContext context, IIdentityService identityService)
+        private readonly IUserAccessModule _userService;
+        public UserController(ApplicationDbContext context, IUserAccessModule identityService)
         {
             _userService = identityService;
             _context = context;

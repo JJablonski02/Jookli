@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Configuration\Query\" />
-    <Folder Include="Exceptions\" />
   </ItemGroup>
 
 

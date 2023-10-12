@@ -1,8 +1,8 @@
-﻿using Jookli.Domain.Entities.Message;
-using Jookli.Domain.Entities.VoiceMessage;
+﻿using Jookli.UserAccess.Domain.Entities.Message;
+using Jookli.UserAccess.Domain.Entities.VoiceMessage;
 using System.ComponentModel.DataAnnotations;
 
-namespace Jookli.Domain.Entities.User
+namespace Jookli.UserAccess.Domain.Entities.User
 {
     public class UserEntity
     {

@@ -1,6 +1,6 @@
-﻿using Jookli.Domain.Entities.User;
-using Jookli.Domain.Entities.User.RepositoryContract;
-using Jookli.Infrastructure.Data;
+﻿using Jookli.UserAccess.Domain.Entities.User;
+using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
+using Jookli.UserAccess.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Infrastructure.Domain.User
+namespace Jookli.UserAccess.Infrastructure.Domain.User
 {
     public sealed class UserRepository : IUserRepository
     {
