@@ -12,8 +12,8 @@ namespace Jookli.UserAccess.Infrastructure.Domain.User
 {
     public sealed class UserRepository : IUserRepository
     {
-        private readonly ApplicationDbContext _dbContext;
-        public UserRepository(ApplicationDbContext dbContext)
+        private readonly UserAccessContext _dbContext;
+        public UserRepository(UserAccessContext dbContext)
         {
             _dbContext = dbContext;
         }
