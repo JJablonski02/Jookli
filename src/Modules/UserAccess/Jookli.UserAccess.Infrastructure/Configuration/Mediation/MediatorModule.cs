@@ -67,9 +67,7 @@ namespace Jookli.Infrastructure.Configuration.Mediation
                 _types.AddRange(types);
             }
 
-            public IEnumerable<IComponentRegistration> RegistrationsFor(
-                Service service,
-                Func<Service, IEnumerable<IComponentRegistration>> registrationAccessor)
+            public IEnumerable<IComponentRegistration> RegistrationsFor(Service service, Func<Service, IEnumerable<ServiceRegistration>> registrationAccessor)
             {
                 var components = _source.RegistrationsFor(service, registrationAccessor);
                 foreach (var c in components)
@@ -87,6 +85,5 @@ namespace Jookli.Infrastructure.Configuration.Mediation
 
             public bool IsAdapterForIndividualComponents => _source.IsAdapterForIndividualComponents;
         }
-    }
     }
 }
