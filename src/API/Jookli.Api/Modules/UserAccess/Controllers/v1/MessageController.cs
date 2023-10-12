@@ -1,17 +1,13 @@
 ﻿using Jookli.UserAccess.Application.Features.Message;
 using Jookli.UserAccess.Application.Contracts;
-using Jookli.UserAccess.Domain.Entities.Message;
-using Jookli.UserAccess.Domain.Entities.User;
-using Jookli.UserAccess.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Jookli.Api.Controllers.v1
+namespace Jookli.Api.Modules.UserAccess.Controllers.v1
 {
     [ApiVersion("1.0")]
     public class MessageController : CustomControllerBase
     {
-        private readonly ApplicationDbContext _context;
 
         private readonly IMessageGetterService _messageGetterService;
         private readonly IMessageAdderService _messageAdderService;

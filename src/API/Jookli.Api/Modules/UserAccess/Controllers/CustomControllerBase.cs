@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Jookli.Api.Controllers
+namespace Jookli.Api.Modules.UserAccess.Controllers
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
