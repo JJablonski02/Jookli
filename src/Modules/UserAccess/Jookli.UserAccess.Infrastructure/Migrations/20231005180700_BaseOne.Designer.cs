@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Jookli.UserAccess.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(UserAccessContext))]
     [Migration("20231005180700_BaseOne")]
     partial class BaseOne
     {
