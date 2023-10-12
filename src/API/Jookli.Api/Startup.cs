@@ -43,7 +43,7 @@ namespace Jookli.Api
                 config.AssumeDefaultVersionWhenUnspecified = true;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<UserAccessContext>(options =>
             {
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
             });
