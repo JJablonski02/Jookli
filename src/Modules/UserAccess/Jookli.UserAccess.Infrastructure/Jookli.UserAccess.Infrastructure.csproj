@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -18,12 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Jookli.Application\Jookli.Application.csproj" />
+    <Folder Include="Configuration\Nowy folder\" />
+    <Folder Include="Domain\Message\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configuration\Nowy folder\" />
-    <Folder Include="Domain\Message\" />
+    <ProjectReference Include="..\Jookli.UserAccess.Application\Jookli.UserAccess.Application.csproj" />
   </ItemGroup>
 
 </Project>

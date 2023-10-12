@@ -11,13 +11,15 @@
     <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="7.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Jookli.Domain\Jookli.Domain.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Configuration\Query\" />
     <Folder Include="Exceptions\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Jookli.UserAccess.Domain\Jookli.UserAccess.Domain.csproj" />
   </ItemGroup>
 
 </Project>

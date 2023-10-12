@@ -28,13 +28,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Jookli.Application\Jookli.Application.csproj" />
-    <ProjectReference Include="..\Jookli.Infrastructure\Jookli.Infrastructure.csproj" />
+    <Folder Include="Controllers\v2\" />
+    <Folder Include="Modules\Messages\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\v2\" />
-    <Folder Include="Modules\Messages\" />
+    <ProjectReference Include="..\..\Modules\UserAccess\Jookli.UserAccess.Application\Jookli.UserAccess.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\UserAccess\Jookli.UserAccess.Infrastructure\Jookli.UserAccess.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
