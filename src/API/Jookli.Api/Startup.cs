@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Jookli.Api.Modules.Configuration;
-using Jookli.Api.Modules.Configuration.ExecutionContext;
+using Jookli.Api.Configuration.ExecutionContext;
 using Jookli.Api.Modules.Module;
+using Jookli.BuildingBlocks.Application;
 using Jookli.UserAccess.Application.Contracts;
 using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
 using Jookli.UserAccess.Infrastructure;
@@ -64,6 +64,9 @@ namespace Jookli.Api
                 options.GroupNameFormat = "'v'VVV";
                 options.SubstituteApiVersionInUrl= true;
             });
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IExecutionContextAccessor, ExecutionContextAccessor>();
         }
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
@@ -104,10 +107,9 @@ namespace Jookli.Api
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
-            app.UseAuthentication();
-
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -130,7 +132,8 @@ namespace Jookli.Api
         {
             var httpContextAccessor = containerLifeTime.Resolve<IHttpContextAccessor>();
             var executeContextAccessor = new ExecutionContextAccessor(httpContextAccessor);
-            UserAccessStartup.Initialize(connectionString: _configuration.GetConnectionString("DefaultConnection"), logger: _logger);
+
+            UserAccessStartup.Initialize(connectionString: _configuration.GetConnectionString("DefaultConnection"), logger: _logger, executeContextAccessor);
         }
     }
 }

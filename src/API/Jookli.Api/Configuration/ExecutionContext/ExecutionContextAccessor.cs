@@ -1,6 +1,6 @@
 ﻿using Jookli.BuildingBlocks.Application;
 
-namespace Jookli.Api.Modules.Configuration.ExecutionContext
+namespace Jookli.Api.Configuration.ExecutionContext
 {
     public class ExecutionContextAccessor : IExecutionContextAccessor
     {
@@ -45,6 +45,6 @@ namespace Jookli.Api.Modules.Configuration.ExecutionContext
             }
         }
 
-        public bool IsAvailable => _httpContextAccessor.HttpContext != null; 
+        public bool IsAvailable => _httpContextAccessor.HttpContext != null;
     }
 }

@@ -1,10 +1,10 @@
-﻿namespace Jookli.Api.Modules.Configuration
+﻿namespace Jookli.Api.Configuration
 {
     public class InnerExtension
     {
         public InnerExtension()
         {
-            
+
         }
     }
 }
