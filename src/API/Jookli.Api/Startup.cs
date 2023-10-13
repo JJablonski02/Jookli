@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Jookli.Api.Modules.Configuration;
 using Jookli.Api.Modules.Module;
 using Jookli.UserAccess.Application.Contracts;
 using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
@@ -126,6 +127,8 @@ namespace Jookli.Api
 
         private void InitializeModules(ILifetimeScope containerLifeTime)
         {
+            var httpContextAccessor = containerLifeTime.Resolve<IHttpContextAccessor>();
+            var executeContextAccessor = new ExecutionContextAccessor(httpContextAccessor);
             UserAccessStartup.Initialize(connectionString: _configuration.GetConnectionString("DefaultConnection"), logger: _logger);
         }
     }
