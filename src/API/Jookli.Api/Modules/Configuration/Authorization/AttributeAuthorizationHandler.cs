@@ -7,6 +7,12 @@ namespace Jookli.Api.Modules.Configuration.Authorization
         where TRequirement : IAuthorizationRequirement
         where TAttribute : Attribute
     {
-       
+        
+
+        protected abstract Task HandleRequirementAsync(
+                 AuthorizationHandlerContext context,
+                 TRequirement requirement,
+                 TAttribute attribute);
+
     }
 }
