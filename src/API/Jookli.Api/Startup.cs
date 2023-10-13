@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Jookli.Api.Modules.Configuration;
+using Jookli.Api.Modules.Configuration.ExecutionContext;
 using Jookli.Api.Modules.Module;
 using Jookli.UserAccess.Application.Contracts;
 using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
