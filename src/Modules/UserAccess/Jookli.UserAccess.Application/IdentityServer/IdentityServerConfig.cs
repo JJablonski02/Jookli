@@ -1,4 +1,5 @@
 ﻿using IdentityServer4.Models;
+using Jookli.UserAccess.Application.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,15 @@ namespace Jookli.UserAccess.Application.IdentityServer
 
         public static IEnumerable<IdentityResource> GetIdentityResources()
         {
-
+            return new IdentityResource[]
+            {
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(),
+                new IdentityResource(CustomClaimTypes.Roles, new List<string>
+                {
+                    CustomClaimTypes.Roles
+                })
+            };
         }
     }
 }
