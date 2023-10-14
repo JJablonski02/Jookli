@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using IdentityServer4.AccessTokenValidation;
+using IdentityServer4.Validation;
 using Jookli.Api.Configuration.Authorization;
 using Jookli.Api.Configuration.ExecutionContext;
 using Jookli.Api.Configuration.Extensions;
@@ -135,6 +137,16 @@ namespace Jookli.Api
                 .AddInMemoryPersistedGrants()
                 .AddProfileService<ProfileService>()
                 .AddDeveloperSigningCredential();
+
+            services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
+
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme, x =>
+                {
+                    x.Authority = "http://localhost:5107";
+                    x.ApiName = "JookliAPI";
+                    x.RequireHttpsMetadata = false;
+                });
         }
 
         private void InitializeModules(ILifetimeScope containerLifeTime)
