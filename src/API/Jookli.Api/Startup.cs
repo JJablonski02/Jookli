@@ -8,7 +8,6 @@ using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
 using Jookli.UserAccess.Infrastructure;
 using Jookli.UserAccess.Infrastructure.Configuration;
 using Jookli.UserAccess.Infrastructure.Data;
-using Jookli.UserAccess.Infrastructure.Domain.User;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -20,7 +19,6 @@ namespace Jookli.Api
     {
         private readonly IConfiguration _configuration;
         private static Serilog.ILogger _logger;
-        private static IContainer _container;
 
         public Startup(IWebHostEnvironment webHostEnvironment)
         {
@@ -36,6 +34,9 @@ namespace Jookli.Api
         public void  ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IExecutionContextAccessor, ExecutionContextAccessor>();
 
             services.AddApiVersioning(config =>
             {
@@ -64,9 +65,6 @@ namespace Jookli.Api
                 options.GroupNameFormat = "'v'VVV";
                 options.SubstituteApiVersionInUrl= true;
             });
-
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<IExecutionContextAccessor, ExecutionContextAccessor>();
         }
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
@@ -79,16 +77,18 @@ namespace Jookli.Api
 
             var container = app.ApplicationServices.GetAutofacRoot();
 
+            InitializeModules(container);
+
             app.UseCors(options =>
             {
-                options.WithOrigins("http://localhost:61385", "https://localhost:7133", "http://localhost:5107").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
             });
+
+            app.UseMiddleware<CorrelationMiddleware>();
 
             app.UseDefaultFiles();
 
             app.UseStaticFiles();
-
-            InitializeModules(container);
 
             if (!webHostEnvironment.IsDevelopment())
             {
