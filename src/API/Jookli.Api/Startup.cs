@@ -6,6 +6,7 @@ using Jookli.Api.Configuration.Extensions;
 using Jookli.Api.Modules.UserAccess;
 using Jookli.BuildingBlocks.Application;
 using Jookli.UserAccess.Application.Contracts;
+using Jookli.UserAccess.Application.IdentityServer;
 using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
 using Jookli.UserAccess.Infrastructure;
 using Jookli.UserAccess.Infrastructure.Configuration;
@@ -127,6 +128,13 @@ namespace Jookli.Api
 
         private void ConfigureIdentityServer(IServiceCollection services)
         {
+            services.AddIdentityServer()
+                .AddInMemoryIdentityResources(IdentityServerConfig.GetIdentityResources())
+                .AddInMemoryApiResources(IdentityServerConfig.GetApis())
+                .AddInMemoryClients(IdentityServerConfig.GetClients())
+                .AddInMemoryPersistedGrants()
+                .AddProfileService<ProfileService>()
+                .AddDeveloperSigningCredential();
         }
 
         private void InitializeModules(ILifetimeScope containerLifeTime)
