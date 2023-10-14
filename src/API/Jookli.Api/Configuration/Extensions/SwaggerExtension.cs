@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 namespace Jookli.Api.Configuration.Extensions
@@ -48,6 +49,13 @@ namespace Jookli.Api.Configuration.Extensions
                        new List<string>()
                     }
                 });
+            });
+
+            services.AddApiVersioning(config =>
+            {
+                config.ApiVersionReader = new UrlSegmentApiVersionReader();
+                config.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1,0);
+                config.AssumeDefaultVersionWhenUnspecified = true;
             });
             return services;
         }

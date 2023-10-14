@@ -1,7 +1,5 @@
-﻿using Jookli.Api.Configuration.Authorization;
-using Jookli.UserAccess.Application.Contracts;
+﻿using Jookli.UserAccess.Application.Contracts;
 using Jookli.UserAccess.Application.Features.User.Register.Command;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Jookli.Api.Modules.UserAccess.Controllers
@@ -12,16 +10,22 @@ namespace Jookli.Api.Modules.UserAccess.Controllers
     {
         private readonly IUserAccessModule _userAccessModule;
 
+        public UserAccessController(IUserAccessModule userAccessModule)
+        {
+            _userAccessModule= userAccessModule;
+        }
 
-        [NoPermissionRequired]
-        [AllowAnonymous]
+
+        //[NoPermissionRequired]
+        //[AllowAnonymous]
         [HttpPost]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateNewUser(RegisterCommand command)
         {
             await _userAccessModule.ExecuteCommandAsync(command);
 
             return Ok();
         }
-    }
 
+    }
 }

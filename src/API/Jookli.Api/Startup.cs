@@ -11,8 +11,10 @@ using Jookli.UserAccess.Infrastructure;
 using Jookli.UserAccess.Infrastructure.Configuration;
 using Jookli.UserAccess.Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Formatting.Compact;
 
@@ -93,6 +95,13 @@ namespace Jookli.Api
                 app.UseHsts();
             }
 
+            //app.UseSwagger();
+            //app.UseSwaggerUI(options =>
+            //{
+            //    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1.0");
+            //    options.SwaggerEndpoint("/swagger/v2/swagger.json", "v2.0");
+            //}); // creates swagger UI for tesing all web API endpoints / action methods 
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -114,6 +123,10 @@ namespace Jookli.Api
                     "[{Timestamp:HH:mm:ss} {Level:u3}] [{Module}] [{Context}] {Message:lj}{NewLine}{Exception}")
                 .WriteTo.RollingFile(new CompactJsonFormatter(), "logs/logs")
                 .CreateLogger();
+        }
+
+        private void ConfigureIdentityServer(IServiceCollection services)
+        {
         }
 
         private void InitializeModules(ILifetimeScope containerLifeTime)
