@@ -16,6 +16,17 @@ namespace Jookli.UserAccess.Application.IdentityServer
             return new List<ApiResource>
             {
                 new ApiResource("JookliAPI", "Jookli API")
+                {
+                    Scopes = new List<string>{"JookliAPI"},
+                    ApiSecrets = new List<Secret>{new Secret("secret".Sha256())}
+                }
+            };
+        }
+        public static IEnumerable<ApiScope> ApiScopes()
+        {
+            return new List<ApiScope>
+            {
+                new ApiScope("JookliApi", "Jookli API")
             };
         }
 
