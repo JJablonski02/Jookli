@@ -3,7 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using Jookli.Api.Configuration.Authorization;
 using Jookli.Api.Configuration.ExecutionContext;
 using Jookli.Api.Configuration.Extensions;
-using Jookli.Api.Modules.Module;
+using Jookli.Api.Modules.UserAccess;
 using Jookli.BuildingBlocks.Application;
 using Jookli.UserAccess.Application.Contracts;
 using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
@@ -40,18 +40,8 @@ namespace Jookli.Api
 
             services.AddSwaggerDocumentation();
 
-            services.AddEndpointsApiExplorer(); //Generates description for all endpoints
-
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IExecutionContextAccessor, ExecutionContextAccessor>();
-
-            //services.AddApiVersioning(config =>
-            //{
-            //    config.ApiVersionReader = new UrlSegmentApiVersionReader(); // Reads version number from request url at "apiVersion" constraint
-
-            //    config.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
-            //    config.AssumeDefaultVersionWhenUnspecified = true;
-            //});
 
             services.AddDbContext<UserAccessContext>(options =>
             {
@@ -67,20 +57,6 @@ namespace Jookli.Api
             });
 
             services.AddScoped<IAuthorizationHandler, HasPermissionAuthorizationHandler>();
-
-
-            //services.AddSwaggerGen(options =>
-            //{
-            //    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "api.xml"));
-
-            //    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() { Title = "Jookli API", Version = "1.0" });
-            //});
-
-            //services.AddVersionedApiExplorer(options =>
-            //{
-            //    options.GroupNameFormat = "'v'VVV";
-            //    options.SubstituteApiVersionInUrl= true;
-            //});
         }
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)

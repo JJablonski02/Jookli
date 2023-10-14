@@ -2,7 +2,7 @@
 using Jookli.UserAccess.Application.Contracts;
 using Jookli.UserAccess.Infrastructure;
 
-namespace Jookli.Api.Modules.Module
+namespace Jookli.Api.Modules.UserAccess
 {
     internal sealed class UserAccessAutofacModule : Autofac.Module
     {

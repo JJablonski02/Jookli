@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Jookli.Api.Modules.UserAccess.Controllers
 {
-    [Route("userAccess/[controller]")]
+    [Route("api/userAccess/[controller]")]
     [ApiController]
     public class UserAccessController : ControllerBase
     {
