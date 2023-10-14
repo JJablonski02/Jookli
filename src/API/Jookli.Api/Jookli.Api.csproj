@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-	  <DocumentationFile>api.xml</DocumentationFile>
+	  <DocumentationFile>Jookli.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\UserAccess\Controllers\v2\" />
     <Folder Include="Modules\Messages\" />
   </ItemGroup>
 
