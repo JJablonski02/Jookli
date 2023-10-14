@@ -1,4 +1,5 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using Jookli.UserAccess.Application.Contracts;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,29 @@ namespace Jookli.UserAccess.Application.IdentityServer
                 {
                     CustomClaimTypes.Roles
                 })
+            };
+        }
+
+        public static IEnumerable<Client> GetClients()
+        {
+            return new List<Client>
+            {
+                new Client
+                {
+                    ClientId = "ro.client",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedScopes =
+                    {
+                        "JookliAPI",
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile
+                    }
+                }
             };
         }
     }
