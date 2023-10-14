@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Jookli.Api.Configuration.Authorization;
 using Jookli.Api.Configuration.ExecutionContext;
+using Jookli.Api.Configuration.Extensions;
 using Jookli.Api.Modules.Module;
 using Jookli.BuildingBlocks.Application;
 using Jookli.UserAccess.Application.Contracts;
@@ -8,6 +10,7 @@ using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
 using Jookli.UserAccess.Infrastructure;
 using Jookli.UserAccess.Infrastructure.Configuration;
 using Jookli.UserAccess.Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -35,36 +38,49 @@ namespace Jookli.Api
         {
             services.AddControllers();
 
+            services.AddSwaggerDocumentation();
+
+            services.AddEndpointsApiExplorer(); //Generates description for all endpoints
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IExecutionContextAccessor, ExecutionContextAccessor>();
 
-            services.AddApiVersioning(config =>
-            {
-                config.ApiVersionReader = new UrlSegmentApiVersionReader(); // Reads version number from request url at "apiVersion" constraint
+            //services.AddApiVersioning(config =>
+            //{
+            //    config.ApiVersionReader = new UrlSegmentApiVersionReader(); // Reads version number from request url at "apiVersion" constraint
 
-                config.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
-                config.AssumeDefaultVersionWhenUnspecified = true;
-            });
+            //    config.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+            //    config.AssumeDefaultVersionWhenUnspecified = true;
+            //});
 
             services.AddDbContext<UserAccessContext>(options =>
             {
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddEndpointsApiExplorer(); //Generates description for all endpoints
-
-            services.AddSwaggerGen(options =>
+            services.AddAuthorization(options =>
             {
-                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "api.xml"));
-
-                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() { Title = "Jookli API", Version = "1.0" });
+                options.AddPolicy(HasPermissionAttribute.HasPermissionPolicyName, policyBuilder =>
+                {
+                    policyBuilder.Requirements.Add(new HasPermissionAuthorizationRequirement());
+                });
             });
 
-            services.AddVersionedApiExplorer(options =>
-            {
-                options.GroupNameFormat = "'v'VVV";
-                options.SubstituteApiVersionInUrl= true;
-            });
+            services.AddScoped<IAuthorizationHandler, HasPermissionAuthorizationHandler>();
+
+
+            //services.AddSwaggerGen(options =>
+            //{
+            //    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "api.xml"));
+
+            //    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() { Title = "Jookli API", Version = "1.0" });
+            //});
+
+            //services.AddVersionedApiExplorer(options =>
+            //{
+            //    options.GroupNameFormat = "'v'VVV";
+            //    options.SubstituteApiVersionInUrl= true;
+            //});
         }
 
         public void ConfigureContainer(ContainerBuilder containerBuilder)
@@ -77,14 +93,16 @@ namespace Jookli.Api
 
             var container = app.ApplicationServices.GetAutofacRoot();
 
-            InitializeModules(container);
-
             app.UseCors(options =>
             {
                 options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
             });
 
+            InitializeModules(container);
+
             app.UseMiddleware<CorrelationMiddleware>();
+
+            app.UseSwaggerDocumentation();
 
             app.UseDefaultFiles();
 
@@ -98,12 +116,6 @@ namespace Jookli.Api
             {
                 app.UseHsts();
             }
-
-            app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1.0");
-            });
 
             app.UseHttpsRedirection();
 
