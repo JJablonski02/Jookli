@@ -15,6 +15,7 @@ namespace Jookli.Api.Configuration.Extensions
                     Version = "v1",
                     Description = "Jookli API for Jookli Native Application"
                 });
+                options.CustomSchemaIds(t => t.ToString());
 
                 var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 var commentsFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -55,7 +56,7 @@ namespace Jookli.Api.Configuration.Extensions
         {
             app.UseSwagger();
 
-            app.UseSwaggerUI(t => { t.SwaggerEndpoint("swagger/v1/swagger.json", "Jookli API"); });
+            app.UseSwaggerUI(t => { t.SwaggerEndpoint("/swagger/v1/swagger.json", "Jookli API"); });
 
             return app;
         }
