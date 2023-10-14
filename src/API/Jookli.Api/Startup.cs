@@ -25,8 +25,10 @@ namespace Jookli.Api
 {
     public class Startup
     {
+        private const string JookliConnectionString = "JookliConnectionString";
         private readonly IConfiguration _configuration;
         private static Serilog.ILogger _logger;
+        private static Serilog.ILogger _apiLogger;
 
         public Startup(IWebHostEnvironment webHostEnvironment)
         {
@@ -37,7 +39,9 @@ namespace Jookli.Api
                 .Build();
 
 
-            _logger.Information("Connection string: " + _configuration.GetConnectionString("DefaultConnection"));
+            _apiLogger.Information("Connection string: " + _configuration[JookliConnectionString]);
+            AuthorizationChecker.CheckAllEndpoints();
+            _apiLogger.Information("Connected");
         }
         public void  ConfigureServices(IServiceCollection services)
         {
@@ -45,12 +49,14 @@ namespace Jookli.Api
 
             services.AddSwaggerDocumentation();
 
+            ConfigureIdentityServer(services);
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IExecutionContextAccessor, ExecutionContextAccessor>();
 
             services.AddDbContext<UserAccessContext>(options =>
             {
-                options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(_configuration[JookliConnectionString]);
             });
 
             services.AddAuthorization(options =>
@@ -58,6 +64,7 @@ namespace Jookli.Api
                 options.AddPolicy(HasPermissionAttribute.HasPermissionPolicyName, policyBuilder =>
                 {
                     policyBuilder.Requirements.Add(new HasPermissionAuthorizationRequirement());
+                    policyBuilder.AddAuthenticationSchemes(IdentityServerAuthenticationDefaults.AuthenticationScheme);
                 });
             });
 
@@ -79,15 +86,25 @@ namespace Jookli.Api
                 options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
             });
 
+            app.UseDefaultFiles();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Append("Access-Control-Allow-Origin", "*");
+                    ctx.Context.Response.Headers.Append("Access-Control-Allow-Headers", "*");
+                    ctx.Context.Response.Headers.Append("Access-Control-Allow-Methods", "*");
+                },
+            });
+
             InitializeModules(container);
 
             app.UseMiddleware<CorrelationMiddleware>();
 
             app.UseSwaggerDocumentation();
 
-            app.UseDefaultFiles();
-
-            app.UseStaticFiles();
+            app.UseIdentityServer();
 
             if (!webHostEnvironment.IsDevelopment())
             {
@@ -110,6 +127,7 @@ namespace Jookli.Api
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
@@ -126,6 +144,9 @@ namespace Jookli.Api
                     "[{Timestamp:HH:mm:ss} {Level:u3}] [{Module}] [{Context}] {Message:lj}{NewLine}{Exception}")
                 .WriteTo.RollingFile(new CompactJsonFormatter(), "logs/logs")
                 .CreateLogger();
+
+            _apiLogger = _logger.ForContext("Module", "API");
+            _apiLogger.Information("Logger configured");
         }
 
         private void ConfigureIdentityServer(IServiceCollection services)
@@ -152,6 +173,7 @@ namespace Jookli.Api
         private void InitializeModules(ILifetimeScope containerLifeTime)
         {
             var httpContextAccessor = containerLifeTime.Resolve<IHttpContextAccessor>();
+
             var executeContextAccessor = new ExecutionContextAccessor(httpContextAccessor);
 
             UserAccessStartup.Initialize(connectionString: _configuration.GetConnectionString("DefaultConnection"), logger: _logger, executeContextAccessor);
