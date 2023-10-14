@@ -5,6 +5,7 @@ using Jookli.UserAccess.Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Jookli.Api.Configuration.Authorization;
 
 namespace Jookli.Api.Modules.UserAccess.Controllers.v1
 {
@@ -20,6 +21,7 @@ namespace Jookli.Api.Modules.UserAccess.Controllers.v1
 
         [HttpPost]
         [AllowAnonymous]
+        [NoPermissionRequired]
         public async Task<IActionResult> CreateUser(RegisterCommand command)
         {
             await _userAccessModule.ExecuteCommandAsync(command);

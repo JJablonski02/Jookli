@@ -2,6 +2,7 @@
 using Jookli.UserAccess.Application.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Jookli.Api.Configuration.Authorization;
 
 namespace Jookli.Api.Modules.UserAccess.Controllers.v1
 {
@@ -28,6 +29,7 @@ namespace Jookli.Api.Modules.UserAccess.Controllers.v1
         //}
 
         [HttpGet("{id}")]
+        [NoPermissionRequired]
         public async Task<ActionResult<MessageResponse>> GetMessageById(Guid messageId)
         {
             MessageResponse? messageResponse = await _messageGetterService.GetMessageById(messageId);
@@ -36,6 +38,7 @@ namespace Jookli.Api.Modules.UserAccess.Controllers.v1
         }
 
         [HttpPost]
+        [NoPermissionRequired]
         public async Task<IActionResult> PostMessage(MessageRequest messageRequest)
         {
             await _messageAdderService.AddMessage(messageRequest);
@@ -44,6 +47,7 @@ namespace Jookli.Api.Modules.UserAccess.Controllers.v1
         }
 
         [HttpGet]
+        [NoPermissionRequired]
 
         public async Task<ActionResult<MessageResponse>> GetMessage(MessageRequest messageRequest)
         {
