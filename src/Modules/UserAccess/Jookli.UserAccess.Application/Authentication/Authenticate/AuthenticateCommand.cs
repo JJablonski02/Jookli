@@ -17,6 +17,5 @@ namespace Jookli.UserAccess.Application.Authentication.Authenticate
 
         public string Login { get; }
         public string Password { get; }
-
     }
 }

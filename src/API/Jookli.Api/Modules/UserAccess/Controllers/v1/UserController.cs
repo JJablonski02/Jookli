@@ -19,14 +19,14 @@ namespace Jookli.Api.Modules.UserAccess.Controllers.v1
             _userAccessModule = userAccessModule;
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [NoPermissionRequired]
-        public async Task<IActionResult> CreateUser(RegisterCommand command)
-        {
-            await _userAccessModule.ExecuteCommandAsync(command);
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[NoPermissionRequired]
+        //public async Task<IActionResult> CreateUser(RegisterCommand command)
+        //{
+        //    await _userAccessModule.ExecuteCommandAsync(command);
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
     }
 }
