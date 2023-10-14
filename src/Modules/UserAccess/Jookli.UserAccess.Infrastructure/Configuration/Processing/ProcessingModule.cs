@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Jookli.BuildingBlocks.Application.Events;
 using Jookli.UserAccess.Application.Features.User.Register.Command;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,11 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<RegisterCommand>();
+            //builder.RegisterType<RegisterCommand>();
+            builder.RegisterAssemblyTypes(Assemblies.Application)
+                .AsClosedTypesOf(typeof(IDomainEventNotification))
+                .InstancePerDependency()
+                .FindConstructorsWith(new AllConstructorFinder());
         }
     }
 }
