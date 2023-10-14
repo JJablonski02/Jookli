@@ -1,4 +1,6 @@
-﻿using Jookli.UserAccess.Application.Contracts;
+﻿using Autofac;
+using Jookli.UserAccess.Application.Contracts;
+using Jookli.UserAccess.Infrastructure.Configuration;
 using Jookli.UserAccess.Infrastructure.Configuration.Processing;
 using MediatR;
 using System;
@@ -18,6 +20,15 @@ namespace Jookli.UserAccess.Infrastructure
         public async Task<TResult> ExecuteCommandAsync<TResult>(ICommand<TResult> command)
         {
             return await CommandsExecutor.Execute(command);
+        }
+
+        public async Task<TResult> ExecuteQueryAsync<TResult>(IQuery<TResult> query)
+        {
+            using (var scope = UserAccessCompositionRoot.BeginLifetimeScope())
+            {
+                var mediator = scope.Resolve<IMediator>();
+                return await mediator.Send(query);
+            }
         }
     }
 }
