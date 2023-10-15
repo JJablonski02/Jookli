@@ -13,12 +13,15 @@ namespace Jookli.UserAccess.Infrastructure.Configuration
 
         public static void Initialize(string connectionString, ILogger logger, IExecutionContextAccessor executionContextAccessor)
         {
+            var moduleLogger = logger.ForContext("Module", "UserAccess");
+
             ConfigureCompositionRoot(connectionString, logger, executionContextAccessor);
         }
         private static void ConfigureCompositionRoot(string connectionString, ILogger logger, IExecutionContextAccessor executionContextAccessor)
         {
             var containerBuilder = new ContainerBuilder();
 
+            containerBuilder.RegisterModule(new DataAccess());
             containerBuilder.RegisterModule(new MediatorModule());
             containerBuilder.RegisterModule(new ProcessingModule());
 
