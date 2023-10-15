@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Jookli.BuildingBlocks.Application.Events;
+using Jookli.BuildingBlocks.Infrastructure.DomainEventsDispatching;
 using Jookli.UserAccess.Application.Features.User.Register.Command;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +15,19 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
     {
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterType<RegisterCommand>();
+            builder.RegisterType<DomainEventsDispatcher>()
+                .As<IDomainEventsDispatcher>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterGenericDecorator(
+                typeof(LoggingCommandHandlerDecorator<>),
+                typeof(IRequestHandler<,>));
+
             builder.RegisterAssemblyTypes(Assemblies.Application)
                 .AsClosedTypesOf(typeof(IDomainEventNotification))
                 .InstancePerDependency()
                 .FindConstructorsWith(new AllConstructorFinder());
+
         }
     }
 }
