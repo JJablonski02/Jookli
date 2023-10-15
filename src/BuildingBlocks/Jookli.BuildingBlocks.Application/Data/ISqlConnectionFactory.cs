@@ -9,7 +9,7 @@ namespace Jookli.BuildingBlocks.Application.Data
 {
     public interface ISqlConnectionFactory
     {
-        IDbConnection GetDbConnection();
+        IDbConnection GetOpenConnection();
         IDbConnection CreateNewConnection();
         string GetConnectionString();
     }
