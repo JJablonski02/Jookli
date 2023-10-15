@@ -4,6 +4,8 @@ using Jookli.UserAccess.Infrastructure.Configuration.Processing;
 using Jookli.UserAccess.Infrastructure.Configuration;
 using Serilog;
 using Jookli.BuildingBlocks.Application;
+using Jookli.UserAccess.Infrastructure.Configuration.DataAccess;
+using Serilog.AspNetCore;
 
 namespace Jookli.UserAccess.Infrastructure.Configuration
 {
@@ -21,7 +23,8 @@ namespace Jookli.UserAccess.Infrastructure.Configuration
         {
             var containerBuilder = new ContainerBuilder();
 
-            containerBuilder.RegisterModule(new DataAccess());
+            var loggerFactory = new SerilogLoggerFactory(logger);
+            containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));
             containerBuilder.RegisterModule(new MediatorModule());
             containerBuilder.RegisterModule(new ProcessingModule());
 
