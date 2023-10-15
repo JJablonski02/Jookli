@@ -10,4 +10,8 @@
     <PackageReference Include="MediatR" Version="11.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Jookli.BuildingBlocks.Domain\Jookli.BuildingBlocks.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
