@@ -1,8 +1,11 @@
 ﻿using Autofac;
+using Autofac.Core;
 using Jookli.BuildingBlocks.Application.Events;
 using Jookli.BuildingBlocks.Application.Outbox;
 using Jookli.BuildingBlocks.Domain;
+using Jookli.BuildingBlocks.Infrastructure.Serialization;
 using MediatR;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +50,19 @@ namespace Jookli.BuildingBlocks.Infrastructure.DomainEventsDispatching
             {
                 Type domainEventNotificationType = typeof(IDomainEventNotification<>);
                 var domainNotificationWtihGenericType = domainEventNotificationType.MakeGenericType(domainEvent.GetType());
-            } 
+                var domainNotification = _scope.ResolveOptional(domainNotificationWtihGenericType, new List<Parameter>
+                {
+                    new NamedParameter("domainEvent", domainEvent),
+                    new NamedParameter("id", domainEvent.Id)
+                });
+
+                if(domainNotification != null)
+                {
+                    domainEventNotifications.Add(domainNotification as IDomainEventNotification<IDomainEvent>);
+                }
+            }
+
+            
         }
     }
 }
