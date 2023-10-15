@@ -62,7 +62,29 @@ namespace Jookli.BuildingBlocks.Infrastructure.DomainEventsDispatching
                 }
             }
 
-            
+            _domainEventsAccessor.ClearAllDomainEvents();
+
+            foreach (var domainEvent in domainEvents)
+            {
+                await _mediator.Publish(domainEvent);
+            }
+
+            foreach (var domainEventNotification in domainEventNotifications)
+            {
+                var type = _domainNotificationsMapper.GetName(domainEventNotification.GetType());
+                var data = JsonConvert.SerializeObject(domainEventNotification, new JsonSerializerSettings
+                {
+                    ContractResolver = new AllPropertiesContractResolver()
+                });
+
+                var outboxMessage = new OutboxMessage(
+                    domainEventNotification.Id,
+                    domainEventNotification.DomainEvent.OccuredOn,
+                    type,
+                    data);
+
+                _outbox.Add(outboxMessage);
+            }
         }
     }
 }
