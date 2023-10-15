@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.Application\Jookli.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.Infrastructure\Jookli.BuildingBlocks.Infrastructure.csproj" />
     <ProjectReference Include="..\Jookli.UserAccess.Application\Jookli.UserAccess.Application.csproj" />
   </ItemGroup>
 
