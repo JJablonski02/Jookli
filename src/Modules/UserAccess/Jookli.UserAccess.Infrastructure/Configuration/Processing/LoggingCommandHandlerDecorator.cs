@@ -25,7 +25,37 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
             _executionContextAccessor = executionContextAccessor;
             _decorator = decorator;
         }
-        
+        public async Task<Unit> Handle(T command, CancellationToken cancellationToken)
+        {
+            if (command is IRecurringCommand)
+            {
+                return await _decorator.Handle(command, cancellationToken);
+            }
+
+            using (
+                LogContext.Push(
+                    new RequestLogEnricher(_executionContextAccessor),
+                    new CommandLogEnricher(command)))
+            {
+                try
+                {
+                    this._logger.Information(
+                        "Executing command {Command}",
+                        command.GetType().Name);
+
+                    var result = await _decorator.Handle(command, cancellationToken);
+
+                    this._logger.Information("Command {Command} processed successful", command.GetType().Name);
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    this._logger.Error(ex, "Command {Command} processing failed", command.GetType().Name);
+                    throw;
+                }
+            }
+        }
 
         private class CommandLogEnricher : ILogEventEnricher
         {
