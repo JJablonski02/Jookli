@@ -10,4 +10,8 @@
     <Folder Include="Enums\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.Domain\Jookli.BuildingBlocks.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
