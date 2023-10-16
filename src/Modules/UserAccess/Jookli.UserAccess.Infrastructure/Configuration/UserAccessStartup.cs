@@ -6,6 +6,10 @@ using Serilog;
 using Jookli.BuildingBlocks.Application;
 using Jookli.UserAccess.Infrastructure.Configuration.DataAccess;
 using Serilog.AspNetCore;
+using Jookli.UserAccess.Infrastructure.Configuration.Processing.Outbox;
+using Jookli.BuildingBlocks.Infrastructure;
+using Jookli.UserAccess.Application.Features.User.Register.Notification;
+using Jookli.UserAccess.Infrastructure.Configuration.Domain;
 
 namespace Jookli.UserAccess.Infrastructure.Configuration
 {
@@ -25,8 +29,13 @@ namespace Jookli.UserAccess.Infrastructure.Configuration
 
             var loggerFactory = new SerilogLoggerFactory(logger);
             containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));
+            containerBuilder.RegisterModule(new DomainModule());
             containerBuilder.RegisterModule(new MediatorModule());
             containerBuilder.RegisterModule(new ProcessingModule());
+
+            var domainNotificationsMap = new BiDictionary<string, Type>();
+            domainNotificationsMap.Add("NewUserRegisteredNotification", typeof(NewUserRegisteredNotification));
+            containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
 
             containerBuilder.RegisterInstance(executionContextAccessor);
 
