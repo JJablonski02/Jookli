@@ -5,6 +5,7 @@ using Jookli.UserAccess.Domain.Entities.User;
 using Jookli.UserAccess.Domain.Entities.VoiceMessage;
 using Jookli.UserAccess.Domain.Entities.Message;
 using Microsoft.Extensions.Logging;
+using Jookli.BuildingBlocks.Application.Outbox;
 
 namespace Jookli.UserAccess.Infrastructure.Data
 {
@@ -17,9 +18,7 @@ namespace Jookli.UserAccess.Infrastructure.Data
         }
 
         public virtual DbSet<UserEntity> User { get; set; }
-        public virtual DbSet<VoiceMessageEntity> VoiceMessage { get; set; }
-        public virtual DbSet<MessageEntity> MessageEntity { get; set; }
-
+        public DbSet<OutboxMessage> OutboxMessages { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
