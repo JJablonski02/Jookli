@@ -24,10 +24,9 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
                 typeof(IRequestHandler<,>));
 
             builder.RegisterAssemblyTypes(Assemblies.Application)
-                .AsClosedTypesOf(typeof(IDomainEventNotification))
+                .AsClosedTypesOf(typeof(IDomainEventNotification<>))
                 .InstancePerDependency()
                 .FindConstructorsWith(new AllConstructorFinder());
-
         }
     }
 }
