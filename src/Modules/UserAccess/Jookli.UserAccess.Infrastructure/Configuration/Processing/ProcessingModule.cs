@@ -23,6 +23,10 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
                 typeof(LoggingCommandHandlerDecorator<>),
                 typeof(IRequestHandler<,>));
 
+            builder.RegisterType<DomainEventsAccessor>()
+                .As<IDomainEventsAccessor>()
+                .InstancePerLifetimeScope();
+
             builder.RegisterAssemblyTypes(Assemblies.Application)
                 .AsClosedTypesOf(typeof(IDomainEventNotification<>))
                 .InstancePerDependency()

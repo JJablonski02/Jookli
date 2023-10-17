@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.BuildingBlocks.Infrastructure.DomainEventsDispatching
 {
-    internal class DomainEventsAccessor : IDomainEventsAccessor
+    public class DomainEventsAccessor : IDomainEventsAccessor
     {
         private readonly DbContext _jookliDbContext;
 
