@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Jookli.BuildingBlocks.Application.Data;
+using Jookli.UserAccess.Domain.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Jookli.UserAccess.Application.Common
 {
-    public class UsersCounter
+    public class UsersCounter : IUsersCounter
     {
         private readonly ISqlConnectionFactory _sqlConnectionFactory;
         public UsersCounter(ISqlConnectionFactory sqlConnectionFactory)
         {
             _sqlConnectionFactory = sqlConnectionFactory;
         }
-        public int CountUserByName(string login)
+        public int CountUsersWithLogin(string login)
         {
             var connection = _sqlConnectionFactory.GetOpenConnection();
 
