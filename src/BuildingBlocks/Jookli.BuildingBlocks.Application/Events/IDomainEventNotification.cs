@@ -10,5 +10,4 @@ namespace Jookli.BuildingBlocks.Application.Events
     {
         Guid Id { get; }
     }
-
 }
