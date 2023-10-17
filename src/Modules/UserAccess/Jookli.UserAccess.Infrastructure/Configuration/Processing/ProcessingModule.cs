@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Jookli.BuildingBlocks.Application.Events;
 using Jookli.BuildingBlocks.Infrastructure.DomainEventsDispatching;
+using Jookli.UserAccess.Application.Configuration.Command;
 using Jookli.UserAccess.Application.Features.User.Register.Command;
 using MediatR;
 using System;
