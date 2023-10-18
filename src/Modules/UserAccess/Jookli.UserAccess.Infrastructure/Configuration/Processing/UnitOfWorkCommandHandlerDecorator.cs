@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
 {
-    public class UnitOfWorkCommandHandlerDecorator<T> : ICommandHandler<T> where T : ICommand
+    internal class UnitOfWorkCommandHandlerDecorator<T> : ICommandHandler<T> where T : ICommand
     {
         private readonly ICommandHandler<T> _decorator;
         private readonly IUnitOfWork _unitOfWork;
