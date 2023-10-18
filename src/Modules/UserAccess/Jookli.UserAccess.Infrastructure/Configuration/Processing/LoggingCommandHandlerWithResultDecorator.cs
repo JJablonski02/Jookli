@@ -1,15 +1,11 @@
 ﻿using Jookli.BuildingBlocks.Application;
 using Jookli.UserAccess.Application.Configuration.Command;
 using Jookli.UserAccess.Application.Contracts;
-using Microsoft.Extensions.Logging;
+using Serilog;
 using Serilog.Context;
 using Serilog.Core;
 using Serilog.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
 {
@@ -26,9 +22,31 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
             _decorator = decorator;
         }
 
-        public Task<TResult> Handle(T request, CancellationToken cancellationToken)
+        public async Task<TResult> Handle(T command, CancellationToken cancellationToken)
         {
-           
+           using(
+                LogContext.Push(
+                    new RequestLogEnricher(_executionContextAccessor),
+                    new CommandLogEnricher(command)))
+            {
+                try
+                {
+                    this._logger.Information(
+                        "Executing command {@Command}",
+                        command);
+
+                    var result = await _decorator.Handle(command, cancellationToken);
+
+                    this._logger.Information("Command processed successful, result {@Result}", result);
+                    return result;
+
+                }
+                catch(Exception ex)
+                {
+                    this._logger.Error(ex, "Command processing failed");
+                    throw;
+                }
+            }
         }
 
         private class CommandLogEnricher : ILogEventEnricher
