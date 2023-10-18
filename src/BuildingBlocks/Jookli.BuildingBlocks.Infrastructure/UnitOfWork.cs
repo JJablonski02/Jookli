@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.BuildingBlocks.Infrastructure
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly DbContext _dbContext;
         private readonly IDomainEventsDispatcher _domainEventsDispatcher;

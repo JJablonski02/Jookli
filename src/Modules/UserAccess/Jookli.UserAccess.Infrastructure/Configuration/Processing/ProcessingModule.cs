@@ -56,7 +56,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
 
             builder.RegisterGenericDecorator(
                 typeof(LoggingCommandHandlerDecorator<>),
-                typeof(ICommandHandler<,>));
+                typeof(ICommandHandler<>));
 
             builder.RegisterGenericDecorator(
                 typeof(LoggingCommandHandlerWithResultDecorator<,>),
