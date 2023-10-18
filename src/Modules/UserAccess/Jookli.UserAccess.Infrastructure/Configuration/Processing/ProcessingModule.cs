@@ -25,6 +25,10 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
                 typeof(IRequestHandler<,>));
 
             builder.RegisterGenericDecorator(
+                typeof(LoggingCommandHandlerWithResultDecorator<,>),
+                typeof(ICommandHandler<,>));
+
+            builder.RegisterGenericDecorator(
                 typeof(ValidationCommandHandlerDecorator<>),
                 typeof(ICommandHandler<>));
 
