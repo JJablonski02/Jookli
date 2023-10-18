@@ -24,6 +24,14 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
                 typeof(LoggingCommandHandlerDecorator<>),
                 typeof(IRequestHandler<,>));
 
+            builder.RegisterGenericDecorator(
+                typeof(ValidationCommandHandlerDecorator<>),
+                typeof(ICommandHandler<>));
+
+            builder.RegisterGenericDecorator(
+                typeof(ValidationCommandHandlerWithResultDecorator<,>),
+                typeof(ICommandHandler<,>));
+
             builder.RegisterType<DomainEventsAccessor>()
                 .As<IDomainEventsAccessor>()
                 .InstancePerLifetimeScope();
