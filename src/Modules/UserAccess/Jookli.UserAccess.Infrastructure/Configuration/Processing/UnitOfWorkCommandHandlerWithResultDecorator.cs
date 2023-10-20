@@ -1,7 +1,6 @@
 ﻿using Jookli.BuildingBlocks.Infrastructure;
 using Jookli.UserAccess.Application.Configuration.Command;
 using Jookli.UserAccess.Application.Contracts;
-using Jookli.UserAccess.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
