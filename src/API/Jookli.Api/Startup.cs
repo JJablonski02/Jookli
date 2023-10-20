@@ -1,4 +1,10 @@
-﻿using Autofac;
+﻿using Amazon;
+using Amazon.Extensions.Configuration.SystemsManager;
+using Amazon.Extensions.NETCore.Setup;
+using Amazon.Runtime;
+using Amazon.SimpleSystemsManagement;
+using Amazon.SimpleSystemsManagement.Model;
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using IdentityServer4.AccessTokenValidation;
 using IdentityServer4.Validation;
@@ -12,7 +18,6 @@ using Jookli.UserAccess.Application.IdentityServer;
 using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
 using Jookli.UserAccess.Infrastructure;
 using Jookli.UserAccess.Infrastructure.Configuration;
-using Jookli.UserAccess.Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -25,7 +30,7 @@ namespace Jookli.Api
 {
     public class Startup
     {
-        private const string JookliConnectionString = "JookliConnectionString";
+        private string JookliConnectionString = "";
         private readonly IConfiguration _configuration;
         private static Serilog.ILogger _logger;
         private static Serilog.ILogger _apiLogger;
@@ -33,16 +38,34 @@ namespace Jookli.Api
         public Startup(IWebHostEnvironment webHostEnvironment)
         {
             ConfigureLogger();
-            _configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                //.AddEnvironmentVariables("_Jookli")
-                .Build();
+            _configuration = ConfigurationBuilder(webHostEnvironment).Result;
+        }
 
+        public async Task<IConfiguration> ConfigurationBuilder(IWebHostEnvironment webHostEnvironment)
+        {
+            var environment = webHostEnvironment.EnvironmentName.ToLower();
 
-            _apiLogger.Information("Connection string: " + _configuration[JookliConnectionString]);
+            var builder = new ConfigurationBuilder();
+            var credentials = new BasicAWSCredentials("AKIAVPZBIZMAI4VKQG65", "gekwQkM4581dhsJDHtBq9a7xMYK4EGcFL2R9PYmF");
+            var client = new AmazonSimpleSystemsManagementClient(credentials, RegionEndpoint.EUNorth1);
+
+            var request = new GetParameterRequest()
+            {
+                Name = $"/{environment}/JookliApi/ConnectionString"
+            };
+            var value = await client.GetParameterAsync(request: request);
+            JookliConnectionString = value.Parameter.Value;
+
+            builder.AddJsonFile("appsettings.json");
+            var configuration = builder.Build();
+
+            _apiLogger.Information("Connection string: " + configuration[JookliConnectionString]);
             AuthorizationChecker.CheckAllEndpoints();
             _apiLogger.Information("Connected");
+
+            return configuration;
         }
+
         public void  ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -78,7 +101,6 @@ namespace Jookli.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment, IServiceProvider provider)
         {
-
             var container = app.ApplicationServices.GetAutofacRoot();
 
             app.UseCors(options =>
@@ -176,7 +198,7 @@ namespace Jookli.Api
 
             var executeContextAccessor = new ExecutionContextAccessor(httpContextAccessor);
 
-            UserAccessStartup.Initialize(connectionString: _configuration.GetConnectionString("DefaultConnection"), logger: _logger, executeContextAccessor);
+            UserAccessStartup.Initialize(connectionString: "Data Source=DESKTOP-0LSIR8V;Initial Catalog=JookliDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False", logger: _logger, executeContextAccessor);
         }
     }
 }
