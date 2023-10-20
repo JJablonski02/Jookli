@@ -13,6 +13,7 @@ using Jookli.Api.Configuration.ExecutionContext;
 using Jookli.Api.Configuration.Extensions;
 using Jookli.Api.Modules.UserAccess;
 using Jookli.BuildingBlocks.Application;
+using Jookli.BuildingBlocks.Infrastructure;
 using Jookli.UserAccess.Application.Contracts;
 using Jookli.UserAccess.Application.IdentityServer;
 using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
@@ -53,6 +54,7 @@ namespace Jookli.Api
             {
                 Name = $"/{environment}/JookliApi/ConnectionString"
             };
+
             var value = await client.GetParameterAsync(request: request);
             JookliConnectionString = value.Parameter.Value;
 
@@ -137,13 +139,6 @@ namespace Jookli.Api
                 app.UseHsts();
             }
 
-            //app.UseSwagger();
-            //app.UseSwaggerUI(options =>
-            //{
-            //    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1.0");
-            //    options.SwaggerEndpoint("/swagger/v2/swagger.json", "v2.0");
-            //}); // creates swagger UI for tesing all web API endpoints / action methods 
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -195,10 +190,11 @@ namespace Jookli.Api
         private void InitializeModules(ILifetimeScope containerLifeTime)
         {
             var httpContextAccessor = containerLifeTime.Resolve<IHttpContextAccessor>();
+            var emailsConfiguration = new EmailsConfiguration(_configuration["EmailsConfiguration:FromEmail"]);
 
             var executeContextAccessor = new ExecutionContextAccessor(httpContextAccessor);
 
-            UserAccessStartup.Initialize(connectionString: "Data Source=DESKTOP-0LSIR8V;Initial Catalog=JookliDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False", logger: _logger, executeContextAccessor);
+            UserAccessStartup.Initialize(connectionString: _configuration[JookliConnectionString], logger: _logger, executeContextAccessor);
         }
     }
 }
