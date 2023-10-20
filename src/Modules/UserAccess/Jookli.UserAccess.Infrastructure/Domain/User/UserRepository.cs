@@ -1,6 +1,5 @@
 ﻿using Jookli.UserAccess.Domain.Entities.User;
 using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
-using Jookli.UserAccess.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
