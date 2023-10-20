@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Jookli.BuildingBlocks.Application.Data;
 using Jookli.BuildingBlocks.Infrastructure;
-using Jookli.UserAccess.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Logging;
