@@ -1,11 +1,5 @@
-﻿using Jookli.UserAccess.Application.Features.User.Register.Command;
-using Jookli.UserAccess.Application.Contracts;
-using Jookli.UserAccess.Domain.Entities.User;
-using Jookli.UserAccess.Infrastructure.Data;
-using Microsoft.AspNetCore.Authorization;
+﻿using Jookli.UserAccess.Application.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Jookli.Api.Configuration.Authorization;
 
 namespace Jookli.Api.Modules.UserAccess.Controllers.v1
 {
