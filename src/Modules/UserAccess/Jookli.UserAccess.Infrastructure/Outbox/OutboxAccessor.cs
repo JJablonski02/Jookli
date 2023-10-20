@@ -1,5 +1,4 @@
 ﻿using Jookli.BuildingBlocks.Application.Outbox;
-using Jookli.UserAccess.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
