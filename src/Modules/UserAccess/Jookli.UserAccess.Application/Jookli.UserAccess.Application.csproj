@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <Folder Include="Configuration\Query\" />
+    <Folder Include="Features\User\Remove\Notification\" />
+    <Folder Include="Features\User\ResetPassword\" />
   </ItemGroup>
 
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.BuildingBlocks.Application
+namespace Jookli.BuildingBlocks.Application.Exceptions
 {
     public class InvalidCommandException : Exception
     {
@@ -12,7 +12,7 @@ namespace Jookli.BuildingBlocks.Application
 
         public InvalidCommandException(List<string> errors)
         {
-            this.Errors = errors;
+            Errors = errors;
         }
     }
 }

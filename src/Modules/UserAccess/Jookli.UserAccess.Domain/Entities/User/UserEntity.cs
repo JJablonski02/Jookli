@@ -17,6 +17,7 @@ namespace Jookli.UserAccess.Domain.Entities.User
         public Gender Gender { get; set; }
         public int PhoneNumber { get; set; } 
         public DateTime DateOfLastLogin { get; set; }
+        public bool Deleted { get; set; } 
         public bool Premium { get; set; }
         public bool IsMicrophoneAllowed { get; set; }
         public bool PushNotifications { get; set; }

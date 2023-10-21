@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.UserAccess.Application.Features.User.Register.Command
 {
-    public class RegisterCommand : CommandBase
+    public sealed class RegisterCommand : CommandBase
     {
         public Guid UserId { get; set; }
         public string Email { get; set; }
