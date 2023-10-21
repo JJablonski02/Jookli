@@ -31,7 +31,7 @@ namespace Jookli.Api
 {
     public class Startup
     {
-        private string JookliConnectionString = "";
+        private const string JookliConnectionString = "JookliConnectionString";
         private readonly IConfiguration _configuration;
         private static Serilog.ILogger _logger;
         private static Serilog.ILogger _apiLogger;
@@ -39,7 +39,13 @@ namespace Jookli.Api
         public Startup(IWebHostEnvironment webHostEnvironment)
         {
             ConfigureLogger();
-            _configuration = ConfigurationBuilder(webHostEnvironment).Result;
+            _configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            _apiLogger.Information("Connection string: " + _configuration[JookliConnectionString]);
+            AuthorizationChecker.CheckAllEndpoints();
+            _apiLogger.Information("Connected");
         }
 
         public async Task<IConfiguration> ConfigurationBuilder(IWebHostEnvironment webHostEnvironment)
@@ -56,7 +62,6 @@ namespace Jookli.Api
             };
 
             var value = await client.GetParameterAsync(request: request);
-            JookliConnectionString = value.Parameter.Value;
 
             builder.AddJsonFile("appsettings.json");
             var configuration = builder.Build();
