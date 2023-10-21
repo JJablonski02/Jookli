@@ -16,7 +16,7 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
 
         public async Task<Unit> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
-            var userEmail = _userRepository.GetByUserEmailAsync(command.Email);
+            var userEmail = _userRepository.GetByUserEmailAsync(command.Email, cancellationToken);
 
             if (userEmail is not null)
             {
@@ -34,7 +34,7 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
                 PhoneNumber = command.PhoneNumber,
             };
 
-            await _userRepository.AddUserAsync(user);
+            await _userRepository.AddUserAsync(user, cancellationToken);
 
             return Unit.Value;
         }

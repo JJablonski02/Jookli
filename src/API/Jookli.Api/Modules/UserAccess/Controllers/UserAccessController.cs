@@ -29,6 +29,5 @@ namespace Jookli.Api.Modules.UserAccess.Controllers
 
             return Ok();
         }
-
     }
 }
