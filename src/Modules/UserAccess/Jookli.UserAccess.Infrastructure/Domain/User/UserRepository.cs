@@ -19,6 +19,7 @@ namespace Jookli.UserAccess.Infrastructure.Domain.User
         public async Task AddUserAsync(UserEntity user, CancellationToken cancellationToken)
         {
             await _dbContext.User.AddAsync(user, cancellationToken);
+            _dbContext.SaveChanges();
         }
 
         public Task<UserEntity?> GetByUserEmailAsync(string email, CancellationToken cancellationToken)
