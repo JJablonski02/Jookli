@@ -9,22 +9,21 @@ using System.Threading.Tasks;
 
 namespace Jookli.UserAccess.Infrastructure.Domain.User
 {
-    public sealed class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly UserAccessContext _dbContext;
         public UserRepository(UserAccessContext dbContext)
         {
             _dbContext = dbContext;
         }
-        public async Task AddUserAsync(UserEntity user)
+        public async Task AddUserAsync(UserEntity user, CancellationToken cancellationToken)
         {
-            _dbContext.User.Add(user);
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.User.AddAsync(user, cancellationToken);
         }
 
-        public Task<UserEntity?> GetByUserEmailAsync(string email)
+        public Task<UserEntity?> GetByUserEmailAsync(string email, CancellationToken cancellationToken)
         {
-            return _dbContext.User.Where(temp => temp.Email == email).FirstOrDefaultAsync();
+            return _dbContext.User.Where(temp => temp.Email == email).FirstOrDefaultAsync(cancellationToken);
         }
 
         public Task<UserEntity?> GetByUserIdAsync(Guid userID)
