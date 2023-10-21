@@ -16,7 +16,7 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
 
         public async Task<Unit> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
-            var userEmail = _userRepository.GetByUserEmailAsync(command.Email, cancellationToken);
+            var userEmail =await  _userRepository.GetByUserEmailAsync(command.Email, cancellationToken);
 
             if (userEmail is not null)
             {
@@ -26,12 +26,11 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
             var user = new UserEntity()
             {
                 UserID = Guid.NewGuid(),
-                UserName = command.Username,
-                Name = command.Name,
-                Surname = command.Surname,
                 Email = command.Email,
                 Password = command.Password,
-                PhoneNumber = command.PhoneNumber,
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+                Gender = command.Gender
             };
 
             await _userRepository.AddUserAsync(user, cancellationToken);
