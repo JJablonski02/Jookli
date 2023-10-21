@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Jookli.UserAccess.Application.Features.User.Login.Command
 {
-    internal class LoginCommand
+    public class LoginCommand
     {
+        public string UserName { get; }
+        public string Password { get; }
     }
 }
