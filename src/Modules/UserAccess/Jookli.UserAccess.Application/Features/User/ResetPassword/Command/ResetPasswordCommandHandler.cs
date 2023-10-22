@@ -29,7 +29,7 @@ namespace Jookli.UserAccess.Application.Features.User.ResetPassword.Command
             }
 
             user.Password = command.Password;
-            user.DateOfLastLogin = DateTime.UtcNow;
+            user.DateOfLastActivity = DateTime.UtcNow;
 
             return Unit.Value;
         }

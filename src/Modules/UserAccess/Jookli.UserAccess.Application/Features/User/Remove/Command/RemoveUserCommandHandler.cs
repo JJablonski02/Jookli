@@ -28,7 +28,7 @@ namespace Jookli.UserAccess.Application.Features.User.Remove.Command
                 throw new UserEntityException($"Error. User with id: {command.UserId} does not exist");
             }
 
-            user.Deleted = true;
+            user.IsDeleted = true;
 
             return Unit.Value;
         }
