@@ -18,7 +18,7 @@ namespace Jookli.UserAccess.Domain.Entities.User.RepositoryContract
         /// </summary>
         /// <param name="user"></param>
         /// <returns>Returns the person object from the table</returns>
-        Task<UserEntity?> GetByUserIdAsync(Guid userID);
+        Task<UserEntity?> GetByUserIdAsync(Guid userID, CancellationToken cancellationToken = default);
         Task<UserEntity?> GetByUserEmailAsync(string email, CancellationToken cancellationToken = default);
     }
 }

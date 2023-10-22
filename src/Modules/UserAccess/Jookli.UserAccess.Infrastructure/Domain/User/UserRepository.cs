@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.UserAccess.Infrastructure.Domain.User
 {
-    public class UserRepository : IUserRepository
+    internal sealed class UserRepository : IUserRepository
     {
         private readonly UserAccessContext _dbContext;
         public UserRepository(UserAccessContext dbContext)
@@ -27,9 +27,9 @@ namespace Jookli.UserAccess.Infrastructure.Domain.User
             return _dbContext.User.Where(temp => temp.Email == email).FirstOrDefaultAsync(cancellationToken);
         }
 
-        public Task<UserEntity?> GetByUserIdAsync(Guid userID)
+        public Task<UserEntity?> GetByUserIdAsync(Guid userID, CancellationToken cancellationToken)
         {
-            return _dbContext.User.Where(temp => temp.UserID == userID).FirstOrDefaultAsync();
+            return _dbContext.User.Where(temp => temp.UserID == userID).FirstOrDefaultAsync(cancellationToken);
         }
     }
 }

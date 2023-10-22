@@ -16,7 +16,7 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
 
         public async Task<Unit> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
-            var userEmail =await  _userRepository.GetByUserEmailAsync(command.Email, cancellationToken);
+            var userEmail = await _userRepository.GetByUserEmailAsync(command.Email, cancellationToken);
 
             if (userEmail is not null)
             {

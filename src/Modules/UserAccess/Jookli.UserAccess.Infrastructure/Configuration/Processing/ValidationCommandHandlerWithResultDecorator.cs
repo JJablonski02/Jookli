@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Jookli.BuildingBlocks.Application;
+using Jookli.BuildingBlocks.Application.Exceptions;
 using Jookli.UserAccess.Application.Configuration.Command;
 using Jookli.UserAccess.Application.Contracts;
 
