@@ -1,11 +1,12 @@
-﻿using Jookli.UserAccess.Domain.Entities.Message;
+﻿using Jookli.BuildingBlocks.Domain;
+using Jookli.UserAccess.Domain.Entities.Message;
 using Jookli.UserAccess.Domain.Entities.VoiceMessage;
 using Jookli.UserAccess.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace Jookli.UserAccess.Domain.Entities.User
 {
-    public class UserEntity
+    public class UserEntity : Entity
     {
         [Key]
         public Guid UserID { get; set; }

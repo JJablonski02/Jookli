@@ -1,4 +1,5 @@
-﻿using Jookli.UserAccess.Application.Configuration.Command;
+﻿using Jookli.UserAccess.Application.Authentication;
+using Jookli.UserAccess.Application.Configuration.Command;
 using Jookli.UserAccess.Domain.Entities.User;
 using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
 using MediatR;
@@ -16,6 +17,7 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
 
         public async Task<Unit> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
+            var password = PasswordManager.HashPassword(command.Password);
             var userEmail = await _userRepository.GetByUserEmailAsync(command.Email, cancellationToken);
 
             if (userEmail is not null)
