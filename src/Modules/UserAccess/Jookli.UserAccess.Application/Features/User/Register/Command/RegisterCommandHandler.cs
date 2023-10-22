@@ -30,7 +30,8 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
                 Password = command.Password,
                 FirstName = command.FirstName,
                 LastName = command.LastName,
-                Gender = command.Gender
+                Gender = command.Gender,
+                DateOfLastActivity = DateTime.UtcNow
             };
 
             await _userRepository.AddUserAsync(user, cancellationToken);
