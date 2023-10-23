@@ -34,6 +34,8 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
                 if (internalCommand is not null)
                 {
                     internalCommand.ProcessedDate = DateTime.UtcNow;
+
+                    _userAccessContext.Update(internalCommand);
                 }
 
             }
