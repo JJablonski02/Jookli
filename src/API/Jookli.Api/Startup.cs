@@ -199,7 +199,7 @@ namespace Jookli.Api
 
             var executeContextAccessor = new ExecutionContextAccessor(httpContextAccessor);
 
-            UserAccessStartup.Initialize(connectionString: _configuration[JookliConnectionString], logger: _logger, executeContextAccessor);
+            UserAccessStartup.Initialize(connectionString: _configuration[JookliConnectionString], logger: _logger, executeContextAccessor, null);
         }
     }
 }
