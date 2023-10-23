@@ -10,6 +10,8 @@ using Jookli.UserAccess.Infrastructure.Configuration.Processing.Outbox;
 using Jookli.BuildingBlocks.Infrastructure;
 using Jookli.UserAccess.Application.Features.User.Register.Notification;
 using Jookli.UserAccess.Infrastructure.Configuration.Domain;
+using Jookli.UserAccess.Infrastructure.Configuration.EventsBus;
+using Jookli.BuildingBlocks.Infrastructure.EventsBus;
 
 namespace Jookli.UserAccess.Infrastructure.Configuration
 {
@@ -17,13 +19,13 @@ namespace Jookli.UserAccess.Infrastructure.Configuration
     {
         private static IContainer _container;
 
-        public static void Initialize(string connectionString, ILogger logger, IExecutionContextAccessor executionContextAccessor)
+        public static void Initialize(string connectionString, ILogger logger, IExecutionContextAccessor executionContextAccessor, IEventsBus eventsBus)
         {
             var moduleLogger = logger.ForContext("Module", "UserAccess");
 
-            ConfigureCompositionRoot(connectionString, logger, executionContextAccessor);
+            ConfigureCompositionRoot(connectionString, logger, executionContextAccessor, eventsBus);
         }
-        private static void ConfigureCompositionRoot(string connectionString, ILogger logger, IExecutionContextAccessor executionContextAccessor)
+        private static void ConfigureCompositionRoot(string connectionString, ILogger logger, IExecutionContextAccessor executionContextAccessor, IEventsBus eventsBus)
         {
             var containerBuilder = new ContainerBuilder();
 
@@ -32,9 +34,12 @@ namespace Jookli.UserAccess.Infrastructure.Configuration
             containerBuilder.RegisterModule(new DomainModule());
             containerBuilder.RegisterModule(new MediatorModule());
             containerBuilder.RegisterModule(new ProcessingModule());
+            containerBuilder.RegisterModule(new EventsBusModule(eventsBus));
 
             var domainNotificationsMap = new BiDictionary<string, Type>();
+
             domainNotificationsMap.Add("NewUserRegisteredNotification", typeof(NewUserRegisteredNotification));
+
             containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
 
             containerBuilder.RegisterInstance(executionContextAccessor);
