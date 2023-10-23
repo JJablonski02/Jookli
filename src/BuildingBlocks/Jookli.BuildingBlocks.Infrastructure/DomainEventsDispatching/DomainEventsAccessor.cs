@@ -19,17 +19,20 @@ namespace Jookli.BuildingBlocks.Infrastructure.DomainEventsDispatching
 
         public void ClearAllDomainEvents()
         {
-            var domainEntities = this._jookliDbContext.ChangeTracker
+            var domainEntites = this._jookliDbContext.ChangeTracker
                 .Entries<Entity>()
                 .Where(x => x.Entity.DomainEvents != null && x.Entity.DomainEvents.Any()).ToList();
 
-            domainEntities
-                .ForEach(entity => entity.Entity.ClearDomainEvents());
+            domainEntites.ForEach(entity => entity.Entity.ClearDomainEvents());
         }
 
         public IReadOnlyCollection<IDomainEvent> GetAllDomainEvents()
         {
-            throw new NotImplementedException();
+            var domainEntites = this._jookliDbContext.ChangeTracker
+                .Entries<Entity>()
+                .Where(x => x.Entity.DomainEvents != null && x.Entity.DomainEvents.Any()).ToList();
+
+            return domainEntites.SelectMany(x => x.Entity.DomainEvents).ToList();
         }
     }
 }
