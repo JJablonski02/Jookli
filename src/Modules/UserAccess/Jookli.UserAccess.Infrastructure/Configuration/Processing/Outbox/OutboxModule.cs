@@ -2,6 +2,7 @@
 using Jookli.BuildingBlocks.Application.Events;
 using Jookli.BuildingBlocks.Application.Outbox;
 using Jookli.BuildingBlocks.Infrastructure;
+using Jookli.BuildingBlocks.Infrastructure.DomainEventsDispatching;
 using Jookli.UserAccess.Infrastructure.Outbox;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,11 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.Outbox
                 .InstancePerLifetimeScope();
 
             CheckMappings();
+
+            builder.RegisterType<DomainNotificationsMapper>()
+                .As<IDomainNotificationsMapper>()
+                .WithParameter("domainNotificationsMap", _domainNotificationMap)
+                .SingleInstance();
         }
 
         private void CheckMappings()
