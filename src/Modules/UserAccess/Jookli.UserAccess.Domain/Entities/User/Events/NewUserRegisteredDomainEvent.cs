@@ -1,4 +1,5 @@
 ﻿using Jookli.BuildingBlocks.Domain;
+using Jookli.UserAccess.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,38 +10,34 @@ namespace Jookli.UserAccess.Domain.Entities.User.Events
 {
     public class NewUserRegisteredDomainEvent : DomainEventBase
     {
-        public Guid Id { get; }
-        public string Login { get; }
-        public string Email { get; }
-
-        public string FirstName { get; }
-
-        public string LastName { get; }
-
-        public string Name { get; }
-
-        public DateTime RegisterDate { get; }
-
-        public string ConfirmLink { get; }
+        public Guid UserID { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public Gender Gender { get; set; }
+        public DateTime CreationDate { get; set; }
+        public DateTime DateOfLastActivity { get; }
 
         public NewUserRegisteredDomainEvent(
-            Guid id,
-            string login,
+            Guid userId,
             string email,
+            string passowrd,
             string firstName,
             string lastName,
-            string name,
-            DateTime registerDate,
-            string confirmLink)
+            Gender gender,
+            DateTime dateOfLastActivity,
+            DateTime creationDate
+            )
         {
-            Id = id;
-            Login = login;
+            UserID = userId;
             Email = email;
+            Password = passowrd;
             FirstName = firstName;
             LastName = lastName;
-            Name = name;
-            RegisterDate = registerDate;
-            ConfirmLink = confirmLink;
+            Gender = gender;
+            DateOfLastActivity = dateOfLastActivity;
+            CreationDate = creationDate;
         }
     }
 }
