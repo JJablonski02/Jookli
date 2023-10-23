@@ -27,16 +27,16 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<DomainEventsAccessor>()
-               .As<IDomainEventsAccessor>()
-               .InstancePerLifetimeScope();
+                .As<IDomainEventsAccessor>()
+                .InstancePerLifetimeScope();
 
             builder.RegisterType<UnitOfWork>()
                 .As<IUnitOfWork>()
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<CommandsScheduler>()
-                .As<ICommandsScheduler>()
-                .InstancePerLifetimeScope();
+               .As<ICommandsScheduler>()
+               .InstancePerLifetimeScope();
 
             builder.RegisterGenericDecorator(
                 typeof(UnitOfWorkCommandHandlerDecorator<>),
@@ -62,7 +62,9 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
                 typeof(LoggingCommandHandlerWithResultDecorator<,>),
                 typeof(ICommandHandler<,>));
 
-
+            builder.RegisterGenericDecorator(
+                typeof(DomainEventsDispatcherNotificationHandlerDecorator<>),
+                typeof(INotificationHandler<>));
 
             builder.RegisterAssemblyTypes(Assemblies.Application)
                 .AsClosedTypesOf(typeof(IDomainEventNotification<>))
