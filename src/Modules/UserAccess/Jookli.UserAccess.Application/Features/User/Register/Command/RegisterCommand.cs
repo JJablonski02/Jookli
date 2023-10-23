@@ -19,5 +19,7 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Gender Gender { get; set; }
+        public DateTime CreationDate { get; set; }
+        public DateTime DateOfLastActivity { get; set; }    
     }
 }
