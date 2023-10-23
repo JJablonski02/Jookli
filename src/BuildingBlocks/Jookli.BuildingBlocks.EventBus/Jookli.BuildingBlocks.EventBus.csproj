@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="3.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Jookli.BuildingBlocks.Infrastructure\Jookli.BuildingBlocks.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
