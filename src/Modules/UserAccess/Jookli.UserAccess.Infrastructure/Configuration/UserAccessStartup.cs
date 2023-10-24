@@ -20,11 +20,15 @@ namespace Jookli.UserAccess.Infrastructure.Configuration
     {
         private static IContainer _container;
 
-        public static void Initialize(string connectionString, ILogger logger, IExecutionContextAccessor executionContextAccessor, IEventsBus eventsBus)
+        public static void Initialize(string connectionString, ILogger logger, 
+            IExecutionContextAccessor executionContextAccessor, IEventsBus eventsBus, 
+            long? internalProcessingPoolingInterval = null)
         {
             var moduleLogger = logger.ForContext("Module", "UserAccess");
 
             ConfigureCompositionRoot(connectionString, logger, executionContextAccessor, eventsBus);
+
+            QuartzStartup.Initialize(moduleLogger, internalProcessingPoolingInterval);
 
             EventsBusStartup.Initialize(moduleLogger);
         }
