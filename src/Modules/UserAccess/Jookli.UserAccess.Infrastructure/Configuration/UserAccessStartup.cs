@@ -24,6 +24,8 @@ namespace Jookli.UserAccess.Infrastructure.Configuration
             var moduleLogger = logger.ForContext("Module", "UserAccess");
 
             ConfigureCompositionRoot(connectionString, logger, executionContextAccessor, eventsBus);
+
+            EventsBusStartup.Initialize(moduleLogger);
         }
         private static void ConfigureCompositionRoot(string connectionString, ILogger logger, IExecutionContextAccessor executionContextAccessor, IEventsBus eventsBus)
         {

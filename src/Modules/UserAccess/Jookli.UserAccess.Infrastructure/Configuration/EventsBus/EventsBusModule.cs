@@ -26,7 +26,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.EventsBus
             }
             else
             {
-                builder.RegisterType<InMemoryEventBus>()
+                builder.RegisterType<InMemoryEventBusClient>()
                     .As<IEventsBus>()
                     .SingleInstance();
             }
