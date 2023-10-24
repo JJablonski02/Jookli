@@ -12,6 +12,7 @@ using Jookli.UserAccess.Application.Features.User.Register.Notification;
 using Jookli.UserAccess.Infrastructure.Configuration.Domain;
 using Jookli.UserAccess.Infrastructure.Configuration.EventsBus;
 using Jookli.BuildingBlocks.Infrastructure.EventsBus;
+using Jookli.UserAccess.Infrastructure.Configuration.Quartz;
 
 namespace Jookli.UserAccess.Infrastructure.Configuration
 {
@@ -43,6 +44,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration
             domainNotificationsMap.Add("NewUserRegisteredNotification", typeof(NewUserRegisteredNotification));
 
             containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
+            containerBuilder.RegisterModule(new QuartzModule());
 
             containerBuilder.RegisterInstance(executionContextAccessor);
 
