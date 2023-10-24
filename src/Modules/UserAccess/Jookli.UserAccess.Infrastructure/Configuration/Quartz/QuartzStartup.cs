@@ -1,4 +1,5 @@
 ﻿using Jookli.UserAccess.Infrastructure.Configuration.Processing.Inbox;
+using Jookli.UserAccess.Infrastructure.Configuration.Processing.InternalCommands;
 using Jookli.UserAccess.Infrastructure.Configuration.Processing.Outbox;
 using Quartz;
 using Quartz.Impl;
@@ -46,6 +47,44 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Quartz
             scheduler.ScheduleJob(processOutboxJob, trigger).GetAwaiter().GetResult();
 
             var processInboxJob = JobBuilder.Create<ProcessInboxJob>().Build();
+
+            ITrigger processInboxTigger;
+
+            if (internalProcessingPoolingInterval.HasValue)
+            {
+                processInboxTigger = TriggerBuilder.Create().StartNow().WithSimpleSchedule(x =>
+                {
+                    x.WithInterval(TimeSpan.FromMilliseconds(internalProcessingPoolingInterval.Value)).RepeatForever();
+                }).Build();
+            }
+            else
+            {
+                processInboxTigger = TriggerBuilder.Create().StartNow().WithCronSchedule("0/2 * * ? * *").Build();
+            }
+
+            scheduler
+                .ScheduleJob(processInboxJob, processInboxTigger)
+                .GetAwaiter().GetResult();
+
+            var processInternalCommandsJob = JobBuilder.Create<ProcessInternalCommandsJob>().Build();
+
+            ITrigger processInternalCommandsTrigger;
+
+            if(internalProcessingPoolingInterval.HasValue)
+            {
+                processInternalCommandsTrigger = TriggerBuilder.Create().WithSimpleSchedule(x =>
+                {
+                    x.WithInterval(TimeSpan.FromMilliseconds(internalProcessingPoolingInterval.Value));
+                }).Build();
+            }
+            else
+            {
+                processInternalCommandsTrigger = TriggerBuilder.Create().StartNow().WithCronSchedule("0/2 * * ? * *").Build();
+            }
+
+            scheduler.ScheduleJob(processInternalCommandsJob, processInternalCommandsTrigger).GetAwaiter().GetResult();
+
+            logger.Information("Quartz started");
 
         }
     }
