@@ -1,16 +1,17 @@
 ﻿using Jookli.BuildingBlocks.Infrastructure.EventsBus;
 using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jookli.BuildingBlocks.EventBus
 {
-    internal class InMemoryEventBusClient : IEventsBus
+    public class InMemoryEventBusClient : IEventsBus
     {
         private readonly ILogger _logger;
+
+        public InMemoryEventBusClient(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         public void Dispose()
         {
         }
