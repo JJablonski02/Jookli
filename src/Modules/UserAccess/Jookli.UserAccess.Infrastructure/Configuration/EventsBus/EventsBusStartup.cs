@@ -14,8 +14,6 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.EventsBus
         private static void SubscribeIntegrationEvents(ILogger logger)
         {
             var eventBus = UserAccessCompositionRoot.BeginLifetimeScope().Resolve<IEventsBus>();
-
-
         }
 
         private static void SubsciteIntegrationEvents<T>(IEventsBus eventBus, ILogger logger) where T : IntegrationEvent

@@ -33,6 +33,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.Outbox
 
             builder.RegisterType<DomainNotificationsMapper>()
                 .As<IDomainNotificationsMapper>()
+                .FindConstructorsWith(new AllConstructorFinder())
                 .WithParameter("domainNotificationsMap", _domainNotificationMap)
                 .SingleInstance();
         }

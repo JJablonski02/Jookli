@@ -9,8 +9,8 @@ namespace Jookli.BuildingBlocks.Infrastructure.EventsBus
 {
     public abstract class IntegrationEvent : INotification
     {
-        public Guid Id { get; set; }
-        public DateTime OccuredOn { get; set; }
+        public Guid Id { get; }
+        public DateTime OccuredOn { get; }
 
         protected IntegrationEvent (Guid id, DateTime occuredOn)
         {
