@@ -197,9 +197,16 @@ namespace Jookli.Api
             var httpContextAccessor = containerLifeTime.Resolve<IHttpContextAccessor>();
             var emailsConfiguration = new EmailsConfiguration(_configuration["EmailsConfiguration:FromEmail"]);
 
-            var executeContextAccessor = new ExecutionContextAccessor(httpContextAccessor);
+            var executionContextAccessor = new ExecutionContextAccessor(httpContextAccessor);
 
-            UserAccessStartup.Initialize(connectionString: _configuration[JookliConnectionString], logger: _logger, executeContextAccessor, null);
+            UserAccessStartup.Initialize(
+                _configuration[JookliConnectionString],
+                executionContextAccessor,
+                _logger,
+                emailsConfiguration,
+                _configuration["Security:TextEncryptionKey"],
+                null,
+                null);
         }
     }
 }
