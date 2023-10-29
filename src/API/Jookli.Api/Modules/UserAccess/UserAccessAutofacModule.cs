@@ -4,7 +4,7 @@ using Jookli.UserAccess.Infrastructure;
 
 namespace Jookli.Api.Modules.UserAccess
 {
-    internal sealed class UserAccessAutofacModule : Autofac.Module
+    internal sealed class UserAccessAutofacModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

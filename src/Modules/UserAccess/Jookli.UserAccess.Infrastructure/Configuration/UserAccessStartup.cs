@@ -13,6 +13,7 @@ using Jookli.UserAccess.Infrastructure.Configuration.EventsBus;
 using Jookli.BuildingBlocks.Infrastructure.EventsBus;
 using Jookli.UserAccess.Infrastructure.Configuration.Quartz;
 using Jookli.BuildingBlocks.Application.Emails;
+using Jookli.UserAccess.Infrastructure.Configuration.Logging;
 
 namespace Jookli.UserAccess.Infrastructure.Configuration
 {
@@ -54,6 +55,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration
             IEventsBus eventsBus)
         {
             var containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterModule(new LoggingModule(logger.ForContext("Module", "UserAccess")));
 
             var loggerFactory = new SerilogLoggerFactory(logger);
             containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));
