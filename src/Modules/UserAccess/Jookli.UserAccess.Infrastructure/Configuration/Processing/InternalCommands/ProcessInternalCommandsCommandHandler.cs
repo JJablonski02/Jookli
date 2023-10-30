@@ -25,7 +25,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.InternalComm
                                $"[Command].[Id] AS [{nameof(InternalCommandDto.Id)}], " +
                                $"[Command].[Type] AS [{nameof(InternalCommandDto.Type)}], " +
                                $"[Command].[Data] AS [{nameof(InternalCommandDto.Data)}] " +
-                               "FROM [user].[InternalCommands] AS [Command] " +
+                               "FROM [UserAccess_InternalCommands] AS [Command] " +
                                "WHERE [Command].[ProcessedDate] IS NULL " +
                                "ORDER BY [Command].[EnqueueDate]";
             var commands = await connection.QueryAsync<InternalCommandDto>(sql);

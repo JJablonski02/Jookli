@@ -4,6 +4,7 @@ using Jookli.UserAccess.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jookli.UserAccess.Infrastructure.Migrations
 {
     [DbContext(typeof(UserAccessContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231030191128_init30.10")]
+    partial class init3010
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,7 +46,7 @@ namespace Jookli.UserAccess.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserAccess_OutboxMessages", (string)null);
+                    b.ToTable("OutboxMessages", "users");
                 });
 
             modelBuilder.Entity("Jookli.BuildingBlocks.Infrastructure.Inbox.InboxMessage", b =>
@@ -65,9 +68,7 @@ namespace Jookli.UserAccess.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
-
-                    b.ToTable("UserAccess_InboxMessage", (string)null);
+                    b.ToTable("InboxMessage");
                 });
 
             modelBuilder.Entity("Jookli.BuildingBlocks.Infrastructure.InternalCommands.InternalCommand", b =>
@@ -88,7 +89,7 @@ namespace Jookli.UserAccess.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserAccess_InternalCommands", (string)null);
+                    b.ToTable("InternalCommands", "user");
                 });
 
             modelBuilder.Entity("Jookli.UserAccess.Domain.Entities.Message.MessageEntity", b =>
@@ -234,9 +235,7 @@ namespace Jookli.UserAccess.Infrastructure.Migrations
 
                     b.HasKey("UserID");
 
-                    b.HasIndex("UserID");
-
-                    b.ToTable("UserAccess_User", (string)null);
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Jookli.UserAccess.Domain.Entities.VoiceMessage.VoiceMessageEntity", b =>

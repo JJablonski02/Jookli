@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\Message\" />
+    <Folder Include="InternalCommands\" />
   </ItemGroup>
 
   <ItemGroup>
