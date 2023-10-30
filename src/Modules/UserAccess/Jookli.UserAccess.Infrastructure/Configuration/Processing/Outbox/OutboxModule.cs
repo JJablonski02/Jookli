@@ -3,7 +3,7 @@ using Jookli.BuildingBlocks.Application.Events;
 using Jookli.BuildingBlocks.Application.Outbox;
 using Jookli.BuildingBlocks.Infrastructure;
 using Jookli.BuildingBlocks.Infrastructure.DomainEventsDispatching;
-using Jookli.UserAccess.Infrastructure.Configuration.Outbox;
+using Jookli.UserAccess.Infrastructure.Outbox;
 using System;
 using System.Collections.Generic;
 using System.Linq;

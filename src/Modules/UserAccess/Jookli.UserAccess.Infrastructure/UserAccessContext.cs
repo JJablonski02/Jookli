@@ -8,14 +8,17 @@ using Microsoft.Extensions.Logging;
 using Jookli.BuildingBlocks.Application.Outbox;
 using Jookli.BuildingBlocks.Infrastructure.InternalCommands;
 using System.Reflection;
+using Jookli.BuildingBlocks.Infrastructure.Inbox;
 
 namespace Jookli.UserAccess.Infrastructure
 {
     public class UserAccessContext : DbContext
     {
-        public virtual DbSet<UserEntity> User { get; set; }
+        public DbSet<UserEntity> User { get; set; }
         public DbSet<OutboxMessage> OutboxMessages { get; set; }
         public DbSet<InternalCommand> InternalCommands { get; set; }
+        public DbSet<InboxMessage> InboxMessage { get; set; }
+
 
         private readonly ILoggerFactory _logger;
         public UserAccessContext(DbContextOptions options, ILoggerFactory loggerFactory) : base(options)

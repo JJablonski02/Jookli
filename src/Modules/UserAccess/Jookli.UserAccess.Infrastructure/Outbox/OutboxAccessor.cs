@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.UserAccess.Infrastructure.Configuration.Outbox
+namespace Jookli.UserAccess.Infrastructure.Outbox
 {
     public class OutboxAccessor : IOutbox
     {

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.UserAccess.Infrastructure.Configuration.Outbox.Config
+namespace Jookli.UserAccess.Infrastructure.Outbox.Config
 {
     internal class OutboxMessageTypeConfig : IEntityTypeConfiguration<OutboxMessage>
     {
