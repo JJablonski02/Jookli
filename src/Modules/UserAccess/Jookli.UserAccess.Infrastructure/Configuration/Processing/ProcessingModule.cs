@@ -35,8 +35,8 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<CommandsScheduler>()
-               .As<ICommandsScheduler>()
-               .InstancePerLifetimeScope();
+                .As<ICommandsScheduler>()
+                .InstancePerLifetimeScope();
 
             builder.RegisterGenericDecorator(
                 typeof(UnitOfWorkCommandHandlerDecorator<>),

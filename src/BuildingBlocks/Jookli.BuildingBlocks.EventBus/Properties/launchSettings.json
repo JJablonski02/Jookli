@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Jookli.BuildingBlocks.EventBus": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:63490;http://localhost:63494"
+    }
+  }
+}
