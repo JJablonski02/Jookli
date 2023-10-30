@@ -1,11 +1,6 @@
 ﻿using Jookli.BuildingBlocks.Domain;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jookli.BuildingBlocks.Infrastructure
 {
@@ -19,7 +14,6 @@ namespace Jookli.BuildingBlocks.Infrastructure
         public override IEnumerable<ValueConverterInfo> Select(Type modelClrType, Type providerClrType = null)
         {
             var baseConverters = base.Select(modelClrType, providerClrType);
-
             foreach (var converter in baseConverters)
             {
                 yield return converter;
@@ -28,9 +22,21 @@ namespace Jookli.BuildingBlocks.Infrastructure
             var underlyingModelType = UnwrapNullableType(modelClrType);
             var underlyingProviderType = UnwrapNullableType(providerClrType);
 
-            if(underlyingProviderType is null || underlyingProviderType == typeof(Guid))
+            if (underlyingProviderType is null || underlyingProviderType == typeof(Guid))
             {
                 var isTypedIdValue = typeof(TypeIdValueBase).IsAssignableFrom(underlyingModelType);
+                if (isTypedIdValue)
+                {
+                    var converterType = typeof(TypedIdValueConverter<>).MakeGenericType(underlyingModelType);
+
+                    yield return _converters.GetOrAdd((underlyingModelType, typeof(Guid)), _ =>
+                    {
+                        return new ValueConverterInfo(
+                            modelClrType: modelClrType,
+                            providerClrType: typeof(Guid),
+                            factory: valueConverterInfo => (ValueConverter)Activator.CreateInstance(converterType, valueConverterInfo.MappingHints));
+                    });
+                }
             }
         }
 
