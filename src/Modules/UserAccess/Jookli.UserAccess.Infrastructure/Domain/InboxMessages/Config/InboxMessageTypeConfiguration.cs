@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.UserAccess.Infrastructure.Domain.InboxMessages.Config
 {
-    internal class InboxMessageTypeConfiguration
+    internal class InboxMessageTypeConfiguration : IEntityTypeConfiguration<InboxMessage>
     {
         public void Configure(EntityTypeBuilder<InboxMessage> builder)
         {

@@ -13,7 +13,7 @@ namespace Jookli.UserAccess.Infrastructure.Domain.Outbox.Config
     {
         public void Configure(EntityTypeBuilder<OutboxMessage> builder)
         {
-            builder.ToTable("OutboxMessages", "user");
+            builder.ToTable("UserAccess_OutboxMessages");
 
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Id).ValueGeneratedNever();
