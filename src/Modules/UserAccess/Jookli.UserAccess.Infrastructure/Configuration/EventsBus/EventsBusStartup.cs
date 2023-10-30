@@ -18,7 +18,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.EventsBus
 
         private static void SubsciteIntegrationEvents<T>(IEventsBus eventBus, ILogger logger) where T : IntegrationEvent
         {
-            logger.Information("Subscrive to {@IntegrationEvent}", typeof(T).FullName);
+            logger.Information("Subscribe to {@IntegrationEvent}", typeof(T).FullName);
             eventBus.Subscribe(new
                 IntegrationEventGenericHandler<T>());
         }

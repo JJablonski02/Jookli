@@ -21,7 +21,7 @@ namespace Jookli.UserAccess.Application.Common
             var connection = _sqlConnectionFactory.GetOpenConnection();
 
             const string sql = "SELECT COUNT(*) " +
-                               "FROM [users].[v_Users] AS [User]" +
+                               "FROM [UserAccess_User].[v_Users] AS [User]" +
                                "WHERE [User].[Login] = @Login";
             return connection.QuerySingle<int>(sql,
                 new

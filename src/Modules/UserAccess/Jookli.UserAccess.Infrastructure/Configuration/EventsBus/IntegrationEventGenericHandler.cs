@@ -27,7 +27,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.EventsBus
                         ContractResolver = new AllPropertiesContractResolver()
                     });
 
-                    var sql = "INSERT INTO [User].[InboxMessages] (Id, OccuredOn, Type, Data) " +
+                    var sql = "INSERT INTO [UserAccess_InboxMessage] (Id, OccuredOn, Type, Data) " +
                         "VALUES (@Id, @OccuredOn, @Type, @Data";
 
                     await connection.ExecuteScalarAsync(sql, new
