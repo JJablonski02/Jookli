@@ -31,7 +31,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.UserAccess.Domain", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.UserAccess.Infrastructure", "src\Modules\UserAccess\Jookli.UserAccess.Infrastructure\Jookli.UserAccess.Infrastructure.csproj", "{5B0CEAE1-4361-40FD-9C29-CE5956D3ABB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.UserAccess.IntegrationEvents", "Jookli.UserAccess.IntegrationEvents\Jookli.UserAccess.IntegrationEvents.csproj", "{473FC92C-B670-4A7C-A495-043C55D9190B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.UserAccess.IntegrationEvents", "Jookli.UserAccess.IntegrationEvents\Jookli.UserAccess.IntegrationEvents.csproj", "{473FC92C-B670-4A7C-A495-043C55D9190B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Games", "Games", "{6F1BA173-F850-42C3-9BFD-124A7B99219A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Games.Application", "Jookli.Games.Application\Jookli.Games.Application.csproj", "{FE69B00B-9817-428C-998F-314584995262}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Games.Infrastructure", "Jookli.Games.Infrastructure\Jookli.Games.Infrastructure.csproj", "{EB62FD39-5E01-46B4-9513-B0EA6E82DE0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Games.Domain", "Jookli.Games.Domain\Jookli.Games.Domain.csproj", "{FBDBAE47-978F-45FE-811F-2C73A985056E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Games.IntegrationEvents", "Jookli.Games.IntegrationEvents\Jookli.Games.IntegrationEvents.csproj", "{1EA73D6D-6249-414F-B755-E28CF4F21771}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +85,22 @@ Global
 		{473FC92C-B670-4A7C-A495-043C55D9190B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{473FC92C-B670-4A7C-A495-043C55D9190B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{473FC92C-B670-4A7C-A495-043C55D9190B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE69B00B-9817-428C-998F-314584995262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE69B00B-9817-428C-998F-314584995262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE69B00B-9817-428C-998F-314584995262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE69B00B-9817-428C-998F-314584995262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB62FD39-5E01-46B4-9513-B0EA6E82DE0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB62FD39-5E01-46B4-9513-B0EA6E82DE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB62FD39-5E01-46B4-9513-B0EA6E82DE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB62FD39-5E01-46B4-9513-B0EA6E82DE0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBDBAE47-978F-45FE-811F-2C73A985056E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBDBAE47-978F-45FE-811F-2C73A985056E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBDBAE47-978F-45FE-811F-2C73A985056E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBDBAE47-978F-45FE-811F-2C73A985056E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EA73D6D-6249-414F-B755-E28CF4F21771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EA73D6D-6249-414F-B755-E28CF4F21771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EA73D6D-6249-414F-B755-E28CF4F21771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EA73D6D-6249-414F-B755-E28CF4F21771}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +119,11 @@ Global
 		{8DD270F4-8514-411A-AE2D-068F4027C169} = {5250D040-8367-4C44-A7EC-D264C0C5357D}
 		{5B0CEAE1-4361-40FD-9C29-CE5956D3ABB9} = {5250D040-8367-4C44-A7EC-D264C0C5357D}
 		{473FC92C-B670-4A7C-A495-043C55D9190B} = {5250D040-8367-4C44-A7EC-D264C0C5357D}
+		{6F1BA173-F850-42C3-9BFD-124A7B99219A} = {D402F66F-ABCF-4D64-9D76-5EDDF2E6ECF7}
+		{FE69B00B-9817-428C-998F-314584995262} = {6F1BA173-F850-42C3-9BFD-124A7B99219A}
+		{EB62FD39-5E01-46B4-9513-B0EA6E82DE0E} = {6F1BA173-F850-42C3-9BFD-124A7B99219A}
+		{FBDBAE47-978F-45FE-811F-2C73A985056E} = {6F1BA173-F850-42C3-9BFD-124A7B99219A}
+		{1EA73D6D-6249-414F-B755-E28CF4F21771} = {6F1BA173-F850-42C3-9BFD-124A7B99219A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16D4570E-8509-4038-8064-B67E153DDB0D}
