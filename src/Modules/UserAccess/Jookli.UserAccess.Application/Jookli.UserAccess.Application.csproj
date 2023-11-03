@@ -22,10 +22,10 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Jookli.UserAccess.IntegrationEvents\Jookli.UserAccess.IntegrationEvents.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.Application\Jookli.BuildingBlocks.Application.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.Infrastructure\Jookli.BuildingBlocks.Infrastructure.csproj" />
     <ProjectReference Include="..\Jookli.UserAccess.Domain\Jookli.UserAccess.Domain.csproj" />
+    <ProjectReference Include="..\Jookli.UserAccess.IntegrationEvents\Jookli.UserAccess.IntegrationEvents.csproj" />
   </ItemGroup>
 
 </Project>
