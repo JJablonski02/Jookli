@@ -43,6 +43,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Games.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Games.IntegrationEvents", "src\Modules\Games\Jookli.Games.IntegrationEvents\Jookli.Games.IntegrationEvents.csproj", "{011E6252-5634-44D0-A012-F301A001840A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{F9BC8DD7-CB5C-4B7F-9DBE-BC12498FBF7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Payments.Application", "src\Modules\Payments\Jookli.Payments.Application\Jookli.Payments.Application.csproj", "{3648050E-CECA-4815-BBBE-4FD893291773}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Payments.Infrastructure", "src\Modules\Payments\Jookli.Payments.Infrastructure\Jookli.Payments.Infrastructure.csproj", "{AD1E9A87-94A8-42FD-AEE8-7083F7212EE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Payments.Domain", "src\Modules\Payments\Jookli.Payments.Domain\Jookli.Payments.Domain.csproj", "{1064FB7D-B878-446B-9D29-E8DE0D7EE880}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Payments.IntegrationEvents", "src\Modules\Payments\Jookli.Payments.IntegrationEvents\Jookli.Payments.IntegrationEvents.csproj", "{3E51E33B-200F-4ECE-8FE6-ACE46C56E50B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +111,22 @@ Global
 		{011E6252-5634-44D0-A012-F301A001840A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{011E6252-5634-44D0-A012-F301A001840A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{011E6252-5634-44D0-A012-F301A001840A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3648050E-CECA-4815-BBBE-4FD893291773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3648050E-CECA-4815-BBBE-4FD893291773}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3648050E-CECA-4815-BBBE-4FD893291773}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3648050E-CECA-4815-BBBE-4FD893291773}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD1E9A87-94A8-42FD-AEE8-7083F7212EE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD1E9A87-94A8-42FD-AEE8-7083F7212EE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD1E9A87-94A8-42FD-AEE8-7083F7212EE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD1E9A87-94A8-42FD-AEE8-7083F7212EE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1064FB7D-B878-446B-9D29-E8DE0D7EE880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1064FB7D-B878-446B-9D29-E8DE0D7EE880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1064FB7D-B878-446B-9D29-E8DE0D7EE880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1064FB7D-B878-446B-9D29-E8DE0D7EE880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E51E33B-200F-4ECE-8FE6-ACE46C56E50B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E51E33B-200F-4ECE-8FE6-ACE46C56E50B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E51E33B-200F-4ECE-8FE6-ACE46C56E50B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E51E33B-200F-4ECE-8FE6-ACE46C56E50B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +150,11 @@ Global
 		{31D3BFFE-57A1-4DA3-B9ED-D91A6B3173FC} = {6F1BA173-F850-42C3-9BFD-124A7B99219A}
 		{3509A5D5-0FE0-4748-8645-B6C5A75C99A4} = {6F1BA173-F850-42C3-9BFD-124A7B99219A}
 		{011E6252-5634-44D0-A012-F301A001840A} = {6F1BA173-F850-42C3-9BFD-124A7B99219A}
+		{F9BC8DD7-CB5C-4B7F-9DBE-BC12498FBF7D} = {D402F66F-ABCF-4D64-9D76-5EDDF2E6ECF7}
+		{3648050E-CECA-4815-BBBE-4FD893291773} = {F9BC8DD7-CB5C-4B7F-9DBE-BC12498FBF7D}
+		{AD1E9A87-94A8-42FD-AEE8-7083F7212EE4} = {F9BC8DD7-CB5C-4B7F-9DBE-BC12498FBF7D}
+		{1064FB7D-B878-446B-9D29-E8DE0D7EE880} = {F9BC8DD7-CB5C-4B7F-9DBE-BC12498FBF7D}
+		{3E51E33B-200F-4ECE-8FE6-ACE46C56E50B} = {F9BC8DD7-CB5C-4B7F-9DBE-BC12498FBF7D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16D4570E-8509-4038-8064-B67E153DDB0D}

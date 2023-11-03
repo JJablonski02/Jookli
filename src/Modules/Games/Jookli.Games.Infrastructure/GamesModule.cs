@@ -3,11 +3,6 @@ using Jookli.Games.Application.Contracts;
 using Jookli.Games.Infrastructure.Configuration;
 using Jookli.Games.Infrastructure.Configuration.Processing;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jookli.Games.Infrastructure
 {
