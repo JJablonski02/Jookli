@@ -1,4 +1,8 @@
-﻿using Jookli.Games.Application.Contracts;
+﻿using Autofac;
+using Jookli.Games.Application.Contracts;
+using Jookli.Games.Infrastructure.Configuration;
+using Jookli.Games.Infrastructure.Configuration.Processing;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +13,23 @@ namespace Jookli.Games.Infrastructure
 {
     internal class GamesModule : IGamesModule
     {
-        public Task<TResult> ExecuteCommandAsync<TResult>(ICommand<TResult> command)
+        public async Task<TResult> ExecuteCommandAsync<TResult>(ICommand<TResult> command)
         {
-            throw new NotImplementedException();
+            return await CommandsExecutor.Execute(command);
         }
 
-        public Task ExecuteCommandAsync(ICommand command)
+        public async Task ExecuteCommandAsync(ICommand command)
         {
-            throw new NotImplementedException();
+            await CommandsExecutor.Execute(command);
         }
 
-        public Task<TResult> ExecuteQueryAsync<TResult>(IQuery<TResult> query)
+        public async Task<TResult> ExecuteQueryAsync<TResult>(IQuery<TResult> query)
         {
-            throw new NotImplementedException();
+            using (var scope = GamesCompositionRoot.BeginLifetimeScope())
+            {
+                var mediator = scope.Resolve<IMediator>();
+                return await mediator.Send(query);
+            }
         }
     }
 }
