@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using Jookli.BuildingBlocks.Application.Data;
-using Jookli.UserAccess.Domain.Entities.User;
+using Jookli.UserAccess.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

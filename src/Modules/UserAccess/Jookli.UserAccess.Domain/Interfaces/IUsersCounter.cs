@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.UserAccess.Domain.Entities.User
+namespace Jookli.UserAccess.Domain.Interfaces
 {
     public interface IUsersCounter
     {

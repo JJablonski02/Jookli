@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using Jookli.UserAccess.Application.Common;
-using Jookli.UserAccess.Domain.Entities.User;
+using Jookli.UserAccess.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
