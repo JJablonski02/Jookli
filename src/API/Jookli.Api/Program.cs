@@ -10,7 +10,12 @@ namespace Jookli.Api
         }
         public static IHostBuilder CreateWebHostBuilder(string[] args)
         {
-            return Host.CreateDefaultBuilder(args).UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureWebHostDefaults(webBuilder =>
+            return Host.CreateDefaultBuilder(args).UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureAppConfiguration(builder =>
+            {
+                builder.AddSystemsManager(config =>
+                {
+                });
+            }).ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<Startup>();
                 webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
