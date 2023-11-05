@@ -1,4 +1,6 @@
 using Autofac.Extensions.DependencyInjection;
+using Jookli.Api.Configuration.AWS;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Jookli.Api
 {
@@ -10,13 +12,13 @@ namespace Jookli.Api
         }
         public static IHostBuilder CreateWebHostBuilder(string[] args)
         {
-            return Host.CreateDefaultBuilder(args).UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureAppConfiguration(builder =>
+            return Host.CreateDefaultBuilder(args).UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                .ConfigureWebHostDefaults(webBuilder =>
             {
-                builder.AddSystemsManager(config =>
+                webBuilder.ConfigureAppConfiguration(async (hostbuilder, builder) =>
                 {
+                    var configuration = AWSConfigurator.ConfigureBuilderAsync(builder).Result;
                 });
-            }).ConfigureWebHostDefaults(webBuilder =>
-            {
                 webBuilder.UseStartup<Startup>();
                 webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
             });

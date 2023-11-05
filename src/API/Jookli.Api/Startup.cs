@@ -36,41 +36,14 @@ namespace Jookli.Api
         private static Serilog.ILogger _logger;
         private static Serilog.ILogger _apiLogger;
 
-        public Startup(IWebHostEnvironment webHostEnvironment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             ConfigureLogger();
-            _configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .Build();
+            _configuration = configuration;
 
             _apiLogger.Information("Connection string: " + _configuration[JookliConnectionString]);
             AuthorizationChecker.CheckAllEndpoints();
             _apiLogger.Information("Connected");
-        }
-
-        public async Task<IConfiguration> ConfigurationBuilder(IWebHostEnvironment webHostEnvironment)
-        {
-            var environment = webHostEnvironment.EnvironmentName.ToLower();
-
-            var builder = new ConfigurationBuilder();
-            var credentials = new BasicAWSCredentials("AKIAVPZBIZMAI4VKQG65", "gekwQkM4581dhsJDHtBq9a7xMYK4EGcFL2R9PYmF");
-            var client = new AmazonSimpleSystemsManagementClient(credentials, RegionEndpoint.EUNorth1);
-
-            var request = new GetParameterRequest()
-            {
-                Name = $"/{environment}/JookliApi/ConnectionString"
-            };
-
-            var value = await client.GetParameterAsync(request: request);
-
-            builder.AddJsonFile("appsettings.json");
-            var configuration = builder.Build();
-
-            _apiLogger.Information("Connection string: " + configuration[JookliConnectionString]);
-            AuthorizationChecker.CheckAllEndpoints();
-            _apiLogger.Information("Connected");
-
-            return configuration;
         }
 
         public void  ConfigureServices(IServiceCollection services)
