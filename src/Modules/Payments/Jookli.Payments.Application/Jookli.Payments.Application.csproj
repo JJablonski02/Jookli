@@ -10,4 +10,15 @@
     <PackageReference Include="MediatR" Version="11.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Card\Add\Notification\" />
+    <Folder Include="Features\Card\Remove\Notification\" />
+    <Folder Include="Features\Card\Update\Command\" />
+    <Folder Include="Features\Card\Update\Notification\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Jookli.Payments.Domain\Jookli.Payments.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
