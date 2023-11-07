@@ -6,6 +6,7 @@ namespace Jookli.Payments.Domain.Entities.Card
 {
     public class CardEntity : Entity, IHasId, IHasMetadata, IHasObject
     {
+        public Guid CardId { get; set; }
         public string Id { get; set; }
         public string Object { get; set; }
         public string AddressCity { get; set; }
@@ -50,7 +51,7 @@ namespace Jookli.Payments.Domain.Entities.Card
         public string TokenizationMethod { get; set; }
         public string Status { get; set; }
         public Dictionary<string, string> Metadata { get; set; }
-        public UserEntity User { get; set; }
+        public ICollection<UserEntity> Users { get; set; }
 
     }
 }
