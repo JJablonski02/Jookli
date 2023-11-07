@@ -11,6 +11,8 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Notification
 {
     public class NewUserRegisteredNotification : DomainNotificationBase<NewUserRegisteredDomainEvent>
     {
-        public NewUserRegisteredNotification(NewUserRegisteredDomainEvent domainEvent, Guid id) : base(domainEvent, id) { }
+        public NewUserRegisteredNotification(NewUserRegisteredDomainEvent domainEvent, Guid id) : base(domainEvent, id)
+        {
+        }
     }
 }
