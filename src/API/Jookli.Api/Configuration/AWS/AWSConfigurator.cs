@@ -1,7 +1,6 @@
 ﻿using Amazon.Runtime;
 using Amazon.SimpleSystemsManagement.Model;
 using Amazon.SimpleSystemsManagement;
-using Jookli.Api.Configuration.Authorization;
 using Amazon;
 
 namespace Jookli.Api.Configuration.AWS

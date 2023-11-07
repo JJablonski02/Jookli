@@ -1,10 +1,4 @@
-﻿using Amazon;
-using Amazon.Extensions.Configuration.SystemsManager;
-using Amazon.Extensions.NETCore.Setup;
-using Amazon.Runtime;
-using Amazon.SimpleSystemsManagement;
-using Amazon.SimpleSystemsManagement.Model;
-using Autofac;
+﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using IdentityServer4.AccessTokenValidation;
 using IdentityServer4.Validation;
@@ -20,10 +14,7 @@ using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
 using Jookli.UserAccess.Infrastructure;
 using Jookli.UserAccess.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Formatting.Compact;
 
