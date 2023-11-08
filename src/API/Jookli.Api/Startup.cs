@@ -23,6 +23,7 @@ namespace Jookli.Api
     public class Startup
     {
         private const string JookliConnectionString = "JookliConnectionString";
+        private const string StripeSecret = "StripeSecret";
         private readonly IConfiguration _configuration;
         private static Serilog.ILogger _logger;
         private static Serilog.ILogger _apiLogger;
@@ -33,7 +34,10 @@ namespace Jookli.Api
             _configuration = configuration;
 
             _apiLogger.Information("Connection string: " + _configuration[JookliConnectionString]);
+            _apiLogger.Information("Stripe secret: " + _configuration[StripeSecret]);
+
             AuthorizationChecker.CheckAllEndpoints();
+
             _apiLogger.Information("Connected");
         }
 
