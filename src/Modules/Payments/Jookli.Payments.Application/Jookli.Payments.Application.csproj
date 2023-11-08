@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\UserAccess\Jookli.UserAccess.IntegrationEvents\Jookli.UserAccess.IntegrationEvents.csproj" />
     <ProjectReference Include="..\Jookli.Payments.Domain\Jookli.Payments.Domain.csproj" />
   </ItemGroup>
 
