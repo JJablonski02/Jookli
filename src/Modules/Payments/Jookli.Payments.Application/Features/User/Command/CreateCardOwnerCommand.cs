@@ -1,4 +1,5 @@
 ﻿using Jookli.Payments.Application.Configuration.Command;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,8 @@ namespace Jookli.Payments.Application.Features.User.Command
         internal string FirstName { get; set; }
         internal string LastName { get; set; }
 
-        public CreateCardOwnerCommand(Guid Id, Guid userId, string email, string firstName, string lastName)
+        [JsonConstructor]
+        public CreateCardOwnerCommand(Guid Id, Guid userId, string email, string firstName, string lastName) : base(Id)
         { 
             UserId = userId;
             Email = email;
