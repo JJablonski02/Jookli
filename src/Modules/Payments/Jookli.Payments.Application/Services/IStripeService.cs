@@ -8,6 +8,6 @@ namespace Jookli.Payments.Application.Services
 {
     public interface IStripeService
     {
-        Task<>
+        
     }
 }

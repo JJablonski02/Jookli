@@ -8,29 +8,18 @@ namespace Jookli.Payments.Infrastructure.Gateway
     {
         public async Task AddCardAsync()
         {
-            StripeConfiguration.ApiKey = "MyKey";
+            StripeConfiguration.ApiKey = "pk_test_51NkYOeR51GfcWcs80imMGXIGbxns82Vdl6uOfUWgYYqQUCBjmVdugbElAz6DzouaSpMXCDWVcOKb9Qzc43IqxWQi0055spy7vc";
+
+            var config = new CustomerCreateOptions
+            {
+                Email = "343242@dfsfs.pl",
+                Name = "Jakub Jablonski",
+            };
+            var service = new TokenService();
 
             var options = new TokenCreateOptions
             {
-                Card = new TokenCardOptions
-                {
-                    Number = "4111111111111111",
-                    ExpMonth = 12,
-                    ExpYear = 2025,
-                    Cvc = "123"
-                }
             };
-
-            var service = new TokenService();
-            Token stripeToken = service.Create(options);
-
-            var options = new AccountUpdateOptions
-            {
-                ExternalAccount = stripeToken.Id
-            };
-
-            var service = new AccountService();
-            Account updatedAccount = service.Update("ID profilu użytkownika w Stripe", options);
         }
     }
 }

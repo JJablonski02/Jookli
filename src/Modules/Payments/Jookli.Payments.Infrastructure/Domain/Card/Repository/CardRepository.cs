@@ -19,7 +19,7 @@ namespace Jookli.Payments.Infrastructure.Domain.Card.Repository
 
         public async Task AddAsync(CardEntity cardEntity, CancellationToken cancellation = default)
         {
-            await _paymentsContext.AddAsync(cardEntity, cancellation);
+            await _paymentsContext.Cards.AddAsync(cardEntity, cancellation);
         }
     }
 }
