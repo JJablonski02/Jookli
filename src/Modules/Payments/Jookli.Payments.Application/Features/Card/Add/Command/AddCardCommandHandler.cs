@@ -7,9 +7,9 @@ namespace Jookli.Payments.Application.Features.Card.Add.Command
     internal class AddCardCommandHandler : ICommandHandler<AddCardCommand>
     {
         private readonly ICardRepository _cardRepository;
-        public Task<Unit> Handle(AddCardCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(AddCardCommand request, CancellationToken cancellationToken)
         {
-
+            return Unit.Value;
         }
     }
 }
