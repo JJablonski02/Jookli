@@ -8,6 +8,8 @@ using Jookli.Api.Configuration.Extensions;
 using Jookli.Api.Modules.UserAccess;
 using Jookli.BuildingBlocks.Application;
 using Jookli.BuildingBlocks.Infrastructure;
+using Jookli.Payments.Infrastructure;
+using Jookli.Payments.Infrastructure.Configuration;
 using Jookli.UserAccess.Application.Contracts;
 using Jookli.UserAccess.Application.IdentityServer;
 using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
@@ -175,6 +177,14 @@ namespace Jookli.Api
                 _configuration["Security:TextEncryptionKey"],
                 null,
                 null);
+
+            PaymentsStartup.Initialize(_configuration[JookliConnectionString],
+                executionContextAccessor,
+                _logger,
+                null,
+                null);
+                
+            
         }
     }
 }
