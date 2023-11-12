@@ -17,7 +17,7 @@ namespace Jookli.Api
             {
                 webBuilder.ConfigureAppConfiguration(async (hostbuilder, builder) =>
                 {
-                    await AWSConfigurator.ConfigureBuilderAsync(builder);
+                    var configuration =  AWSConfigurator.ConfigureBuilderAsync(builder).Result;
                 });
                 webBuilder.UseStartup<Startup>();
                 webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
