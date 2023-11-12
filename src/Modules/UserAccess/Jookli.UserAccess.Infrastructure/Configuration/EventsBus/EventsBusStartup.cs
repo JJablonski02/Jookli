@@ -9,14 +9,14 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.EventsBus
     {
         public static void Initialize(ILogger logger)
         {
-            SubscribeIntegrationEvents(logger);
+            SubscribeToIntegrationEvents(logger);
         }
-        private static void SubscribeIntegrationEvents(ILogger logger)
+        private static void SubscribeToIntegrationEvents(ILogger logger)
         {
             var eventBus = UserAccessCompositionRoot.BeginLifetimeScope().Resolve<IEventsBus>();
         }
 
-        private static void SubsciteIntegrationEvents<T>(IEventsBus eventBus, ILogger logger) where T : IntegrationEvent
+        private static void SubscribeToIntegrationEvent<T>(IEventsBus eventBus, ILogger logger) where T : IntegrationEvent
         {
             logger.Information("Subscribe to {@IntegrationEvent}", typeof(T).FullName);
             eventBus.Subscribe(new

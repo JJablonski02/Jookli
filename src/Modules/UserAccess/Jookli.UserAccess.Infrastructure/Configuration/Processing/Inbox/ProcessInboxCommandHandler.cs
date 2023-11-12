@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.Inbox
 {
-    internal class ProcesInboxCommandHandler : ICommandHandler<ProcessInboxCommand>
+    internal class ProcessInboxCommandHandler : ICommandHandler<ProcessInboxCommand>
     {
         private readonly IMediator _mediator;
         private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
-        public ProcesInboxCommandHandler(IMediator mediator, ISqlConnectionFactory sqlConnectionFactory)
+        public ProcessInboxCommandHandler(IMediator mediator, ISqlConnectionFactory sqlConnectionFactory)
         {
             _mediator= mediator;
             _sqlConnectionFactory= sqlConnectionFactory;

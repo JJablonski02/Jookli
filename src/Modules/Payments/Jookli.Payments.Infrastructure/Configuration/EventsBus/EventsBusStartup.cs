@@ -10,9 +10,9 @@ namespace Jookli.Payments.Infrastructure.Configuration.EventsBus
     {
         public static void Initialize(ILogger logger)
         {
-            SubscribeIntegrationEvents(logger);
+            SubscribeToIntegrationEvents(logger);
         }
-        private static void SubscribeIntegrationEvents(ILogger logger)
+        private static void SubscribeToIntegrationEvents(ILogger logger)
         {
             var eventBus = PaymentsCompositionRoot.BeginLifetimeScope().Resolve<IEventsBus>();
 
