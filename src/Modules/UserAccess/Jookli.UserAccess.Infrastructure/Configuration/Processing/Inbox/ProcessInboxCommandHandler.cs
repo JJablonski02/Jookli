@@ -26,16 +26,16 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.Inbox
         {
             var connection = this._sqlConnectionFactory.GetOpenConnection();
             string sql = "SELECT " +
-                         $"[InboxMessage].[Id] AS [{nameof(InboxMessageDto.Id)}], " +
-                         $"[InboxMessage].[Type] AS [{nameof(InboxMessageDto.Type)}], " +
-                         $"[InboxMessage].[Data] AS [{nameof(InboxMessageDto.Data)}] " +
-                         "FROM [users].[InboxMessages] AS [InboxMessage] " +
+                         $"dbo.[UserAcecess_InboxMessage].[Id] AS [{nameof(InboxMessageDto.Id)}], " +
+                         $"dbo.[UserAcecess_InboxMessage].[Type] AS [{nameof(InboxMessageDto.Type)}], " +
+                         $"dbo.[UserAcecess_InboxMessage].[Data] AS [{nameof(InboxMessageDto.Data)}] " +
+                         "FROM dbo.[UserAccess_InboxMessage] AS [InboxMessage] " +
                          "WHERE [InboxMessage].[ProcessedDate] IS NULL " +
                          "ORDER BY [InboxMessage].[OccurredOn]";
 
             var messages = await connection.QueryAsync<InboxMessageDto>(sql);
 
-            const string sqlUpdateProcessedDate = "UPDATE [users].[InboxMessages] " +
+            const string sqlUpdateProcessedDate = "UPDATE dbo.[UserAccess_InboxMessage] " +
                                                   "SET [ProcessedDate] = @Date " +
                                                   "WHERE [Id] = @Id";
 
