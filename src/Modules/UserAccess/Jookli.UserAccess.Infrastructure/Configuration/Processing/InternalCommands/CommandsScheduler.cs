@@ -20,7 +20,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.InternalComm
         {
             var connection = this._sqlConnectionFactory.GetOpenConnection();
 
-            const string sqlInsert = "INSERT INTO [users].[InternalCommands] ([Id], [EnqueueDate] , [Type], [Data]) VALUES " +
+            const string sqlInsert = "INSERT INTO dbo.[UserAccess_InternalCommands] ([Id], [EnqueueDate] , [Type], [Data]) VALUES " +
                                      "(@Id, @EnqueueDate, @Type, @Data)";
 
             await connection.ExecuteAsync(sqlInsert, new
@@ -39,13 +39,13 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.InternalComm
         {
             var connection = this._sqlConnectionFactory.GetOpenConnection();
 
-            const string sqlInsert = "INSERT INTO [users].[InternalCommands] ([Id], [EnqueueDate] , [Type], [Data]) VALUES " +
+            const string sqlInsert = "INSERT INTO dbo.[UserAccess_InternalCommands] ([Id], [EnqueueDate] , [Type], [Data]) VALUES " +
                                      "(@Id, @EnqueueDate, @Type, @Data)";
 
             await connection.ExecuteAsync(sqlInsert, new
             {
                 command.Id,
-                Enqueue = DateTime.UtcNow,
+                EnqueueDate = DateTime.UtcNow,
                 Type = command.GetType().FullName,
                 Data = JsonConvert.SerializeObject(command, new JsonSerializerSettings 
                 { 
