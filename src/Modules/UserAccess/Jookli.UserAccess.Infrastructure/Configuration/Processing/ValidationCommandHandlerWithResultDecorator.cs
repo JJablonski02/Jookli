@@ -21,7 +21,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
         {
             var errors = _validators.Select(v => v.Validate(command))
                 .SelectMany(er => er.Errors)
-                .Where(error => error is not null).ToList();
+                .Where(error => error != null).ToList();
 
             if(errors.Any())
             {
