@@ -23,7 +23,7 @@ namespace Jookli.BuildingBlocks.Infrastructure
         {
             await this._domainEventsDispatcher.DispatchEventsAsync();
 
-            return await this._dbContext.SaveChangesAsync(cancellationToken);
+            return await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }
