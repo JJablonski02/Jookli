@@ -48,19 +48,19 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
 
             builder.RegisterGenericDecorator(
                 typeof(ValidationCommandHandlerDecorator<>),
-                typeof(ICommandHandler<>));
+                typeof(IRequestHandler<,>));
 
             builder.RegisterGenericDecorator(
                 typeof(ValidationCommandHandlerWithResultDecorator<,>),
-                typeof(ICommandHandler<,>));
+                typeof(IRequestHandler<,>));
 
             builder.RegisterGenericDecorator(
                 typeof(LoggingCommandHandlerDecorator<>),
-                typeof(ICommandHandler<>));
+                typeof(IRequestHandler<,>));
 
             builder.RegisterGenericDecorator(
                 typeof(LoggingCommandHandlerWithResultDecorator<,>),
-                typeof(ICommandHandler<,>));
+                typeof(IRequestHandler<,>));
 
             builder.RegisterGenericDecorator(
                 typeof(DomainEventsDispatcherNotificationHandlerDecorator<>),
