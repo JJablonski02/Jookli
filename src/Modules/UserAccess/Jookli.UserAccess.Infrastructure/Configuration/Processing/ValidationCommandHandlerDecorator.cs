@@ -20,7 +20,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing
         public Task<Unit> Handle(T command, CancellationToken cancellationToken)
         {
             var errors = _validators.Select(v => v.Validate(command))
-                .SelectMany(result => result.Errors).Where(er => er is not null)
+                .SelectMany(result => result.Errors).Where(er => er != null)
                 .ToList();
 
             if (errors.Any())
