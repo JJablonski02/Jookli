@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.Outbox
 {
-    internal class ProcesOutboxCommandHandler
+    internal class ProcessOutboxCommandHandler
     {
         private readonly IMediator _mediator;
 
@@ -23,7 +23,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.Outbox
 
         private readonly IDomainNotificationsMapper _domainNotificationsMapper;
 
-        public ProcesOutboxCommandHandler(IMediator mediator, ISqlConnectionFactory sqlConnectionFactory, IDomainNotificationsMapper domainNotificationsMapper)
+        public ProcessOutboxCommandHandler(IMediator mediator, ISqlConnectionFactory sqlConnectionFactory, IDomainNotificationsMapper domainNotificationsMapper)
         {
             _mediator = mediator;
             _sqlConnectionFactory = sqlConnectionFactory;
@@ -34,19 +34,19 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.Outbox
         {
             var connection = this._sqlConnectionFactory.GetOpenConnection();
             string sql = "SELECT " +
-                         $"[OutboxMessage].[Id] AS [{nameof(OutboxMessageDto.Id)}], " +
-                         $"[OutboxMessage].[Type] AS [{nameof(OutboxMessageDto.Type)}], " +
-                         $"[OutboxMessage].[Data] AS [{nameof(OutboxMessageDto.Data)}] " +
-                         "FROM [UserAccess_OutboxMessages] AS [OutboxMessage] " +
+                         $"dbo.[UserAccess_OutboxMessages].[Id] AS [{nameof(OutboxMessageDto.Id)}], " +
+                         $"dbo.[UserAccess_OutboxMessages].[Type] AS [{nameof(OutboxMessageDto.Type)}], " +
+                         $"dbo.[UserAccess_OutboxMessages].[Data] AS [{nameof(OutboxMessageDto.Data)}] " +
+                         "FROM dbo.[UserAccess_OutboxMessages] AS [OutboxMessage] " +
                          "WHERE [OutboxMessage].[ProcessedDate] IS NULL " +
                          "ORDER BY [OutboxMessage].[OccurredOn]";
 
             var messages = await connection.QueryAsync<OutboxMessageDto>(sql);
             var messagesList = messages.AsList();
 
-            const string sqlUpdateProcessedDate = "UPDATE [UserAccess_OutboxMessages] " +
-                                                  "SET [ProcessedDate] = @Date " +
-                                                  "WHERE [Id] = @Id";
+            const string sqlUpdateProcessedDate = "UPDATE dbo.[UserAccess_OutboxMessages] " +
+                                                  "SET [UserAccess_OutboxMessages].[ProcessedDate] = @Date " +
+                                                  "WHERE [UserAccess_OutboxMessages].[Id] = @Id";
             if (messagesList.Count > 0)
             {
                 foreach (var message in messagesList)
