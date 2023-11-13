@@ -4,6 +4,7 @@ using Jookli.UserAccess.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jookli.UserAccess.Infrastructure.Migrations
 {
     [DbContext(typeof(UserAccessContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231113181423_sqlQueries")]
+    partial class sqlQueries
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,6 +103,31 @@ namespace Jookli.UserAccess.Infrastructure.Migrations
                     b.ToTable("UserAccess_InternalCommands", (string)null);
                 });
 
+            modelBuilder.Entity("Jookli.UserAccess.Domain.Entities.Message.MessageEntity", b =>
+                {
+                    b.Property<Guid>("MessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MessageContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MessagePhoneNumber")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("MessageTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("UserEntityUserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("MessageId");
+
+                    b.HasIndex("UserEntityUserID");
+
+                    b.ToTable("MessageEntity");
+                });
+
             modelBuilder.Entity("Jookli.UserAccess.Domain.Entities.User.UserEntity", b =>
                 {
                     b.Property<Guid>("UserID")
@@ -107,90 +135,113 @@ namespace Jookli.UserAccess.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AreaCode")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BaseInfoCountry")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("BaseInfoGender")
+                    b.Property<int>("BaseInfoGender")
                         .HasColumnType("int");
 
                     b.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Currency")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CurrentRelationShip")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("DateOfBirth")
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateOfLastActivity")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Education")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
                     b.Property<string>("HouseNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Interesets")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsDeleted")
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsMicrophoneAllowed")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Legacy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PhoneNumber")
+                    b.Property<int>("PhoneNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("PlaceOfResidence")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PoliticalViews")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostalCode")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("Premium")
+                    b.Property<bool>("Premium")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("PushNotifications")
+                    b.Property<bool>("PushNotifications")
                         .HasColumnType("bit");
 
                     b.Property<string>("Specialization")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserID");
@@ -198,6 +249,49 @@ namespace Jookli.UserAccess.Infrastructure.Migrations
                     b.HasIndex("UserID");
 
                     b.ToTable("UserAccess_User", (string)null);
+                });
+
+            modelBuilder.Entity("Jookli.UserAccess.Domain.Entities.VoiceMessage.VoiceMessageEntity", b =>
+                {
+                    b.Property<Guid>("VoiceMessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserEntityUserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("VoiceMessageDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("VoiceMessageLength")
+                        .HasColumnType("int");
+
+                    b.HasKey("VoiceMessageId");
+
+                    b.HasIndex("UserEntityUserID");
+
+                    b.ToTable("VoiceMessageEntity");
+                });
+
+            modelBuilder.Entity("Jookli.UserAccess.Domain.Entities.Message.MessageEntity", b =>
+                {
+                    b.HasOne("Jookli.UserAccess.Domain.Entities.User.UserEntity", null)
+                        .WithMany("MessagesReceived")
+                        .HasForeignKey("UserEntityUserID");
+                });
+
+            modelBuilder.Entity("Jookli.UserAccess.Domain.Entities.VoiceMessage.VoiceMessageEntity", b =>
+                {
+                    b.HasOne("Jookli.UserAccess.Domain.Entities.User.UserEntity", null)
+                        .WithMany("VoiceMessagesReceived")
+                        .HasForeignKey("UserEntityUserID");
+                });
+
+            modelBuilder.Entity("Jookli.UserAccess.Domain.Entities.User.UserEntity", b =>
+                {
+                    b.Navigation("MessagesReceived");
+
+                    b.Navigation("VoiceMessagesReceived");
                 });
 #pragma warning restore 612, 618
         }
