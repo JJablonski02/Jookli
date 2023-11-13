@@ -22,12 +22,13 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.InternalComm
             var connection = _sqlConnectionFactory.GetOpenConnection();
 
             string sql = "SELECT " +
-                               $"[Command].[Id] AS [{nameof(InternalCommandDto.Id)}], " +
-                               $"[Command].[Type] AS [{nameof(InternalCommandDto.Type)}], " +
-                               $"[Command].[Data] AS [{nameof(InternalCommandDto.Data)}] " +
-                               "FROM [UserAccess_InternalCommands] AS [Command] " +
-                               "WHERE [Command].[ProcessedDate] IS NULL " +
-                               "ORDER BY [Command].[EnqueueDate]";
+                               $"dbo.[UserAccess_InternalCommands].[Id] AS [{nameof(InternalCommandDto.Id)}], " +
+                               $"dbo.[UserAccess_InternalCommands].[Type] AS [{nameof(InternalCommandDto.Type)}], " +
+                               $"dbo.[UserAccess_InternalCommands].[Data] AS [{nameof(InternalCommandDto.Data)}] " +
+                               "FROM dbo.[UserAccess_InternalCommands] AS [Command] " +
+                               "WHERE dbo.[UserAccess_InternalCommands].[ProcessedDate] IS NULL " +
+                               "ORDER BY dbo.[UserAccess_InternalCommands].[EnqueueDate]";
+
             var commands = await connection.QueryAsync<InternalCommandDto>(sql);
 
             var internalCommandsList = commands.AsList();
@@ -47,9 +48,9 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.InternalComm
                 if(result.Outcome == OutcomeType.Failure)
                 {
                     await connection.ExecuteScalarAsync(
-                        "UPDATE [user].[InternalCommands] " +
-                        "SET ProcessedDate = @NowDate, " +
-                        "Error = @Error " +
+                        "UPDATE [UserAccess_InternalCommands] " +
+                        "SET [ProcessedDate] = @NowDate, " +
+                        "[Error] = @Error " +
                         "WHERE [Id] = @Id",
                         new
                         {
