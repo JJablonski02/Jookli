@@ -13,7 +13,7 @@ namespace Jookli.Payments.Infrastructure.Domain.Card.Config
     {
         public void Configure(EntityTypeBuilder<CardEntity> builder)
         {
-            builder.ToTable("payment_Card");
+            builder.ToTable("Payments_Card");
 
             builder.HasKey(x => x.CardId);
         }
