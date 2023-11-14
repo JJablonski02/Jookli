@@ -58,6 +58,11 @@ namespace Jookli.Api
             {
                 options.UseSqlServer(_configuration[JookliConnectionString]);
             });
+            services.AddDbContext<PaymentsContext>(options =>
+            {
+                options.UseSqlServer(_configuration[JookliConnectionString]);
+            });
+
 
             services.AddAuthorization(options =>
             {
