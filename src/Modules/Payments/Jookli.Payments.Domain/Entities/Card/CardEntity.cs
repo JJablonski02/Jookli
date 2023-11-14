@@ -4,7 +4,7 @@ using Jookli.Payments.Domain.Interfaces;
 
 namespace Jookli.Payments.Domain.Entities.Card
 {
-    public class CardEntity : Entity, IHasId, IHasMetadata, IHasObject
+    public class CardEntity : Entity, IHasId, IHasObject
     {
         public Guid CardId { get; set; }
         public string Id { get; set; }
@@ -17,7 +17,7 @@ namespace Jookli.Payments.Domain.Entities.Card
         public string AddressState { get; set; }
         public string AddressZip { get; set; }
         public string AddressZipCheck { get; set; }
-        public List<string> AvailablePayoutMethods { get; set; }
+        //public List<string> AvailablePayoutMethods { get; set; }
         public string Brand { get; set; }
         public string Country { get; set; }
         public string Currency { get; set; }
@@ -50,7 +50,7 @@ namespace Jookli.Payments.Domain.Entities.Card
         public string Name { get; set; }
         public string TokenizationMethod { get; set; }
         public string Status { get; set; }
-        public Dictionary<string, string> Metadata { get; set; }
+        //public Dictionary<string, string> Metadata { get; set; }
         public ICollection<UserEntity> Users { get; set; }
 
     }
