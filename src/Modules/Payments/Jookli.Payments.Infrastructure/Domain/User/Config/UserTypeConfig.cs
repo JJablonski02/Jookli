@@ -13,7 +13,7 @@ namespace Jookli.Payments.Infrastructure.Domain.User.Config
     {
         public void Configure(EntityTypeBuilder<UserEntity> builder)
         {
-            builder.ToTable("payment_User");
+            builder.ToTable("Payments_User");
 
             builder.HasKey(x => x.UserId);
         }
