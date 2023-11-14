@@ -22,12 +22,12 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.InternalComm
             var connection = _sqlConnectionFactory.GetOpenConnection();
 
             string sql = "SELECT " +
-                               $"dbo.[UserAccess_InternalCommands].[Id] AS [{nameof(InternalCommandDto.Id)}], " +
-                               $"dbo.[UserAccess_InternalCommands].[Type] AS [{nameof(InternalCommandDto.Type)}], " +
-                               $"dbo.[UserAccess_InternalCommands].[Data] AS [{nameof(InternalCommandDto.Data)}] " +
-                               "FROM dbo.[UserAccess_InternalCommands] AS [Command] " +
-                               "WHERE dbo.[UserAccess_InternalCommands].[ProcessedDate] IS NULL " +
-                               "ORDER BY dbo.[UserAccess_InternalCommands].[EnqueueDate]";
+                               $"Id AS '{nameof(InternalCommandDto.Id)}', " +
+                               $"Type AS '{nameof(InternalCommandDto.Type)}', " +
+                               $"Data AS '{nameof(InternalCommandDto.Data)}' " +
+                               "FROM dbo.UserAccess_InternalCommands AS Command " +
+                               "WHERE Command.ProcessedDate IS NULL " +
+                               "ORDER BY Command.EnqueueDate";
 
             var commands = await connection.QueryAsync<InternalCommandDto>(sql);
 
@@ -48,10 +48,10 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.InternalComm
                 if(result.Outcome == OutcomeType.Failure)
                 {
                     await connection.ExecuteScalarAsync(
-                        "UPDATE [UserAccess_InternalCommands] " +
-                        "SET [ProcessedDate] = @NowDate, " +
-                        "[Error] = @Error " +
-                        "WHERE [Id] = @Id",
+                        "UPDATE dbo.UserAccess_InternalCommands " +
+                        "SET ProcessedDate = @NowDate, " +
+                        "Error = @Error " +
+                        "WHERE Id = @Id",
                         new
                         {
                             NowDate = DateTime.UtcNow,
