@@ -20,12 +20,14 @@ namespace Jookli.Payments.Infrastructure.Configuration.Processing.InternalComman
             var connection = _sqlConnectionFactory.GetOpenConnection();
 
             string sql = "SELECT " +
-                               $"[Command].[Id] AS [{nameof(InternalCommandDto.Id)}], " +
-                               $"[Command].[Type] AS [{nameof(InternalCommandDto.Type)}], " +
-                               $"[Command].[Data] AS [{nameof(InternalCommandDto.Data)}] " +
-                               "FROM [UserAccess_InternalCommands] AS [Command] " +
-                               "WHERE [Command].[ProcessedDate] IS NULL " +
-                               "ORDER BY [Command].[EnqueueDate]";
+                               $"Id AS '{nameof(InternalCommandDto.Id)}', " +
+                               $"Type AS '{nameof(InternalCommandDto.Type)}', " +
+                               $"Data AS '{nameof(InternalCommandDto.Data)}' " +
+                               "FROM Payments_InternalCommands AS Command " +
+                               "WHERE Command.ProcessedDate IS NULL " +
+                               "ORDER BY Command.EnqueueDate";
+
+
             var commands = await connection.QueryAsync<InternalCommandDto>(sql);
 
             var internalCommandsList = commands.AsList();
@@ -45,10 +47,10 @@ namespace Jookli.Payments.Infrastructure.Configuration.Processing.InternalComman
                 if(result.Outcome == OutcomeType.Failure)
                 {
                     await connection.ExecuteScalarAsync(
-                        "UPDATE [user].[InternalCommands] " +
+                        "UPDATE dbo.Payments_InternalCommands" +
                         "SET ProcessedDate = @NowDate, " +
                         "Error = @Error " +
-                        "WHERE [Id] = @Id",
+                        "WHERE Id = @Id",
                         new
                         {
                             NowDate = DateTime.UtcNow,
