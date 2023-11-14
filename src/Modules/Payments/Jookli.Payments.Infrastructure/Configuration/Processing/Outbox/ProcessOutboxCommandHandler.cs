@@ -2,6 +2,7 @@
 using Jookli.BuildingBlocks.Application.Data;
 using Jookli.BuildingBlocks.Application.Events;
 using Jookli.BuildingBlocks.Infrastructure.DomainEventsDispatching;
+using Jookli.Payments.Application.Configuration.Command;
 using MediatR;
 using Newtonsoft.Json;
 using Serilog.Context;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.Payments.Infrastructure.Configuration.Processing.Outbox
 {
-    internal class ProcesOutboxCommandHandler
+    internal class ProcessOutboxCommandHandler : ICommandHandler<ProcessOutboxCommand>
     {
         private readonly IMediator _mediator;
 
@@ -23,7 +24,7 @@ namespace Jookli.Payments.Infrastructure.Configuration.Processing.Outbox
 
         private readonly IDomainNotificationsMapper _domainNotificationsMapper;
 
-        public ProcesOutboxCommandHandler(IMediator mediator, ISqlConnectionFactory sqlConnectionFactory, IDomainNotificationsMapper domainNotificationsMapper)
+        public ProcessOutboxCommandHandler(IMediator mediator, ISqlConnectionFactory sqlConnectionFactory, IDomainNotificationsMapper domainNotificationsMapper)
         {
             _mediator = mediator;
             _sqlConnectionFactory = sqlConnectionFactory;
@@ -34,19 +35,19 @@ namespace Jookli.Payments.Infrastructure.Configuration.Processing.Outbox
         {
             var connection = this._sqlConnectionFactory.GetOpenConnection();
             string sql = "SELECT " +
-                         $"[OutboxMessage].[Id] AS [{nameof(OutboxMessageDto.Id)}], " +
-                         $"[OutboxMessage].[Type] AS [{nameof(OutboxMessageDto.Type)}], " +
-                         $"[OutboxMessage].[Data] AS [{nameof(OutboxMessageDto.Data)}] " +
-                         "FROM [UserAccess_OutboxMessages] AS [OutboxMessage] " +
-                         "WHERE [OutboxMessage].[ProcessedDate] IS NULL " +
-                         "ORDER BY [OutboxMessage].[OccurredOn]";
+                         $"Id AS '{nameof(OutboxMessageDto.Id)}', " +
+                         $"Type AS '{nameof(OutboxMessageDto.Type)}', " +
+                         $"Data AS '{nameof(OutboxMessageDto.Data)}' " +
+                         "FROM dbo.Payments_OutboxMessages AS OutboxMessage " +
+                         "WHERE OutboxMessage.ProcessedDate IS NULL " +
+                         "ORDER BY OutboxMessage.OccuredOn";
 
             var messages = await connection.QueryAsync<OutboxMessageDto>(sql);
             var messagesList = messages.AsList();
 
-            const string sqlUpdateProcessedDate = "UPDATE [UserAccess_OutboxMessages] " +
-                                                  "SET [ProcessedDate] = @Date " +
-                                                  "WHERE [Id] = @Id";
+            const string sqlUpdateProcessedDate = "UPDATE dbo.Payments_OutboxMessages " +
+                                                  "SET ProcessedDate = @Date " +
+                                                  "WHERE Id = @Id";
             if (messagesList.Count > 0)
             {
                 foreach (var message in messagesList)
