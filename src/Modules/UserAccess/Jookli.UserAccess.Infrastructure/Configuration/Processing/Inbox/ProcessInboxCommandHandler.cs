@@ -18,26 +18,29 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.Inbox
 
         public ProcessInboxCommandHandler(IMediator mediator, ISqlConnectionFactory sqlConnectionFactory)
         {
-            _mediator= mediator;
-            _sqlConnectionFactory= sqlConnectionFactory;
+            _mediator = mediator;
+            _sqlConnectionFactory = sqlConnectionFactory;
         }
-       
+
         public async Task<Unit> Handle(ProcessInboxCommand command, CancellationToken cancellationToken)
         {
             var connection = this._sqlConnectionFactory.GetOpenConnection();
             string sql = "SELECT " +
-                         $"dbo.[UserAcecess_InboxMessage].[Id] AS [{nameof(InboxMessageDto.Id)}], " +
-                         $"dbo.[UserAcecess_InboxMessage].[Type] AS [{nameof(InboxMessageDto.Type)}], " +
-                         $"dbo.[UserAcecess_InboxMessage].[Data] AS [{nameof(InboxMessageDto.Data)}] " +
-                         "FROM dbo.[UserAccess_InboxMessage] AS [InboxMessage] " +
-                         "WHERE [InboxMessage].[ProcessedDate] IS NULL " +
-                         "ORDER BY [InboxMessage].[OccurredOn]";
+                         $"Id AS '{nameof(InboxMessageDto.Id)}', " +
+                         $"Type AS '{nameof(InboxMessageDto.Type)}', " +
+                         $"Data AS '{nameof(InboxMessageDto.Data)}' " +
+                         "FROM dbo.UserAccess_InboxMessage AS InboxMessage " +
+                         "WHERE InboxMessage.ProcessedDate IS NULL " +
+                         "ORDER BY InboxMessage.OccurredOn";
 
-            var messages = await connection.QueryAsync<InboxMessageDto>(sql);
 
-            const string sqlUpdateProcessedDate = "UPDATE dbo.[UserAccess_InboxMessage] " +
-                                                  "SET [ProcessedDate] = @Date " +
-                                                  "WHERE [Id] = @Id";
+            var messagess = await connection.QueryAsync<InboxMessageDto>(sql);
+
+            var messages = new List<InboxMessageDto>();
+
+            const string sqlUpdateProcessedDate = "UPDATE dbo.UserAccess_InboxMessage " +
+                                                  "SET ProcessedDate = @Date " +
+                                                  "WHERE Id = @Id";
 
             foreach (var message in messages)
             {
