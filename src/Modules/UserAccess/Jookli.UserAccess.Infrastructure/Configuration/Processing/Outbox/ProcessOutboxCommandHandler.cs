@@ -2,6 +2,7 @@
 using Jookli.BuildingBlocks.Application.Data;
 using Jookli.BuildingBlocks.Application.Events;
 using Jookli.BuildingBlocks.Infrastructure.DomainEventsDispatching;
+using Jookli.UserAccess.Application.Configuration.Command;
 using MediatR;
 using Newtonsoft.Json;
 using Serilog.Context;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.Outbox
 {
-    internal class ProcessOutboxCommandHandler
+    internal class ProcessOutboxCommandHandler : ICommandHandler<ProcessOutboxCommand>
     {
         private readonly IMediator _mediator;
 
@@ -34,19 +35,19 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.Outbox
         {
             var connection = this._sqlConnectionFactory.GetOpenConnection();
             string sql = "SELECT " +
-                         $"dbo.[UserAccess_OutboxMessages].[Id] AS [{nameof(OutboxMessageDto.Id)}], " +
-                         $"dbo.[UserAccess_OutboxMessages].[Type] AS [{nameof(OutboxMessageDto.Type)}], " +
-                         $"dbo.[UserAccess_OutboxMessages].[Data] AS [{nameof(OutboxMessageDto.Data)}] " +
-                         "FROM dbo.[UserAccess_OutboxMessages] AS [OutboxMessage] " +
-                         "WHERE [OutboxMessage].[ProcessedDate] IS NULL " +
-                         "ORDER BY [OutboxMessage].[OccurredOn]";
+                         $"Id AS '{nameof(OutboxMessageDto.Id)}', " +
+                         $"Type AS '{nameof(OutboxMessageDto.Type)}', " +
+                         $"Data AS '{nameof(OutboxMessageDto.Data)}' " +
+                         "FROM dbo.UserAccess_OutboxMessages AS OutboxMessage " +
+                         "WHERE OutboxMessage.ProcessedDate IS NULL " +
+                         "ORDER BY OutboxMessage.OccuredOn";
 
             var messages = await connection.QueryAsync<OutboxMessageDto>(sql);
             var messagesList = messages.AsList();
 
-            const string sqlUpdateProcessedDate = "UPDATE dbo.[UserAccess_OutboxMessages] " +
-                                                  "SET [UserAccess_OutboxMessages].[ProcessedDate] = @Date " +
-                                                  "WHERE [UserAccess_OutboxMessages].[Id] = @Id";
+            const string sqlUpdateProcessedDate = "UPDATE dbo.UserAccess_OutboxMessages " +
+                                                  "SET ProcessedDate = @Date " +
+                                                  "WHERE Id = @Id";
             if (messagesList.Count > 0)
             {
                 foreach (var message in messagesList)
@@ -56,6 +57,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.Outbox
 
                     using (LogContext.Push(new OutboxMessageContextEnricher(@event)))
                     {
+
                         await this._mediator.Publish(@event, cancellationToken);
 
                         await connection.ExecuteAsync(sqlUpdateProcessedDate, new
