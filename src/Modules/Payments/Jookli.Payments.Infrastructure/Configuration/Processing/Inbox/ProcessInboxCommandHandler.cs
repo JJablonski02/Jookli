@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Jookli.Payments.Infrastructure.Configuration.Processing.Inbox
 {
-    internal class ProcesInboxCommandHandler : ICommandHandler<ProcessInboxCommand>
+    internal class ProcessInboxCommandHandler : ICommandHandler<ProcessInboxCommand>
     {
         private readonly IMediator _mediator;
         private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
-        public ProcesInboxCommandHandler(IMediator mediator, ISqlConnectionFactory sqlConnectionFactory)
+        public ProcessInboxCommandHandler(IMediator mediator, ISqlConnectionFactory sqlConnectionFactory)
         {
             _mediator= mediator;
             _sqlConnectionFactory= sqlConnectionFactory;
@@ -26,18 +26,18 @@ namespace Jookli.Payments.Infrastructure.Configuration.Processing.Inbox
         {
             var connection = this._sqlConnectionFactory.GetOpenConnection();
             string sql = "SELECT " +
-                         $"[InboxMessage].[Id] AS [{nameof(InboxMessageDto.Id)}], " +
-                         $"[InboxMessage].[Type] AS [{nameof(InboxMessageDto.Type)}], " +
-                         $"[InboxMessage].[Data] AS [{nameof(InboxMessageDto.Data)}] " +
-                         "FROM [users].[InboxMessages] AS [InboxMessage] " +
-                         "WHERE [InboxMessage].[ProcessedDate] IS NULL " +
-                         "ORDER BY [InboxMessage].[OccurredOn]";
+                         $"Id AS '{nameof(InboxMessageDto.Id)}', " +
+                         $"Type AS '{nameof(InboxMessageDto.Type)}', " +
+                         $"Data AS '{nameof(InboxMessageDto.Data)}' " +
+                         "FROM dbo.Payments_InboxMessage AS InboxMessage " +
+                         "WHERE InboxMessage.ProcessedDate IS NULL " +
+                         "ORDER BY InboxMessage.OccurredOn";
 
             var messages = await connection.QueryAsync<InboxMessageDto>(sql);
 
-            const string sqlUpdateProcessedDate = "UPDATE [users].[InboxMessages] " +
-                                                  "SET [ProcessedDate] = @Date " +
-                                                  "WHERE [Id] = @Id";
+            const string sqlUpdateProcessedDate = "UPDATE dbo.Payments_InboxMessages " +
+                                                  "SET ProcessedDate = @Date " +
+                                                  "WHERE Id = @Id";
 
             foreach (var message in messages)
             {
