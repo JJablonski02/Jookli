@@ -28,7 +28,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.EventsBus
                     });
 
                     var sql = "INSERT INTO dbo.[UserAccess_InboxMessage] ([Id], [Type], [Data], [ProcessedDate]) " +
-                        "VALUES (@Id, @Type, @Data, @OccuredOn)";
+                        "VALUES (@Id, @OccuredOn, @Type, @Data)";
 
                     await connection.ExecuteScalarAsync(sql, new
                     {
