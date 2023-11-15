@@ -21,6 +21,7 @@ namespace Jookli.Payments.Application.Features.User.Notification
 
         public async Task Handle(NewUserRegisteredIntegrationEvent notification, CancellationToken cancellationToken)
         {
+
             await _commandsScheduler.EnqueueAsync(
                 new CreateCardOwnerCommand(
                     Guid.NewGuid(),
@@ -29,6 +30,7 @@ namespace Jookli.Payments.Application.Features.User.Notification
                     notification.FirstName,
                     notification.LastName
                     ));
+
         }
     }
 }
