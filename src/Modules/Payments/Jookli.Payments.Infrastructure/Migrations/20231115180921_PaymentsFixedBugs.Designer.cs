@@ -4,6 +4,7 @@ using Jookli.Payments.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jookli.Payments.Infrastructure.Migrations
 {
     [DbContext(typeof(PaymentsContext))]
-    partial class PaymentsContextModelSnapshot : ModelSnapshot
+    [Migration("20231115180921_PaymentsFixedBugs")]
+    partial class PaymentsFixedBugs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
