@@ -31,11 +31,11 @@ namespace Jookli.Payments.Infrastructure.Configuration.Processing.Inbox
                          $"Data AS '{nameof(InboxMessageDto.Data)}' " +
                          "FROM dbo.Payments_InboxMessage AS InboxMessage " +
                          "WHERE InboxMessage.ProcessedDate IS NULL " +
-                         "ORDER BY InboxMessage.OccurredOn";
+                         "ORDER BY InboxMessage.OccuredOn";
 
             var messages = await connection.QueryAsync<InboxMessageDto>(sql);
 
-            const string sqlUpdateProcessedDate = "UPDATE dbo.Payments_InboxMessages " +
+            const string sqlUpdateProcessedDate = "UPDATE dbo.Payments_InboxMessage " +
                                                   "SET ProcessedDate = @Date " +
                                                   "WHERE Id = @Id";
 
