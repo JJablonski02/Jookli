@@ -16,7 +16,7 @@ namespace Jookli.Payments.Infrastructure.Configuration.EventsBus
     {
         public async Task Handle(T @event)
         {
-            using(var scope = PaymentsCompositionRoot.BeginLifetimeScope())
+            using (var scope = PaymentsCompositionRoot.BeginLifetimeScope())
             {
                 using (var connection = scope.Resolve<ISqlConnectionFactory>().GetOpenConnection())
                 {
@@ -27,8 +27,9 @@ namespace Jookli.Payments.Infrastructure.Configuration.EventsBus
                         ContractResolver = new AllPropertiesContractResolver()
                     });
 
-                    var sql = "INSERT INTO [Payments_InboxMessage] (Id, OccuredOn, Type, Data) " +
-                        "VALUES (@Id, @OccuredOn, @Type, @Data";
+                    var sql = "INSERT INTO dbo.Payments_InboxMessage (Id, OccuredOn, Type, Data) " +
+                        "VALUES (@Id, @OccuredOn, @Type, @Data)";
+
 
                     await connection.ExecuteScalarAsync(sql, new
                     {
