@@ -45,13 +45,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Games.IntegrationEve
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{F9BC8DD7-CB5C-4B7F-9DBE-BC12498FBF7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Payments.Application", "src\Modules\Payments\Jookli.Payments.Application\Jookli.Payments.Application.csproj", "{3648050E-CECA-4815-BBBE-4FD893291773}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Payments.Application", "src\Modules\Payments\Jookli.Payments.Application\Jookli.Payments.Application.csproj", "{3648050E-CECA-4815-BBBE-4FD893291773}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Payments.Infrastructure", "src\Modules\Payments\Jookli.Payments.Infrastructure\Jookli.Payments.Infrastructure.csproj", "{AD1E9A87-94A8-42FD-AEE8-7083F7212EE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Payments.Infrastructure", "src\Modules\Payments\Jookli.Payments.Infrastructure\Jookli.Payments.Infrastructure.csproj", "{AD1E9A87-94A8-42FD-AEE8-7083F7212EE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Payments.Domain", "src\Modules\Payments\Jookli.Payments.Domain\Jookli.Payments.Domain.csproj", "{1064FB7D-B878-446B-9D29-E8DE0D7EE880}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Payments.Domain", "src\Modules\Payments\Jookli.Payments.Domain\Jookli.Payments.Domain.csproj", "{1064FB7D-B878-446B-9D29-E8DE0D7EE880}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Payments.IntegrationEvents", "src\Modules\Payments\Jookli.Payments.IntegrationEvents\Jookli.Payments.IntegrationEvents.csproj", "{3E51E33B-200F-4ECE-8FE6-ACE46C56E50B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Payments.IntegrationEvents", "src\Modules\Payments\Jookli.Payments.IntegrationEvents\Jookli.Payments.IntegrationEvents.csproj", "{3E51E33B-200F-4ECE-8FE6-ACE46C56E50B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

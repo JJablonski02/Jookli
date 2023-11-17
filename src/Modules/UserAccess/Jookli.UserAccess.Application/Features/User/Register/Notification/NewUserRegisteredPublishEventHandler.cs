@@ -26,7 +26,7 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Notification
                 notification.DomainEvent.UserID,
                 notification.DomainEvent.Email,
                 notification.DomainEvent.FirstName,
-                notification.DomainEvent.LastName));;
+                notification.DomainEvent.LastName));
         }
     }
 }

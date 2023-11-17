@@ -23,7 +23,7 @@ namespace Jookli.Payments.Infrastructure.Configuration.Processing.InternalComman
                                $"Id AS '{nameof(InternalCommandDto.Id)}', " +
                                $"Type AS '{nameof(InternalCommandDto.Type)}', " +
                                $"Data AS '{nameof(InternalCommandDto.Data)}' " +
-                               "FROM Payments_InternalCommands AS Command " +
+                               "FROM dbo.Payments_InternalCommands AS Command " +
                                "WHERE Command.ProcessedDate IS NULL " +
                                "ORDER BY Command.EnqueueDate";
 

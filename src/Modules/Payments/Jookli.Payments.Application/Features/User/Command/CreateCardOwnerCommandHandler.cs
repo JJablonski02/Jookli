@@ -2,12 +2,6 @@
 using Jookli.Payments.Domain.Entities.User;
 using Jookli.Payments.Domain.Entities.User.Repository;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Jookli.Payments.Application.Features.User.Command
 {
     internal class CreateCardOwnerCommandHandler : ICommandHandler<CreateCardOwnerCommand>
@@ -27,6 +21,7 @@ namespace Jookli.Payments.Application.Features.User.Command
                 LastName= command.LastName,
                 Email= command.Email,
             };
+
             await _userRepository.AddAsync(user, cancellationToken);
 
             return Unit.Value;
