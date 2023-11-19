@@ -7,6 +7,7 @@ namespace Jookli.Payments.Domain.Entities.Card
     public class CardEntity : Entity, IHasId, IHasObject
     {
         public Guid CardId { get; set; }
+        public string CardNumber { get; set; }
         public string Id { get; set; }
         public string Object { get; set; }
         public string AddressCity { get; set; }

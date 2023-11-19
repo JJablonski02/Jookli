@@ -13,7 +13,6 @@
   <ItemGroup>
     <Folder Include="Features\Card\Add\Notification\" />
     <Folder Include="Features\Card\Remove\Notification\" />
-    <Folder Include="Features\Card\Update\Command\" />
     <Folder Include="Features\Card\Update\Notification\" />
   </ItemGroup>
 

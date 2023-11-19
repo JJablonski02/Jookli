@@ -9,5 +9,8 @@ namespace Jookli.Payments.Domain.Entities.Card.RepositoryContract
     public interface ICardRepository
     {
         Task AddAsync(CardEntity cardEntity, CancellationToken cancellationToken);
+        Task<CardEntity?> GetNumberAsync(string number, CancellationToken cancellationToken);
+        Task UpdateAsync(CardEntity cardEntity, CancellationToken cancellationToken);
+        Task DeleteCard(Guid cardId, CancellationToken cancellationToken);
     }
 }
