@@ -1,10 +1,10 @@
-﻿using Jookli.Games.Domain.Entities;
+﻿using Jookli.Games.Domain.Entities.Game;
 using Microsoft.EntityFrameworkCore;
 
 namespace Jookli.Games.Infrastructure
 {
     public class GamesContext : DbContext
     {
-        public DbSet<GamesEntity> Games { get; set; }
+        public DbSet<GameEntity> Games { get; set; }
     }
 }
