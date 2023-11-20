@@ -9,5 +9,6 @@ namespace Jookli.Games.Domain.Entities.User
     public class UserEntity
     {
         public Guid UserId { get; set; } 
+        public bool IsDeleted { get; set; }
     }
 }
