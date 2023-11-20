@@ -10,4 +10,13 @@
     <PackageReference Include="MediatR" Version="11.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configuration\Query\" />
+    <Folder Include="Features\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.Application\Jookli.BuildingBlocks.Application.csproj" />
+  </ItemGroup>
+
 </Project>
