@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Jookli.BuildingBlocks.Infrastructure.EventsBus;
+using Jookli.Games.IntegrationEvents;
 using Serilog;
 
 
@@ -14,6 +15,8 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.EventsBus
         private static void SubscribeToIntegrationEvents(ILogger logger)
         {
             var eventBus = UserAccessCompositionRoot.BeginLifetimeScope().Resolve<IEventsBus>();
+
+            SubscribeToIntegrationEvent<ProfileCreatedIntegrationEvent>(eventBus, logger);
         }
 
         private static void SubscribeToIntegrationEvent<T>(IEventsBus eventBus, ILogger logger) where T : IntegrationEvent

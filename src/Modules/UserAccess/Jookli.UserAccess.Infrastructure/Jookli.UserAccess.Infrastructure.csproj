@@ -31,6 +31,7 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.Application\Jookli.BuildingBlocks.Application.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.EventBus\Jookli.BuildingBlocks.EventBus.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.Infrastructure\Jookli.BuildingBlocks.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Games\Jookli.Games.IntegrationEvents\Jookli.Games.IntegrationEvents.csproj" />
     <ProjectReference Include="..\Jookli.UserAccess.Application\Jookli.UserAccess.Application.csproj" />
   </ItemGroup>
 
