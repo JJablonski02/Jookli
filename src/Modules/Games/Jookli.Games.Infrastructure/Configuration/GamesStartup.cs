@@ -12,6 +12,7 @@ using Jookli.Games.Infrastructure.Configuration.Quartz;
 using Jookli.Games.Infrastructure.Configuration.Mediation;
 using Serilog;
 using Serilog.Extensions.Logging;
+using Jookli.Games.Application.Features.Profile.Notification;
 
 namespace Jookli.Games.Infrastructure.Configuration
 {
@@ -59,6 +60,7 @@ namespace Jookli.Games.Infrastructure.Configuration
             containerBuilder.RegisterModule(new MediatorModule());
 
             var domainNotificationsMap = new BiDictionary<string, Type>();
+            domainNotificationsMap.Add("ProfileCreatedNotification", typeof(ProfileCreatedNotification));
 
             containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
 
