@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.Games.Application.Features.Profile.Notification
 {
-    internal class ProfileCreatedNotification : DomainNotificationBase<ProfileCreatedDomainEvent>
+    public class ProfileCreatedNotification : DomainNotificationBase<ProfileCreatedDomainEvent>
     {
         public ProfileCreatedNotification(ProfileCreatedDomainEvent domainEvent, Guid id) : base(domainEvent, id)
         {
