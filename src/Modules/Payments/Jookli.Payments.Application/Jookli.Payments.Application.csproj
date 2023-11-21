@@ -12,8 +12,8 @@
 
   <ItemGroup>
     <Folder Include="Features\Card\Add\Notification\" />
-    <Folder Include="Features\Card\Remove\Notification\" />
-    <Folder Include="Features\Card\Update\Notification\" />
+    <Folder Include="Features\Card\Remove\Incoming\" />
+    <Folder Include="Features\Card\Update\Incoming\" />
   </ItemGroup>
 
   <ItemGroup>
