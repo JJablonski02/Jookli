@@ -1,4 +1,7 @@
 ﻿using Jookli.Games.Application.Configuration.Command;
+using Jookli.Games.Domain.Entities.User;
+using Jookli.Games.Domain.Entities.User.Events;
+using Jookli.Games.Domain.Entities.User.Repository;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,9 +13,27 @@ namespace Jookli.Games.Application.Features.User.Command
 {
     internal class CreateUserCommandHandler : ICommandHandler<CreateUserCommand>
     {
-        public Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        private readonly IUserRepository _userRepository;
+        public CreateUserCommandHandler(IUserRepository userRepository)
         {
-            throw new NotImplementedException();
+            _userRepository= userRepository;
+        }
+        
+        public async Task<Unit> Handle(CreateUserCommand command, CancellationToken cancellationToken)
+        {
+            var user = new UserEntity
+            {
+                UserId = command.UserId,
+                IsDeleted = false,
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+            };
+
+            user.AddDomainEvent(new CreateUserDomainEvent(command.Id));
+
+            await _userRepository.AddAsync(user, cancellationToken);
+
+            return Unit.Value;
         }
     }
 }
