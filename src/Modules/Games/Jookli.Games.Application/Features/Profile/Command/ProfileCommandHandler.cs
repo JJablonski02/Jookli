@@ -1,4 +1,6 @@
 ﻿using Jookli.Games.Application.Configuration.Command;
+using Jookli.Games.Domain.Entities.Profile;
+using Jookli.Games.Domain.Entities.Profile.Repository;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,9 +12,26 @@ namespace Jookli.Games.Application.Features.Profile.Command
 {
     internal class ProfileCommandHandler : ICommandHandler<ProfileCommand>
     {
-        public Task<Unit> Handle(ProfileCommand request, CancellationToken cancellationToken)
+        private readonly IProfileRepository _profileRepository;
+
+        public ProfileCommandHandler(IProfileRepository profileRepository)
         {
-            throw new NotImplementedException();
+            _profileRepository = profileRepository;
+        }
+
+        public async Task<Unit> Handle(ProfileCommand command, CancellationToken cancellationToken)
+        {
+            var user = new ProfileEntity
+            {
+                ProfileId = command.ProfileId,
+                CreatedAt = DateTime.UtcNow,
+                IsDeleted = false,
+                UpdatedAt = DateTime.UtcNow,
+            };
+
+            await _profileRepository.AddAsync(user, cancellationToken);
+
+            return Unit.Value;
         }
     }
 }
