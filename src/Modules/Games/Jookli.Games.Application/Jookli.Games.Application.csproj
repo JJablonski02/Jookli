@@ -12,12 +12,13 @@
 
   <ItemGroup>
     <Folder Include="Configuration\Query\" />
-    <Folder Include="Features\User\Notification\" />
+    <Folder Include="Features\User\Incoming\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.Application\Jookli.BuildingBlocks.Application.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.Infrastructure\Jookli.BuildingBlocks.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\UserAccess\Jookli.UserAccess.IntegrationEvents\Jookli.UserAccess.IntegrationEvents.csproj" />
     <ProjectReference Include="..\Jookli.Games.Domain\Jookli.Games.Domain.csproj" />
     <ProjectReference Include="..\Jookli.Games.IntegrationEvents\Jookli.Games.IntegrationEvents.csproj" />
   </ItemGroup>
