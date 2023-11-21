@@ -8,6 +8,8 @@ using Jookli.Api.Configuration.Extensions;
 using Jookli.Api.Modules.UserAccess;
 using Jookli.BuildingBlocks.Application;
 using Jookli.BuildingBlocks.Infrastructure;
+using Jookli.Games.Infrastructure;
+using Jookli.Games.Infrastructure.Configuration;
 using Jookli.Payments.Infrastructure;
 using Jookli.Payments.Infrastructure.Configuration;
 using Jookli.UserAccess.Application.Contracts;
@@ -62,7 +64,10 @@ namespace Jookli.Api
             {
                 options.UseSqlServer(_configuration[JookliConnectionString]);
             });
-
+            services.AddDbContext<GamesContext>(options =>
+            {
+                options.UseSqlServer(_configuration[JookliConnectionString]);
+            });
 
             services.AddAuthorization(options =>
             {
@@ -188,8 +193,12 @@ namespace Jookli.Api
                 _logger,
                 null,
                 null);
-                
-            
+
+            GamesStartup.Initialize(_configuration[JookliConnectionString],
+                executionContextAccessor,
+                _logger,
+                null,
+                null);
         }
     }
 }
