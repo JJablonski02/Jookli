@@ -7,7 +7,13 @@ using System.Threading.Tasks;
 
 namespace Jookli.Games.Application.Features.Profile.Command
 {
-    internal class ProfileCommand : CommandBase
+    public class ProfileCommand : CommandBase
     {
+        public Guid ProfileId { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime CreationDate { get; set; }
+        public DateTime DateOfLastActivity { get; set; }
     }
 }
