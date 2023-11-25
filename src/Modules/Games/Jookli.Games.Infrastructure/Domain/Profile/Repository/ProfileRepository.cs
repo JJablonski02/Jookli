@@ -10,15 +10,15 @@ namespace Jookli.Games.Infrastructure.Domain.Profile.Repository
 {
     public class ProfileRepository : IProfileRepository
     {
-        private readonly IProfileRepository _profileRepository;
-        public ProfileRepository(IProfileRepository profileRepository)
+        private readonly GamesContext _gamesContext;
+        public ProfileRepository(GamesContext gamesContext)
         {
-            _profileRepository = profileRepository;
+            _gamesContext = gamesContext;
         }
 
         public async Task AddAsync(ProfileEntity profileEntity, CancellationToken cancellationToken)
         {
-            await _profileRepository.AddAsync(profileEntity, cancellationToken);
+            await _gamesContext.Profile.AddAsync(profileEntity, cancellationToken);
         }
     }
 }
