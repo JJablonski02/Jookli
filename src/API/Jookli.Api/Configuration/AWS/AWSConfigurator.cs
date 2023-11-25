@@ -56,7 +56,6 @@ namespace Jookli.Api.Configuration.AWS
             }
             catch (Exception ex)
             {
-
             }
 
             var configuration = builder.Build();
