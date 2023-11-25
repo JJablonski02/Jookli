@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.EventBus\Jookli.BuildingBlocks.EventBus.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.Infrastructure\Jookli.BuildingBlocks.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Games\Jookli.Games.IntegrationEvents\Jookli.Games.IntegrationEvents.csproj" />
     <ProjectReference Include="..\Jookli.Payments.Application\Jookli.Payments.Application.csproj" />
     <ProjectReference Include="..\Jookli.Payments.Domain\Jookli.Payments.Domain.csproj" />
   </ItemGroup>

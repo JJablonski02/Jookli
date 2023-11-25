@@ -2,11 +2,6 @@
 using Jookli.Payments.Application.Features.User.Command;
 using Jookli.UserAccess.IntegrationEvents;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jookli.Payments.Application.Features.User.Incoming
 {
@@ -22,9 +17,9 @@ namespace Jookli.Payments.Application.Features.User.Incoming
         public async Task Handle(NewUserRegisteredIntegrationEvent notification, CancellationToken cancellationToken)
         {
 
-            await _commandsScheduler.EnqueueAsync(
-                new CreateCardOwnerCommand(
-                    Guid.NewGuid(),
+            await  _commandsScheduler.EnqueueAsync(
+                new CreateUserCommand(
+                    notification.Id,
                     notification.UserId,
                     notification.Email,
                     notification.FirstName,

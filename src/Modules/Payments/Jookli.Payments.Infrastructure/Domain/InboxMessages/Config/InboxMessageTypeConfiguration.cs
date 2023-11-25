@@ -16,7 +16,6 @@ namespace Jookli.UserAccess.Infrastructure.Domain.InboxMessages.Config
             builder.ToTable("Payments_InboxMessage");
 
             builder.HasKey(x => x.Id);
-            builder.HasIndex(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
         }
     }
