@@ -21,6 +21,11 @@ namespace Jookli.Games.Application.Features.User.Command
         
         public async Task<Unit> Handle(CreateUserCommand command, CancellationToken cancellationToken)
         {
+            if(await _userRepository.ExistsAsync(command.UserId, cancellationToken))
+            {
+                return Unit.Value;
+            }
+
             var user = new UserEntity
             {
                 UserId = command.UserId,
@@ -28,8 +33,6 @@ namespace Jookli.Games.Application.Features.User.Command
                 FirstName = command.FirstName,
                 LastName = command.LastName,
             };
-
-            user.AddDomainEvent(new CreateUserDomainEvent(command.Id));
 
             await _userRepository.AddAsync(user, cancellationToken);
 
