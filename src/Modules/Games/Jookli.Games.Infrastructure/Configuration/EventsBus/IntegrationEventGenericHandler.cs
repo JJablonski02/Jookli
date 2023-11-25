@@ -20,14 +20,13 @@ namespace Jookli.Games.Infrastructure.Configuration.EventsBus
             {
                 using (var connection = scope.Resolve<ISqlConnectionFactory>().GetOpenConnection())
                 {
-
                     string type = @event.GetType().FullName;
                     var data = JsonConvert.SerializeObject(@event, new JsonSerializerSettings
                     {
                         ContractResolver = new AllPropertiesContractResolver()
                     });
 
-                    var sql = "INSERT INTO dbo.[Games_InboxMessage] ([Id], [Type], [Data], [ProcessedDate]) " +
+                    var sql = "INSERT INTO dbo.Games_InboxMessage (Id, OccuredOn, Type, Data) " +
                         "VALUES (@Id, @OccuredOn, @Type, @Data)";
 
                     await connection.ExecuteScalarAsync(sql, new

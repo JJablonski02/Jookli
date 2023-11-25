@@ -14,6 +14,7 @@ namespace Jookli.Games.Infrastructure.Domain.InboxMessages.Config
         public void Configure(EntityTypeBuilder<InboxMessage> builder)
         {
             builder.ToTable("Games_InboxMessage");
+
             builder.HasKey(x => x.Id);
             builder.HasIndex(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();

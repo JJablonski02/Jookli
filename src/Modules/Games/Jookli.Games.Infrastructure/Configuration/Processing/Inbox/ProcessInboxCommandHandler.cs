@@ -34,9 +34,7 @@ namespace Jookli.Games.Infrastructure.Configuration.Processing.Inbox
                          "ORDER BY InboxMessage.OccuredOn";
 
 
-            var messagess = await connection.QueryAsync<InboxMessageDto>(sql);
-
-            var messages = new List<InboxMessageDto>();
+            var messages = await connection.QueryAsync<InboxMessageDto>(sql);
 
             const string sqlUpdateProcessedDate = "UPDATE dbo.Games_InboxMessage " +
                                                   "SET ProcessedDate = @Date " +

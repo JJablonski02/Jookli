@@ -23,10 +23,10 @@ namespace Jookli.Games.Application.Features.Profile.Command
         {
             var user = new ProfileEntity
             {
-                ProfileId = command.ProfileId,
-                CreatedAt = DateTime.UtcNow,
+                ProfileId = Guid.NewGuid(),
+                CreatedAt = DateTime.Now,
                 IsDeleted = false,
-                UpdatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.Now,
             };
 
             await _profileRepository.AddAsync(user, cancellationToken);

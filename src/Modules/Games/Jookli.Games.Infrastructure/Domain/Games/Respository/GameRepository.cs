@@ -18,7 +18,7 @@ namespace Jookli.Games.Infrastructure.Domain.Games.Respository
 
         public async Task AddAsync(GameEntity gameEntity, CancellationToken cancellationToken)
         {
-            await _gamesContext.AddAsync(gameEntity, cancellationToken);
+            await _gamesContext.Games.AddAsync(gameEntity, cancellationToken);
         }
     }
 }
