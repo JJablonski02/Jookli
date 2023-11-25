@@ -151,6 +151,30 @@ namespace Jookli.Games.Infrastructure.Migrations
                     b.ToTable("Games_Profile", (string)null);
                 });
 
+            modelBuilder.Entity("Jookli.Games.Domain.Entities.User.UserEntity", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Games_User", (string)null);
+                });
+
             modelBuilder.Entity("Jookli.Games.Domain.Entities.Game.GameEntity", b =>
                 {
                     b.HasOne("Jookli.Games.Domain.Entities.Profile.ProfileEntity", null)
