@@ -23,7 +23,7 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Notification
             await _eventsBus.Publish(new NewUserRegisteredIntegrationEvent(
                 notification.Id,
                 notification.DomainEvent.OccuredOn,
-                notification.DomainEvent.UserID,
+                notification.DomainEvent.UserId,
                 notification.DomainEvent.Email,
                 notification.DomainEvent.FirstName,
                 notification.DomainEvent.LastName));
