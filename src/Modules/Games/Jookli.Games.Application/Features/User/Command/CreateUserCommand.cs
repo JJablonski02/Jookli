@@ -1,4 +1,6 @@
-﻿using Jookli.Games.Application.Contracts;
+﻿using Jookli.Games.Application.Configuration.Command;
+using Jookli.Games.Application.Contracts;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Jookli.Games.Application.Features.User.Command
 {
-    internal class CreateUserCommand : CommandBase
+    internal class CreateUserCommand : InternalCommandBase
     {
-        public CreateUserCommand(Guid id, Guid userId, string email, string firstName, string lastName)
+        public CreateUserCommand(Guid id, Guid userId, string email, string firstName, string lastName) : base(id)
         {
             UserId = userId;
             Email = email;
@@ -17,8 +19,8 @@ namespace Jookli.Games.Application.Features.User.Command
             LastName = lastName;
         }
         public Guid UserId { get; set; }
-        public string Email { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? Email { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
     }
 }
