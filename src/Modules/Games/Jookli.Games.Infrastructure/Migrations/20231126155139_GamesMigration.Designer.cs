@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jookli.Games.Infrastructure.Migrations
 {
     [DbContext(typeof(GamesContext))]
-    [Migration("20231121203713_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20231126155139_GamesMigration")]
+    partial class GamesMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,9 +120,74 @@ namespace Jookli.Games.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("ProfileEntityProfileId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("GameId");
 
+                    b.HasIndex("ProfileEntityProfileId");
+
                     b.ToTable("Games_Game", (string)null);
+                });
+
+            modelBuilder.Entity("Jookli.Games.Domain.Entities.Profile.ProfileEntity", b =>
+                {
+                    b.Property<Guid>("ProfileId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ProfileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ProfileId");
+
+                    b.ToTable("Games_Profile", (string)null);
+                });
+
+            modelBuilder.Entity("Jookli.Games.Domain.Entities.User.UserEntity", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Games_User", (string)null);
+                });
+
+            modelBuilder.Entity("Jookli.Games.Domain.Entities.Game.GameEntity", b =>
+                {
+                    b.HasOne("Jookli.Games.Domain.Entities.Profile.ProfileEntity", null)
+                        .WithMany("Games")
+                        .HasForeignKey("ProfileEntityProfileId");
+                });
+
+            modelBuilder.Entity("Jookli.Games.Domain.Entities.Profile.ProfileEntity", b =>
+                {
+                    b.Navigation("Games");
                 });
 #pragma warning restore 612, 618
         }

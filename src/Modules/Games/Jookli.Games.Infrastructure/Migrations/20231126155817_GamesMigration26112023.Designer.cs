@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jookli.Games.Infrastructure.Migrations
 {
     [DbContext(typeof(GamesContext))]
-    [Migration("20231121213449_ProfilesMigration")]
-    partial class ProfilesMigration
+    [Migration("20231126155817_GamesMigration26112023")]
+    partial class GamesMigration26112023
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -152,6 +152,30 @@ namespace Jookli.Games.Infrastructure.Migrations
                     b.HasKey("ProfileId");
 
                     b.ToTable("Games_Profile", (string)null);
+                });
+
+            modelBuilder.Entity("Jookli.Games.Domain.Entities.User.UserEntity", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Games_User", (string)null);
                 });
 
             modelBuilder.Entity("Jookli.Games.Domain.Entities.Game.GameEntity", b =>

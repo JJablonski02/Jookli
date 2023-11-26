@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Jookli.Games.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial2511UserGames : Migration
+    public partial class GamesMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
