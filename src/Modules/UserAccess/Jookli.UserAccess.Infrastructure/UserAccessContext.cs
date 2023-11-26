@@ -1,9 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Jookli.UserAccess.Domain.Entities.User;
-using Jookli.UserAccess.Domain.Entities.VoiceMessage;
-using Jookli.UserAccess.Domain.Entities.Message;
 using Microsoft.Extensions.Logging;
 using Jookli.BuildingBlocks.Application.Outbox;
 using Jookli.BuildingBlocks.Infrastructure.InternalCommands;
@@ -27,6 +24,7 @@ namespace Jookli.UserAccess.Infrastructure
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("UserAccess");
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }

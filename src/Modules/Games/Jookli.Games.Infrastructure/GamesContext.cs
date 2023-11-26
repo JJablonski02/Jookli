@@ -23,10 +23,11 @@ namespace Jookli.Games.Infrastructure
         public GamesContext(DbContextOptions options, ILoggerFactory loggerFactory) : base(options)
         {
             _logger = loggerFactory;
-        }
+        } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("Games");
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }

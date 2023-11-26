@@ -12,10 +12,10 @@ namespace Jookli.Payments.Infrastructure
     public class PaymentsContext : DbContext
     {
         public DbSet<OutboxMessage> OutboxMessages { get; set; }
-        public DbSet<InboxMessage> InboxMessage { get; set; }
         public DbSet<InternalCommand> InternalCommands { get; set; }
+        public DbSet<InboxMessage> InboxMessage { get; set; }
         public DbSet<CardEntity> Cards { get; set; }
-        public DbSet<UserEntity> User { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
 
         private readonly ILoggerFactory _logger;
         public PaymentsContext(DbContextOptions options, ILoggerFactory loggerFactory) : base(options)
@@ -24,6 +24,7 @@ namespace Jookli.Payments.Infrastructure
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("Payments");
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }
