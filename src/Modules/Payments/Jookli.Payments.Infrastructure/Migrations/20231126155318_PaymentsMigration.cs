@@ -16,6 +16,7 @@ namespace Jookli.Payments.Infrastructure.Migrations
                 columns: table => new
                 {
                     CardId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CardNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Id = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Object = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AddressCity = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -54,7 +55,7 @@ namespace Jookli.Payments.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OccurredOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OccuredOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Data = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProcessedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -103,29 +104,22 @@ namespace Jookli.Payments.Infrastructure.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CardSecret = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CardId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CardEntityCardId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Payments_User", x => x.UserId);
                     table.ForeignKey(
-                        name: "FK_Payments_User_Payments_Card_CardId",
-                        column: x => x.CardId,
+                        name: "FK_Payments_User_Payments_Card_CardEntityCardId",
+                        column: x => x.CardEntityCardId,
                         principalTable: "Payments_Card",
-                        principalColumn: "CardId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CardId");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_InboxMessage_Id",
-                table: "Payments_InboxMessage",
-                column: "Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Payments_User_CardId",
+                name: "IX_Payments_User_CardEntityCardId",
                 table: "Payments_User",
-                column: "CardId");
+                column: "CardEntityCardId");
         }
 
         /// <inheritdoc />

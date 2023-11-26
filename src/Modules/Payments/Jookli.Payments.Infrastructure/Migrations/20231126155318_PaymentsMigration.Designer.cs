@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jookli.Payments.Infrastructure.Migrations
 {
     [DbContext(typeof(PaymentsContext))]
-    [Migration("20231115180921_PaymentsFixedBugs")]
-    partial class PaymentsFixedBugs
+    [Migration("20231126155318_PaymentsMigration")]
+    partial class PaymentsMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,8 +70,6 @@ namespace Jookli.Payments.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Id");
 
                     b.ToTable("Payments_InboxMessage", (string)null);
                 });
@@ -142,6 +140,10 @@ namespace Jookli.Payments.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CardNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -224,10 +226,7 @@ namespace Jookli.Payments.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CardId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CardSecret")
+                    b.Property<Guid?>("CardEntityCardId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
@@ -244,20 +243,16 @@ namespace Jookli.Payments.Infrastructure.Migrations
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("CardId");
+                    b.HasIndex("CardEntityCardId");
 
                     b.ToTable("Payments_User", (string)null);
                 });
 
             modelBuilder.Entity("Jookli.Payments.Domain.Entities.User.UserEntity", b =>
                 {
-                    b.HasOne("Jookli.Payments.Domain.Entities.Card.CardEntity", "Card")
+                    b.HasOne("Jookli.Payments.Domain.Entities.Card.CardEntity", null)
                         .WithMany("Users")
-                        .HasForeignKey("CardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Card");
+                        .HasForeignKey("CardEntityCardId");
                 });
 
             modelBuilder.Entity("Jookli.Payments.Domain.Entities.Card.CardEntity", b =>
