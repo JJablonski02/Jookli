@@ -15,8 +15,8 @@ namespace Jookli.UserAccess.Infrastructure.Domain.User.Config
         {
             builder.ToTable("UserAccess_User");
 
-            builder.HasKey(x => x.UserID);
-            builder.HasIndex(x => x.UserID);
+            builder.HasKey(x => x.UserId);
+            builder.HasIndex(x => x.UserId);
         }
     }
 }
