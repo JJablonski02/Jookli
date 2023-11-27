@@ -16,8 +16,11 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
         public Guid UserId { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public bool PushNotifications { get; set; }
+        public bool IsLocationAllowed { get; set; }
         public Gender Gender { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime DateOfLastActivity { get; set; }    
