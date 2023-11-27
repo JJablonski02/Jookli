@@ -13,12 +13,10 @@ namespace Jookli.Api.Modules.UserAccess.Controllers
     public class UserAccessController : ControllerBase
     {
         private readonly IUserAccessModule _userAccessModule;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserAccessController(IUserAccessModule userAccessModule, IHttpContextAccessor httpContextAccessor)
+        public UserAccessController(IUserAccessModule userAccessModule)
         {
             _userAccessModule = userAccessModule;
-            _httpContextAccessor = httpContextAccessor;
         }
 
 
