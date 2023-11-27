@@ -16,10 +16,11 @@ namespace Jookli.UserAccess.Domain.Entities.User
         public AddressEntity Address { get; set; }
         public AccountStatus AccountStatus { get; set; }
         public RegistrationSource RegistrationSource { get; set; }
-        public ICollection<UserDetailsEntity> UserDetails { get; set; }
+        public UserDetailsEntity UserDetails { get; set; }
         public ICollection<LoginAttemptEntity> LoginAttempts { get; set; }
-        public ICollection<LocationEntity> Location { get; set; }
+        public LocationEntity Location { get; set; }
         public DateTime DateOfLastActivity { get; set; }
+        public DateTime DateOfLastActivityUtc { get; set; }
         public bool IsDeleted { get; set; }  
         public bool Premium { get; set; }
         public bool PushNotifications { get; set; }
