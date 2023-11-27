@@ -10,11 +10,12 @@ namespace Jookli.UserAccess.Domain.Entities.Location
 {
     public class LocationEntity : Entity
     {
+        public Guid UserId { get; set; }
         public Guid LocationId { get; set; }
+
+        public ICollection<LocationServicesEntity> Services { get; set; }
+        public bool IsAllowed { get; set; }
+        public TimeSpan Interval { get; set; }
         public UserEntity User { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-        public DateTime TimeStamp { get; set; }
-        public string LocationName { get; set; }
     }
 }
