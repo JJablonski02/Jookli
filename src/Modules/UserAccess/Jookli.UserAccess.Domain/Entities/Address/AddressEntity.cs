@@ -10,7 +10,9 @@ namespace Jookli.UserAccess.Domain.Entities.Address
 {
     public class AddressEntity : Entity
     {
+        public Guid UserId { get; set; }
         public Guid AddressId { get; set; }
+
         public UserEntity User { get; set; }
         public string Street { get; set; }
         public string HouseNumber { get; set; }
