@@ -62,7 +62,7 @@ namespace Jookli.Api
             });
             services.AddDbContext<PaymentsContext>(options =>
             {
-                options.UseSqlServer(_configuration[JookliConnectionString]);
+                options.UseSqlServer(_configuration[JookliConnectionString], x => x.MigrationsHistoryTable("__GamesMigrationsHistory","dbo"));
             });
             services.AddDbContext<GamesContext>(options =>
             {
