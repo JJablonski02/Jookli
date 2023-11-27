@@ -10,7 +10,9 @@ namespace Jookli.UserAccess.Domain.Entities.LoginAttempts
 {
     public class LoginAttemptEntity : Entity
     {
+        public Guid UserId { get; set; }
         public Guid LoginAttemptId { get; set; }
+
         public string Email { get; set; }
         public string Password { get; set; }
         public DateTime SuccessfullAuthorizationDate { get; set; }
