@@ -29,7 +29,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.DataAccess
                 .Register(c =>
                 {
                     var dbContextOptionsBuilder = new DbContextOptionsBuilder<UserAccessContext>();
-                    dbContextOptionsBuilder.UseSqlServer(_connectionString);
+                    dbContextOptionsBuilder.UseSqlServer(_connectionString, x => x.MigrationsHistoryTable("__UserAccessMigrationsHistory", "dbo"));
 
                     dbContextOptionsBuilder
                     .ReplaceService<IValueConverterSelector, StronglyTypedIdValueConverterSelector>();

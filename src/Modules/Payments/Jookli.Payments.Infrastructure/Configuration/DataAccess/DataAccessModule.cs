@@ -21,15 +21,15 @@ namespace Jookli.Payments.Infrastructure.Configuration.DataAccess
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<SqlConnectionFactory>()
-                .As<ISqlConnectionFactory>()
-                .WithParameter("connectionString", _connectionString)
-                .InstancePerLifetimeScope();
+               .As<ISqlConnectionFactory>()
+               .WithParameter("connectionString", _connectionString)
+               .InstancePerLifetimeScope();
 
             builder
                 .Register(c =>
                 {
                     var dbContextOptionsBuilder = new DbContextOptionsBuilder<PaymentsContext>();
-                    dbContextOptionsBuilder.UseSqlServer(_connectionString);
+                    dbContextOptionsBuilder.UseSqlServer(_connectionString, x => x.MigrationsHistoryTable("__PaymentsMigrationsHistory", "dbo"));
 
                     dbContextOptionsBuilder
                     .ReplaceService<IValueConverterSelector, StronglyTypedIdValueConverterSelector>();

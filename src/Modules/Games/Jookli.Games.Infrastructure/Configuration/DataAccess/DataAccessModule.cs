@@ -29,9 +29,9 @@ namespace Jookli.Games.Infrastructure.Configuration.DataAccess
                 .Register(c =>
                 {
                     var dbContextOptionsBuilder = new DbContextOptionsBuilder<GamesContext>();
-                    dbContextOptionsBuilder.UseSqlServer(_connectionString);
+                    dbContextOptionsBuilder.UseSqlServer(_connectionString, x => x.MigrationsHistoryTable("__GamesMigrationsHistory", "dbo"));
 
-                    dbContextOptionsBuilder
+                   dbContextOptionsBuilder
                     .ReplaceService<IValueConverterSelector, StronglyTypedIdValueConverterSelector>();
 
                     return new GamesContext(dbContextOptionsBuilder.Options, _loggerFactory);
