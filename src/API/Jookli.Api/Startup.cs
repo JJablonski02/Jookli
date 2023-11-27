@@ -5,6 +5,7 @@ using IdentityServer4.Validation;
 using Jookli.Api.Configuration.Authorization;
 using Jookli.Api.Configuration.ExecutionContext;
 using Jookli.Api.Configuration.Extensions;
+using Jookli.Api.Modules.Payments;
 using Jookli.Api.Modules.UserAccess;
 using Jookli.BuildingBlocks.Application;
 using Jookli.BuildingBlocks.Infrastructure;
@@ -35,8 +36,8 @@ namespace Jookli.Api
         public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             ConfigureLogger();
-            _configuration = configuration;
 
+            _configuration = configuration;
             _apiLogger.Information("Connection string: " + _configuration[JookliConnectionString]);
             _apiLogger.Information("Stripe secret: " + _configuration[StripeSecret]);
 
@@ -58,15 +59,17 @@ namespace Jookli.Api
 
             services.AddDbContext<UserAccessContext>(options =>
             {
-                options.UseSqlServer(_configuration[JookliConnectionString]);
+            options.UseSqlServer(_configuration[JookliConnectionString], x => x.MigrationsHistoryTable("__UserAccessMigrationsHistory", "dbo"));
             });
-            services.AddDbContext<PaymentsContext>(options =>
+
+            services.AddDbContext<GamesContext>(options =>
             {
                 options.UseSqlServer(_configuration[JookliConnectionString], x => x.MigrationsHistoryTable("__GamesMigrationsHistory","dbo"));
             });
-            services.AddDbContext<GamesContext>(options =>
+
+            services.AddDbContext<PaymentsContext>(options =>
             {
-                options.UseSqlServer(_configuration[JookliConnectionString]);
+                options.UseSqlServer(_configuration[JookliConnectionString], x => x.MigrationsHistoryTable("__PaymentsMigrationsHistory", "dbo"));
             });
 
             services.AddAuthorization(options =>
@@ -84,6 +87,7 @@ namespace Jookli.Api
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterModule(new UserAccessAutofacModule());
+            containerBuilder.RegisterModule(new PaymentsAutofacModule());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment, IServiceProvider provider)
