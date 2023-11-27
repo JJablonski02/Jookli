@@ -1,4 +1,5 @@
 ﻿using Jookli.BuildingBlocks.Domain;
+using Jookli.UserAccess.Domain.Entities.User;
 using Jookli.UserAccess.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace Jookli.UserAccess.Domain.Entities.UserDetails
     public class UserDetailsEntity : Entity
     {
         public Guid UserId { get; set; }
+        public Guid UserDetailsId { get; set; }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string AreaCode { get; set; }
@@ -26,5 +29,6 @@ namespace Jookli.UserAccess.Domain.Entities.UserDetails
         public string PoliticalViews { get; set; }
         public string CurrentRelationShip { get; set; }
         public string Interesets { get; set; }
+        public UserEntity User { get; set; }
     }
 }
