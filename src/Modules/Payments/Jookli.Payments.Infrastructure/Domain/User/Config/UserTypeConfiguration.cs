@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.Payments.Infrastructure.Domain.User.Config
 {
-    internal sealed class UserTypeConfig : IEntityTypeConfiguration<UserEntity>
+    internal sealed class UserTypeConfiguration : IEntityTypeConfiguration<UserEntity>
     {
         public void Configure(EntityTypeBuilder<UserEntity> builder)
         {

@@ -67,7 +67,6 @@ namespace Jookli.Payments.Infrastructure.Configuration.Processing.Outbox
                     }
                 }
             }
-
             return Unit.Value;
         }
 

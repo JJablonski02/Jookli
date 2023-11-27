@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Jookli.UserAccess.Domain.Enums
 {
-    public enum Gender
+    public enum LocalizationTimeInterval
     {
-        Male = 0,
-        Female = 1,
+        Default = 3,
+        Medium = 5,
+        MediumPlus = 10,
+        Long = 20,
+        LongPlus = 30,
+        Longest = 60,
     }
 }

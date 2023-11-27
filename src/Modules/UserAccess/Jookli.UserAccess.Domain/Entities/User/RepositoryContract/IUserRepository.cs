@@ -11,7 +11,7 @@ namespace Jookli.UserAccess.Domain.Entities.User.RepositoryContract
         /// </summary>
         /// <param name="user"></param>
         /// <returns>Returns the person object after adding it to the table</returns>
-        Task AddUserAsync(UserEntity user, CancellationToken cancellationToken);
+        Task AddAsync(UserEntity user, CancellationToken cancellationToken);
 
         /// <summary>
         /// Gets a user object from the data store

@@ -24,10 +24,8 @@ namespace Jookli.Games.Infrastructure
         {
             _logger = loggerFactory;
         } 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("Games");
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }

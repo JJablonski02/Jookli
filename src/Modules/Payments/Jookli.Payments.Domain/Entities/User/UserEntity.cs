@@ -1,5 +1,6 @@
 ﻿using Jookli.BuildingBlocks.Domain;
 using Jookli.Payments.Domain.Entities.Card;
+using Jookli.Payments.Domain.Entities.Game;
 
 namespace Jookli.Payments.Domain.Entities.User
 {
@@ -9,7 +10,8 @@ namespace Jookli.Payments.Domain.Entities.User
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Guid CardSecret { get; set; }
-        public CardEntity Card { get; set; }
+        public string Country { get; set; }
+        public ICollection<CardEntity> Cards { get; set; }
+        public ICollection<GameEntity> Games { get; set; }
     }
 }

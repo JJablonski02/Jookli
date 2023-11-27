@@ -14,7 +14,7 @@ namespace Jookli.Payments.Application.Features.User.Command
 
         public async Task<Unit> Handle(CreateUserCommand command, CancellationToken cancellationToken)
         {
-            if(await _userRepository.ExistAsync(command.UserId, cancellationToken))
+            if(await _userRepository.ExistsAsync(command.UserId, cancellationToken))
             {
                 return Unit.Value;
             }

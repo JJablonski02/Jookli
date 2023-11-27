@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Jookli.Payments.Application.Features.User.Command
 {
-    internal sealed class CreateUserCommand : InternalCommandBase
+    internal class CreateUserCommand : InternalCommandBase
     {
-        public CreateUserCommand(Guid Id, Guid userId, string? email, string? firstName, string? lastName) : base(Id)
+        public CreateUserCommand(Guid Id, Guid userId, string email, string firstName, string lastName) : base(Id)
         {
             UserId = userId;
             Email = email;

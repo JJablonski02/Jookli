@@ -16,7 +16,7 @@ namespace Jookli.UserAccess.Infrastructure.Domain.User
         {
             _dbContext = dbContext;
         }
-        public async Task AddUserAsync(UserEntity user, CancellationToken cancellationToken)
+        public async Task AddAsync(UserEntity user, CancellationToken cancellationToken)
         {
             await _dbContext.User.AddAsync(user, cancellationToken);
         }
@@ -28,7 +28,7 @@ namespace Jookli.UserAccess.Infrastructure.Domain.User
 
         public Task<UserEntity?> GetByUserIdAsync(Guid userID, CancellationToken cancellationToken)
         {
-            return _dbContext.User.Where(temp => temp.UserID == userID).FirstOrDefaultAsync(cancellationToken);
+            return _dbContext.User.Where(temp => temp.UserId == userID).FirstOrDefaultAsync(cancellationToken);
         }
     }
 }

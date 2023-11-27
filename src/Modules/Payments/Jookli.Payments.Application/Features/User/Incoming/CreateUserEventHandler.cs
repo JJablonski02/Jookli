@@ -17,7 +17,7 @@ namespace Jookli.Payments.Application.Features.User.Incoming
         public async Task Handle(NewUserRegisteredIntegrationEvent notification, CancellationToken cancellationToken)
         {
 
-            await  _commandsScheduler.EnqueueAsync(
+            await _commandsScheduler.EnqueueAsync(
                 new CreateUserCommand(
                     notification.Id,
                     notification.UserId,

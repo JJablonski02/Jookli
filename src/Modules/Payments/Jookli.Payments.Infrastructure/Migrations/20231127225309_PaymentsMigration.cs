@@ -104,27 +104,78 @@ namespace Jookli.Payments.Infrastructure.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CardEntityCardId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Payments_User", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CardEntityUserEntity",
+                columns: table => new
+                {
+                    CardsCardId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UsersUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CardEntityUserEntity", x => new { x.CardsCardId, x.UsersUserId });
                     table.ForeignKey(
-                        name: "FK_Payments_User_Payments_Card_CardEntityCardId",
-                        column: x => x.CardEntityCardId,
+                        name: "FK_CardEntityUserEntity_Payments_Card_CardsCardId",
+                        column: x => x.CardsCardId,
                         principalTable: "Payments_Card",
-                        principalColumn: "CardId");
+                        principalColumn: "CardId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CardEntityUserEntity_Payments_User_UsersUserId",
+                        column: x => x.UsersUserId,
+                        principalTable: "Payments_User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GameEntity",
+                columns: table => new
+                {
+                    GameId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserEntityUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GameEntity", x => x.GameId);
+                    table.ForeignKey(
+                        name: "FK_GameEntity_Payments_User_UserEntityUserId",
+                        column: x => x.UserEntityUserId,
+                        principalTable: "Payments_User",
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_User_CardEntityCardId",
-                table: "Payments_User",
-                column: "CardEntityCardId");
+                name: "IX_CardEntityUserEntity_UsersUserId",
+                table: "CardEntityUserEntity",
+                column: "UsersUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GameEntity_UserEntityUserId",
+                table: "GameEntity",
+                column: "UserEntityUserId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "CardEntityUserEntity");
+
+            migrationBuilder.DropTable(
+                name: "GameEntity");
+
             migrationBuilder.DropTable(
                 name: "Payments_InboxMessage");
 
@@ -135,10 +186,10 @@ namespace Jookli.Payments.Infrastructure.Migrations
                 name: "Payments_OutboxMessages");
 
             migrationBuilder.DropTable(
-                name: "Payments_User");
+                name: "Payments_Card");
 
             migrationBuilder.DropTable(
-                name: "Payments_Card");
+                name: "Payments_User");
         }
     }
 }

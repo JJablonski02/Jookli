@@ -53,6 +53,5 @@ namespace Jookli.Payments.Domain.Entities.Card
         public string Status { get; set; }
         //public Dictionary<string, string> Metadata { get; set; }
         public ICollection<UserEntity> Users { get; set; }
-
     }
 }

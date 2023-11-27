@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Jookli.Games.Infrastructure
 {
-    internal class GamesModule : IGamesModule
+    public class GamesModule : IGamesModule
     {
         public async Task<TResult> ExecuteCommandAsync<TResult>(ICommand<TResult> command)
         {

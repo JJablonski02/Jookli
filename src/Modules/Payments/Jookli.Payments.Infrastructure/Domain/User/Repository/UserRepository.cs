@@ -20,12 +20,12 @@ namespace Jookli.Payments.Infrastructure.Domain.User.Repository
 
         public async Task AddAsync(UserEntity userEntity, CancellationToken cancellationToken = default)
         {
-            await _paymentsContext.User.AddAsync(userEntity, cancellationToken);
+            await _paymentsContext.Users.AddAsync(userEntity, cancellationToken);
         }
 
-        public async Task<bool> ExistAsync(Guid userId, CancellationToken cancellationToken = default)
+        public async Task<bool> ExistsAsync(Guid userId, CancellationToken cancellationToken = default)
         {
-            return await _paymentsContext.User.AnyAsync(x => x.UserId == userId, cancellationToken);
+            return await _paymentsContext.Users.AnyAsync(x => x.UserId == userId);
         }
     }
 }

@@ -4,6 +4,7 @@ using Jookli.BuildingBlocks.Infrastructure.InternalCommands;
 using Jookli.Payments.Domain.Entities.Card;
 using Jookli.Payments.Domain.Entities.User;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
 
@@ -21,10 +22,11 @@ namespace Jookli.Payments.Infrastructure
         public PaymentsContext(DbContextOptions options, ILoggerFactory loggerFactory) : base(options)
         {
             _logger = loggerFactory;
+
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("Payments");
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }

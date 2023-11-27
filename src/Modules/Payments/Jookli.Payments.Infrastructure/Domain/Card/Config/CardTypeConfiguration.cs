@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.Payments.Infrastructure.Domain.Card.Config
 {
-    internal sealed class CardTypeConfig : IEntityTypeConfiguration<CardEntity>
+    internal sealed class CardTypeConfiguration : IEntityTypeConfiguration<CardEntity>
     {
         public void Configure(EntityTypeBuilder<CardEntity> builder)
         {

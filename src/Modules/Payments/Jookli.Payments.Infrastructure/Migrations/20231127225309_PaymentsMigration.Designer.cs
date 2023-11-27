@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jookli.Payments.Infrastructure.Migrations
 {
     [DbContext(typeof(PaymentsContext))]
-    [Migration("20231126155318_PaymentsMigration")]
+    [Migration("20231127225309_PaymentsMigration")]
     partial class PaymentsMigration
     {
         /// <inheritdoc />
@@ -24,6 +24,21 @@ namespace Jookli.Payments.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CardEntityUserEntity", b =>
+                {
+                    b.Property<Guid>("CardsCardId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UsersUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CardsCardId", "UsersUserId");
+
+                    b.HasIndex("UsersUserId");
+
+                    b.ToTable("CardEntityUserEntity");
+                });
 
             modelBuilder.Entity("Jookli.BuildingBlocks.Application.Outbox.OutboxMessage", b =>
                 {
@@ -220,14 +235,45 @@ namespace Jookli.Payments.Infrastructure.Migrations
                     b.ToTable("Payments_Card", (string)null);
                 });
 
+            modelBuilder.Entity("Jookli.Payments.Domain.Entities.Game.GameEntity", b =>
+                {
+                    b.Property<Guid>("GameId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal?>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UserEntityUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("GameId");
+
+                    b.HasIndex("UserEntityUserId");
+
+                    b.ToTable("GameEntity");
+                });
+
             modelBuilder.Entity("Jookli.Payments.Domain.Entities.User.UserEntity", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CardEntityCardId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -243,21 +289,34 @@ namespace Jookli.Payments.Infrastructure.Migrations
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("CardEntityCardId");
-
                     b.ToTable("Payments_User", (string)null);
+                });
+
+            modelBuilder.Entity("CardEntityUserEntity", b =>
+                {
+                    b.HasOne("Jookli.Payments.Domain.Entities.Card.CardEntity", null)
+                        .WithMany()
+                        .HasForeignKey("CardsCardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Jookli.Payments.Domain.Entities.User.UserEntity", null)
+                        .WithMany()
+                        .HasForeignKey("UsersUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Jookli.Payments.Domain.Entities.Game.GameEntity", b =>
+                {
+                    b.HasOne("Jookli.Payments.Domain.Entities.User.UserEntity", null)
+                        .WithMany("Games")
+                        .HasForeignKey("UserEntityUserId");
                 });
 
             modelBuilder.Entity("Jookli.Payments.Domain.Entities.User.UserEntity", b =>
                 {
-                    b.HasOne("Jookli.Payments.Domain.Entities.Card.CardEntity", null)
-                        .WithMany("Users")
-                        .HasForeignKey("CardEntityCardId");
-                });
-
-            modelBuilder.Entity("Jookli.Payments.Domain.Entities.Card.CardEntity", b =>
-                {
-                    b.Navigation("Users");
+                    b.Navigation("Games");
                 });
 #pragma warning restore 612, 618
         }

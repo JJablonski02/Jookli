@@ -34,10 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\Messages\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\BuildingBlocks\Jookli.BuildingBlocks.Application\Jookli.BuildingBlocks.Application.csproj" />
     <ProjectReference Include="..\..\Modules\Games\Jookli.Games.Application\Jookli.Games.Application.csproj" />
     <ProjectReference Include="..\..\Modules\Games\Jookli.Games.Infrastructure\Jookli.Games.Infrastructure.csproj" />
