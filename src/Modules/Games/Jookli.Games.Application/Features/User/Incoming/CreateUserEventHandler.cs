@@ -24,7 +24,8 @@ namespace Jookli.Games.Application.Features.User.Notification
                 notification.UserId,
                 notification.Email,
                 notification.FirstName,
-                notification.LastName
+                notification.LastName,
+                notification.IsDeleted
                 ));
         }
     }
