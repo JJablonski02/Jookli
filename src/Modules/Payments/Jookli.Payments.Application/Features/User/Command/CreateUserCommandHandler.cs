@@ -22,9 +22,10 @@ namespace Jookli.Payments.Application.Features.User.Command
             var user = new UserEntity()
             {
                 UserId = command.UserId,
-                FirstName= command.FirstName,
-                LastName= command.LastName,
-                Email= command.Email,
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+                Email = command.Email,
+                IsDeleted = command.IsDeleted
             };
 
             await _userRepository.AddAsync(user, cancellationToken);
