@@ -23,7 +23,8 @@ namespace Jookli.Payments.Application.Features.User.Incoming
                     notification.UserId,
                     notification.Email,
                     notification.FirstName,
-                    notification.LastName
+                    notification.LastName,
+                    notification.IsDeleted
                     ));
 
         }

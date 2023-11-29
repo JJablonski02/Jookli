@@ -42,28 +42,25 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
                 UserId = Guid.NewGuid(),
                 Email = command.Email,
                 Password = password,
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+                Gender = command.Gender,
                 CreationDate = DateTime.UtcNow,
                 AccountStatus = Domain.Enums.AccountStatus.WaitingForConfirmation,
                 RegistrationSource = Domain.Enums.RegistrationSource.Internal,
                 PushNotifications = command.PushNotifications,
                 IsDeleted = false,
                 IsAccountBlocked = false,
-                UserDetails = new UserDetailsEntity()
-                {
-                    UserDetailsId = Guid.NewGuid(),
-                    FirstName = command.FirstName,
-                    LastName = command.LastName,
-                    Gender = command.Gender,
-                },
                 DateOfLastActivity = DateTime.Now,
                 DateOfLastActivityUtc= DateTime.UtcNow
             };
 
             user.AddDomainEvent(
                 new NewUserRegisteredDomainEvent(
-                    user.UserId, user.Email, user.Password, user.CreationDate, user.AccountStatus, user.RegistrationSource,
-                    user.PushNotifications, user.IsDeleted, user.IsAccountBlocked, user.UserDetails.UserId, user.UserDetails.FirstName,
-                    user.UserDetails.LastName, user.UserDetails.Gender, user.DateOfLastActivity, user.DateOfLastActivityUtc));
+                    user.UserId, user.Email, user.Password, user.FirstName, user.LastName, 
+                    user.Gender, user.CreationDate, user.AccountStatus, user.RegistrationSource,
+                    user.PushNotifications, user.IsDeleted, user.IsAccountBlocked, user.DateOfLastActivity, 
+                    user.DateOfLastActivityUtc));
 
             await _userRepository.AddAsync(user, cancellationToken);
 

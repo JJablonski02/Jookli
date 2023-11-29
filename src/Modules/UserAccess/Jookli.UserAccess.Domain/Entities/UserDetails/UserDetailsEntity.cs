@@ -14,10 +14,8 @@ namespace Jookli.UserAccess.Domain.Entities.UserDetails
         public Guid UserId { get; set; }
         public Guid UserDetailsId { get; set; }
 
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string AreaCode { get; set; }
-        public int PhoneNumber { get; set; }
+        public string? AreaCode { get; set; }
+        public int? PhoneNumber { get; set; }
         public Gender Gender { get; set; } 
         public Gender BaseInfoGender { get; set; }
         public DateTime? DateOfBirth { get; set; }

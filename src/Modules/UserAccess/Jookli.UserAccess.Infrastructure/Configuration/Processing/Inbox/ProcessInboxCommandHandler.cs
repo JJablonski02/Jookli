@@ -31,7 +31,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration.Processing.Inbox
                          $"Data AS '{nameof(InboxMessageDto.Data)}' " +
                          "FROM dbo.UserAccess_InboxMessage AS InboxMessage " +
                          "WHERE InboxMessage.ProcessedDate IS NULL " +
-                         "ORDER BY InboxMessage.OccurredOn";
+                         "ORDER BY InboxMessage.OccuredOn";
 
 
             var messagess = await connection.QueryAsync<InboxMessageDto>(sql);

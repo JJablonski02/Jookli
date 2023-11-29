@@ -10,8 +10,11 @@ namespace Jookli.UserAccess.Domain.Entities.User
     public class UserEntity : Entity
     {
         public Guid UserId { get; set; }
-        public string? Email { get; set; }
-        public string? Password { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public Gender Gender { get; set; }
         public DateTime CreationDate { get; set; }
         public AddressEntity Address { get; set; }
         public AccountStatus AccountStatus { get; set; }
