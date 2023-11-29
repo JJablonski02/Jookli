@@ -29,9 +29,10 @@ namespace Jookli.Games.Application.Features.User.Command
             var user = new UserEntity
             {
                 UserId = command.UserId,
-                IsDeleted = false,
+                Email = command.Email,
                 FirstName = command.FirstName,
                 LastName = command.LastName,
+                IsDeleted = false,
             };
 
             await _userRepository.AddAsync(user, cancellationToken);
