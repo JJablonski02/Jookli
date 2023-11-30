@@ -1,5 +1,4 @@
-﻿using Jookli.BuildingBlocks.Domain;
-using Jookli.UserAccess.Domain.Entities.User;
+﻿using Jookli.UserAccess.Application.Contracts;
 using Jookli.UserAccess.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -7,17 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.UserAccess.Domain.Entities.UserDetails
+namespace Jookli.UserAccess.Application.Features.UserDetails.Add.Command
 {
-    public class UserDetailsEntity : Entity
+    public class AddDetailsCommand : CommandBase
     {
         public Guid UserId { get; set; }
-        public Guid UserDetailsId { get; set; }
-
-        public bool IsDeleted { get; set; }
         public string? AreaCode { get; set; }
         public int? PhoneNumber { get; set; }
-        public Gender Gender { get; set; } 
         public Gender BaseInfoGender { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string BaseInfoCountry { get; set; }
@@ -28,6 +23,5 @@ namespace Jookli.UserAccess.Domain.Entities.UserDetails
         public string PoliticalViews { get; set; }
         public string CurrentRelationShip { get; set; }
         public string Interesets { get; set; }
-        public UserEntity User { get; set; }
     }
 }

@@ -3,6 +3,9 @@ using Jookli.UserAccess.Application.Contracts;
 using Jookli.UserAccess.Application.Features.User.Register.Command;
 using Jookli.UserAccess.Application.Features.User.Remove.Command;
 using Jookli.UserAccess.Application.Features.User.ResetPassword.Command;
+using Jookli.UserAccess.Application.Features.UserDetails.Add;
+using Jookli.UserAccess.Application.Features.UserDetails.Add.Command;
+using Jookli.UserAccess.Application.Features.UserDetails.Update.Command;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +27,7 @@ namespace Jookli.Api.Modules.UserAccess.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("RegisterUser")]
-        public async Task<IActionResult> RegisterNewUserRequest(RegisterCommand command)
+        public async Task<IActionResult> RegisterUser(RegisterCommand command)
         {
             await _userAccessModule.ExecuteCommandAsync(command);
                 
@@ -45,8 +48,29 @@ namespace Jookli.Api.Modules.UserAccess.Controllers
         [NoPermissionRequired]
         [AllowAnonymous]
         [HttpPut]
-        [Route("ResetUserPassword")]
+        [Route("ResetPassword")]
         public async Task<IActionResult> ResetPassword(ResetPasswordCommand command)
+        {
+            await _userAccessModule.ExecuteCommandAsync(command);
+
+            return Ok();
+        }
+
+        [NoPermissionRequired]
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("AddDetails")]
+        public async Task<IActionResult> AddUserDetails(AddDetailsCommand command)
+        {
+            await _userAccessModule.ExecuteCommandAsync(command);
+
+            return Ok();
+        }
+        [NoPermissionRequired]
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("UpdateDetails")]
+        public async Task<IActionResult> UpdateUserDetails(UpdateDetailsCommand command)
         {
             await _userAccessModule.ExecuteCommandAsync(command);
 
