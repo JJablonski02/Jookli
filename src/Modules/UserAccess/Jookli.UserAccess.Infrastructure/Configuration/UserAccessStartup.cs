@@ -14,6 +14,7 @@ using Jookli.BuildingBlocks.Infrastructure.EventsBus;
 using Jookli.UserAccess.Infrastructure.Configuration.Quartz;
 using Jookli.BuildingBlocks.Application.Emails;
 using Jookli.UserAccess.Infrastructure.Configuration.Logging;
+using Jookli.UserAccess.Application.Features.User.Remove.Notification;
 
 namespace Jookli.UserAccess.Infrastructure.Configuration
 {
@@ -68,6 +69,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration
             var domainNotificationsMap = new BiDictionary<string, Type>();
 
             domainNotificationsMap.Add("NewUserRegisteredNotification", typeof(NewUserRegisteredNotification));
+            domainNotificationsMap.Add("UserRemovedNotification", typeof(UserRemovedNotification));
 
             containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
             containerBuilder.RegisterModule(new QuartzModule());

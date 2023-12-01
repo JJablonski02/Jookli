@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.UserAccess.Application.Features.User.Remove.Notification
 {
-    public class UserRemovedPublishEventHandler : INotificationHandler<UserRemovedDomainEvent>
+    public class UserRemovedPublishEventHandler : INotificationHandler<UserRemovedNotification>
     {
         private readonly IEventsBus _eventsBus;
 
@@ -19,12 +19,12 @@ namespace Jookli.UserAccess.Application.Features.User.Remove.Notification
             _eventsBus = eventsBus;
         }
 
-        public async Task Handle(UserRemovedDomainEvent notification, CancellationToken cancellationToken)
+        public async Task Handle(UserRemovedNotification notification, CancellationToken cancellationToken)
         {
             await _eventsBus.Publish(new UserRemovedIntegrationEvent(
                 notification.Id,
-                notification.OccuredOn,
-                notification.UserId));
+                notification.DomainEvent.OccuredOn,
+                notification.DomainEvent.UserId));
         }
     }
 }
