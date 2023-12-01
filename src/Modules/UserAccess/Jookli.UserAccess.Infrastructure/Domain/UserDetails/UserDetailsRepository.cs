@@ -1,4 +1,5 @@
-﻿using Jookli.UserAccess.Domain.Entities.UserDetails;
+﻿using Jookli.UserAccess.Domain.Entities.User;
+using Jookli.UserAccess.Domain.Entities.UserDetails;
 using Jookli.UserAccess.Domain.Entities.UserDetails.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -31,9 +32,9 @@ namespace Jookli.UserAccess.Infrastructure.Domain.UserDetails
             }
         }
 
-        public async Task<UserDetailsEntity> GetByIdAsync(Guid userDetailsId, CancellationToken cancellationToken = default)
+        public async Task<UserDetailsEntity?> GetByIdAsync(Guid userId, CancellationToken cancellationToken = default)
         {
-            return await _userAccessContext.UserDetails.FirstOrDefaultAsync(x => x.UserDetailsId == userDetailsId, cancellationToken);
+             return await _userAccessContext.UserDetails.FirstOrDefaultAsync(u => u.UserId == userId, cancellationToken);
         }
 
         public async Task UpdateAsync(UserDetailsEntity userDetailsEntity, CancellationToken cancellationToken = default)

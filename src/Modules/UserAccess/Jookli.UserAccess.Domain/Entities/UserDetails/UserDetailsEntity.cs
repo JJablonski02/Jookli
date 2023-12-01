@@ -16,18 +16,17 @@ namespace Jookli.UserAccess.Domain.Entities.UserDetails
 
         public bool IsDeleted { get; set; }
         public string? AreaCode { get; set; }
-        public int? PhoneNumber { get; set; }
-        public Gender Gender { get; set; } 
+        public string? PhoneNumber { get; set; }
         public Gender BaseInfoGender { get; set; }
-        public DateTime? DateOfBirth { get; set; }
-        public string BaseInfoCountry { get; set; }
-        public string Education { get; set; }
-        public string Specialization { get; set; }
-        public string PlaceOfResidence { get; set; }
-        public string Legacy { get; set; }
-        public string PoliticalViews { get; set; }
-        public string CurrentRelationShip { get; set; }
-        public string Interesets { get; set; }
+        public string? DateOfBirth { get; set; }
+        public string? BaseInfoCountry { get; set; }
+        public string? Education { get; set; }
+        public string? Specialization { get; set; }
+        public string? PlaceOfResidence { get; set; }
+        public string? Legacy { get; set; }
+        public string? PoliticalViews { get; set; }
+        public string? CurrentRelationShip { get; set; }
+        public string? Interesets { get; set; }
         public UserEntity User { get; set; }
     }
 }

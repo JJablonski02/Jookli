@@ -12,9 +12,9 @@ namespace Jookli.UserAccess.Application.Features.UserDetails.Add.Command
     {
         public Guid UserId { get; set; }
         public string? AreaCode { get; set; }
-        public int? PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
         public Gender BaseInfoGender { get; set; }
-        public DateTime? DateOfBirth { get; set; }
+        public string? DateOfBirth { get; set; }
         public string BaseInfoCountry { get; set; }
         public string Education { get; set; }
         public string Specialization { get; set; }

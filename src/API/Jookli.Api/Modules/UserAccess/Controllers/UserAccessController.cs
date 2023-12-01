@@ -68,7 +68,7 @@ namespace Jookli.Api.Modules.UserAccess.Controllers
         }
         [NoPermissionRequired]
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPut]
         [Route("UpdateDetails")]
         public async Task<IActionResult> UpdateUserDetails(UpdateDetailsCommand command)
         {
