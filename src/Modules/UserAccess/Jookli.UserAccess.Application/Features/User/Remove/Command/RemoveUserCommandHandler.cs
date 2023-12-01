@@ -1,12 +1,8 @@
 ﻿using Jookli.BuildingBlocks.Application.Exceptions;
 using Jookli.UserAccess.Application.Configuration.Command;
+using Jookli.UserAccess.Domain.Entities.User.Events;
 using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Jookli.UserAccess.Application.Features.User.Remove.Command
 {
@@ -29,6 +25,8 @@ namespace Jookli.UserAccess.Application.Features.User.Remove.Command
             }
 
             user.IsDeleted = true;
+
+            user.AddDomainEvent(new UserRemovedDomainEvent(user.UserId));
 
             return Unit.Value;
         }
