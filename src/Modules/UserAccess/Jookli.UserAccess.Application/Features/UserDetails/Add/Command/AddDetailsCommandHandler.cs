@@ -40,7 +40,6 @@ namespace Jookli.UserAccess.Application.Features.UserDetails.Add.Command
 
             var userDetails = new UserDetailsEntity
             {
-                UserId = user.UserId,
                 UserDetailsId = Guid.NewGuid(),
                 AreaCode = command.AreaCode,
                 PhoneNumber = command.PhoneNumber,

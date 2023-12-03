@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Payments.Application.Features.Card.Update.Command
+namespace Jookli.Games.Application.Features.Games.Tapjoy.Read
 {
-    internal class UpdateCardCommandHandler
+    internal class ReadUserDetailsCommandHandler
     {
     }
 }

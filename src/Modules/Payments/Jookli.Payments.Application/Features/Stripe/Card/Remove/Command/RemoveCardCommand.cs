@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Payments.Application.Features.Card.Remove.Command
+namespace Jookli.Payments.Application.Features.Stripe.Card.Remove.Command
 {
     public class RemoveCardCommand : CommandBase
     {
-        public RemoveCardCommand()
+        public RemoveCardCommand(Guid userId)
         {
-
+            UserId = userId;
         }
 
         public Guid UserId { get; set; }

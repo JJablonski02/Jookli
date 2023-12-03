@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Payments.Application.Features.Card.Add.Command
+namespace Jookli.Payments.Application.Features.Stripe.Card.Add.Command
 {
-    public class CreateCardCommand : CommandBase
+    public class AddCardCommand : CommandBase
     {
-        public CreateCardCommand(string cardId, string expiryDate, string cardNumber, string cVV)
+        public AddCardCommand(Guid userId, string cardId, string expiryDate, string cardNumber, string cVV)
         {
+            UserId = userId;
             CardId = cardId;
             ExpiryDate = expiryDate;
             CardNumber = cardNumber;

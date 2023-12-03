@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Payments.Application.Features.Card.Remove.Command
+namespace Jookli.Payments.Application.Features.Stripe.Transactions.Withdraw.Command
 {
-    internal class RemoveCardCommandHandler : ICommandHandler<RemoveCardCommand>
+    public class WithdrawMoneyCommandHandler : ICommandHandler<WithdrawMoneyCommand>
     {
-        public Task<Unit> Handle(RemoveCardCommand request, CancellationToken cancellationToken)
+        public Task<Unit> Handle(WithdrawMoneyCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

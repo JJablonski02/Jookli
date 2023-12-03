@@ -1,4 +1,5 @@
 ﻿using Jookli.Api.Configuration.Authorization;
+using Jookli.UserAccess.Application.Authentication.Authenticate;
 using Jookli.UserAccess.Application.Contracts;
 using Jookli.UserAccess.Application.Features.User.Register.Command;
 using Jookli.UserAccess.Application.Features.User.Remove.Command;

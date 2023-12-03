@@ -70,6 +70,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration
 
             domainNotificationsMap.Add("NewUserRegisteredNotification", typeof(NewUserRegisteredNotification));
             domainNotificationsMap.Add("UserRemovedNotification", typeof(UserRemovedNotification));
+            domainNotificationsMap.Add("UserRegisterConfirmationNotification", typeof(UserRegisterConfirmationNotification));
 
             containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
             containerBuilder.RegisterModule(new QuartzModule());
