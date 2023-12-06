@@ -8,9 +8,13 @@ namespace Jookli.UserAccess.Domain.Enums
 {
     public enum RegistrationSource
     {
-        Internal = 0,
-        Facebook = 1,
-        Apple = 2,
-        Google = 3,
+        Web = 0,
+        App = 1,
+        WebFacebook = 2,
+        WebApple = 3,
+        WebGoogle = 4,
+        AppFacebook = 5,
+        AppApple = 6,
+        AppGoogle = 7,
     }
 }
