@@ -31,7 +31,7 @@ namespace Jookli.Api.Modules.UserAccess.Controllers
         public async Task<IActionResult> RegisterUser(RegisterCommand command)
         {
             await _userAccessModule.ExecuteCommandAsync(command);
-                
+
             return Ok();
         }
 
@@ -76,6 +76,15 @@ namespace Jookli.Api.Modules.UserAccess.Controllers
             await _userAccessModule.ExecuteCommandAsync(command);
 
             return Ok();
+        }
+
+        [NoPermissionRequired]
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("ConfirmAccount")]
+        public async Task<IActionResult> ConfirmAccount([FromQuery]Guid UserId, [FromQuery]string token)
+        {
+            await _userAccessModule.ExecuteQueryAsync();
         }
     }
 }

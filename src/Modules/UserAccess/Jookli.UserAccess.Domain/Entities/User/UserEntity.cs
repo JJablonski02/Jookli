@@ -2,7 +2,9 @@
 using Jookli.UserAccess.Domain.Entities.Address;
 using Jookli.UserAccess.Domain.Entities.Location;
 using Jookli.UserAccess.Domain.Entities.LoginAttempts;
+using Jookli.UserAccess.Domain.Entities.Token;
 using Jookli.UserAccess.Domain.Entities.UserDetails;
+using Jookli.UserAccess.Domain.Entities.UsersDevice;
 using Jookli.UserAccess.Domain.Enums;
 
 namespace Jookli.UserAccess.Domain.Entities.User
@@ -20,7 +22,9 @@ namespace Jookli.UserAccess.Domain.Entities.User
         public AccountStatus AccountStatus { get; set; }
         public RegistrationSource RegistrationSource { get; set; }
         public UserDetailsEntity UserDetails { get; set; }
+        public ICollection<UsersDeviceEntity> UsersDevice { get; set; }
         public ICollection<LoginAttemptEntity> LoginAttempts { get; set; }
+        public ICollection<TokenEntity> Token { get; set; }
         public LocationEntity Location { get; set; }
         public DateTime DateOfLastActivity { get; set; }
         public DateTime DateOfLastActivityUtc { get; set; }

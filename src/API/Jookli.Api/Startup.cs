@@ -9,6 +9,7 @@ using Jookli.Api.Modules.Payments;
 using Jookli.Api.Modules.UserAccess;
 using Jookli.BuildingBlocks.Application;
 using Jookli.BuildingBlocks.Infrastructure;
+using Jookli.Commander.Infrastructure;
 using Jookli.Games.Infrastructure;
 using Jookli.Games.Infrastructure.Configuration;
 using Jookli.Payments.Infrastructure;
@@ -70,6 +71,11 @@ namespace Jookli.Api
             services.AddDbContext<PaymentsContext>(options =>
             {
                 options.UseSqlServer(_configuration[JookliConnectionString], x => x.MigrationsHistoryTable("__PaymentsMigrationsHistory", "dbo"));
+            });
+
+            services.AddDbContext<CommanderContext>(options =>
+            {
+                options.UseSqlServer(_configuration[JookliConnectionString], x => x.MigrationsHistoryTable("__CommanderMigrationsHistory", "dbo"));
             });
 
             services.AddAuthorization(options =>
