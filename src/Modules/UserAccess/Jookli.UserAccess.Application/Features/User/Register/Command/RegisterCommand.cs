@@ -19,6 +19,7 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
         public string ConfirmPassword { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public int RegistrationSource { get; set; }
         public bool PushNotifications { get; set; }
         public bool IsLocationAllowed { get; set; }
         public Gender Gender { get; set; }
