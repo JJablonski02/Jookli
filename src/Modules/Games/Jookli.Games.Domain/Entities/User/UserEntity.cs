@@ -1,4 +1,6 @@
 ﻿using Jookli.BuildingBlocks.Domain;
+using Jookli.Games.Domain.Entities.AyeTStudios;
+using Jookli.Games.Domain.Entities.TapJoy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +16,7 @@ namespace Jookli.Games.Domain.Entities.User
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public bool IsDeleted { get; set; }
+        public ICollection<AyetUserEntity> AyetUsers { get; set;}
+        public ICollection<TapJoyUserEntity> TapJoyUsers { get; set;}
     }
 }
