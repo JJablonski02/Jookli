@@ -8,11 +8,16 @@
 
   <ItemGroup>
     <Folder Include="Configuration\Query\" />
-    <Folder Include="Features\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="11.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Games\Jookli.Games.IntegrationEvents\Jookli.Games.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\..\Payments\Jookli.Payments.IntegrationEvents\Jookli.Payments.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\..\UserAccess\Jookli.UserAccess.IntegrationEvents\Jookli.UserAccess.IntegrationEvents.csproj" />
   </ItemGroup>
 
 </Project>

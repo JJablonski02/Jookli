@@ -15,12 +15,12 @@ namespace Jookli.Commander.Infrastructure.Domain.User.Repository
 
         public async Task AddAsync(UserEntity userEntity, CancellationToken cancellationToken)
         {
-            await _commanderContext.Users.AddAsync(userEntity, cancellationToken);
+            await _commanderContext.User.AddAsync(userEntity, cancellationToken);
         }
 
         public async Task<bool> ExistsAsync(Guid Id, CancellationToken cancellationToken)
         {
-            return await _commanderContext.Users.AnyAsync(x => x.UserId == Id);
+            return await _commanderContext.User.AnyAsync(x => x.UserId == Id);
         }
     }
 }

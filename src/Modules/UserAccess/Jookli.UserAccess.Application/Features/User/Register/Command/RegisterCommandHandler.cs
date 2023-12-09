@@ -88,7 +88,7 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
             token.AddDomainEvent(new TokenCreatedDomainEvent(user.UserId, TokenPurpose.ConfirmAccount));
 
             user.AddDomainEvent(
-                new SendUserEmailConfirmationDomainEvent(user.UserId, user.Email, callbackUrl));
+                new SendEmailConfirmationDomainEvent(user.UserId, user.Email, callbackUrl));
 
 
             await _userRepository.AddAsync(user, cancellationToken);

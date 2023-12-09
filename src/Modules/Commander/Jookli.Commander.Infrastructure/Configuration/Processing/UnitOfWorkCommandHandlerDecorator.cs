@@ -10,13 +10,13 @@ namespace Jookli.Commander.Infrastructure.Configuration.Processing
     {
         private readonly ICommandHandler<T> _decorator;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly CommanderContext _gamesContext;
+        private readonly CommanderContext _commanderContext;
 
         public UnitOfWorkCommandHandlerDecorator(ICommandHandler<T> decorator, IUnitOfWork unitOfWork, CommanderContext userAccessContext)
         {
             _decorator = decorator;
             _unitOfWork = unitOfWork;
-            _gamesContext = userAccessContext;
+            _commanderContext = userAccessContext;
         }
 
         public async Task<Unit> Handle(T command, CancellationToken cancellationToken)
@@ -25,7 +25,7 @@ namespace Jookli.Commander.Infrastructure.Configuration.Processing
 
             if(command is InternalCommandBase)
             {
-                var internalCommand = await _gamesContext.InternalCommands.FirstOrDefaultAsync(x => x.Id == command.Id, cancellationToken);
+                var internalCommand = await _commanderContext.InternalCommands.FirstOrDefaultAsync(x => x.Id == command.Id, cancellationToken);
 
                 if(internalCommand is not null)
                 {
