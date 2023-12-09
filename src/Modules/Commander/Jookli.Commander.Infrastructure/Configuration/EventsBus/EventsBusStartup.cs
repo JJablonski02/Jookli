@@ -17,6 +17,7 @@ namespace Jookli.Commander.Infrastructure.Configuration.EventsBus
             var eventBus = CommanderCompositionRoot.BeginLifetimeScope().Resolve<IEventsBus>();
 
             SubscribeToIntegrationEvent<NewUserRegisteredIntegrationEvent>(eventBus, logger);
+            SubscribeToIntegrationEvent<SendEmailConfirmationIntegrationEvent>(eventBus, logger);
         }
 
         private static void SubscribeToIntegrationEvent<T>(IEventsBus eventBus, ILogger logger) where T : IntegrationEvent

@@ -22,5 +22,10 @@ namespace Jookli.Commander.Infrastructure.Domain.User.Repository
         {
             return await _commanderContext.User.AnyAsync(x => x.UserId == Id);
         }
+
+        public async Task<UserEntity?> GetByIdAsync(Guid userId, CancellationToken cancellationToken)
+        {
+            return await _commanderContext.User.FirstOrDefaultAsync(x => x.UserId == userId, cancellationToken);
+        }
     }
 }

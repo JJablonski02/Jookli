@@ -78,13 +78,13 @@ namespace Jookli.Api.Modules.UserAccess.Controllers
             return Ok();
         }
 
-        [NoPermissionRequired]
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("ConfirmAccount")]
-        public async Task<IActionResult> ConfirmAccount([FromQuery]Guid UserId, [FromQuery]string token)
-        {
-            await _userAccessModule.ExecuteQueryAsync();
-        }
+        //[NoPermissionRequired]
+        //[AllowAnonymous]
+        //[HttpPost]
+        //[Route("ConfirmAccount")]
+        //public async Task<IActionResult> ConfirmAccount([FromQuery]Guid UserId, [FromQuery]string token)
+        //{
+        //    await _userAccessModule.ExecuteQueryAsync();
+        //}
     }
 }

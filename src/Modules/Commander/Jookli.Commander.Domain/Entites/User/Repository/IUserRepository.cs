@@ -10,5 +10,6 @@ namespace Jookli.Commander.Domain.Entites.User.Repository
     {
         Task AddAsync(UserEntity user, CancellationToken cancellationToken);
         Task<bool> ExistsAsync(Guid userId, CancellationToken cancellationToken); 
+        Task<UserEntity?> GetByIdAsync (Guid userId, CancellationToken cancellationToken);   
     }
 }

@@ -49,6 +49,8 @@ namespace Jookli.Commander.Infrastructure.Configuration.Processing.Emails
                         "WHERE Email.ProcessedDate IS NULL";
 
             dynamic emailJobs = await connection.QueryAsync<dynamic>(sqlQuery);
+
+            return Unit.Value;
         }
     }
 }
