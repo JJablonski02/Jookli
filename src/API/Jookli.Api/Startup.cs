@@ -10,6 +10,7 @@ using Jookli.Api.Modules.UserAccess;
 using Jookli.BuildingBlocks.Application;
 using Jookli.BuildingBlocks.Infrastructure;
 using Jookli.Commander.Infrastructure;
+using Jookli.Commander.Infrastructure.Configuration;
 using Jookli.Games.Infrastructure;
 using Jookli.Games.Infrastructure.Configuration;
 using Jookli.Payments.Infrastructure;
@@ -205,6 +206,12 @@ namespace Jookli.Api
                 null);
 
             GamesStartup.Initialize(_configuration[JookliConnectionString],
+                executionContextAccessor,
+                _logger,
+                null,
+                null);
+
+            CommanderStartup.Initialize(_configuration[JookliConnectionString],
                 executionContextAccessor,
                 _logger,
                 null,
