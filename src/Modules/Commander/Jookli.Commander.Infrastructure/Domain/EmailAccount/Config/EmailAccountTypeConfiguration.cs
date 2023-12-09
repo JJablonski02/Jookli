@@ -14,6 +14,8 @@ namespace Jookli.Commander.Infrastructure.Domain.EmailAccount.Config
         public void Configure(EntityTypeBuilder<EmailAccountEntity> builder)
         {
             builder.ToTable("Commander_EmailAccount");
+            builder.HasKey(x => x.EmailAccountId);
+            builder.HasIndex(x => x.EmailAccountId); 
 
             builder.HasMany(e => e.Emails)
                 .WithOne(e => e.EmailAccount)
@@ -28,7 +30,7 @@ namespace Jookli.Commander.Infrastructure.Domain.EmailAccount.Config
 
             builder.HasData(new EmailAccountEntity
             {
-                EmailAccountId = Guid.Parse("691B04BD-E13F-4253-B18F-E976049D71A7"),
+                EmailAccountId = Guid.Parse("428BA167-51C8-422B-9248-0FA681E744A4"),
                 Name = "Support",
                 SmtpLogin = "support@joyprofits.com",
                 SmtpPassword = "",

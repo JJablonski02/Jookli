@@ -35,19 +35,19 @@ namespace Jookli.Commander.Infrastructure.Domain.EmailTemplate.Config
                 Active = true,
                 Content = "",
                 EmailTemplate = Commander.Domain.Enums.EmailTemplateType.ConfirmAccount,
-                EmailAccountId = Guid.Parse("75D772F5-9B6B-4634-B2EF-E544AE02102C"),
+                EmailAccountId = Guid.Parse("428BA167-51C8-422B-9248-0FA681E744A4"),
                 EmailName = "Aktywacja konta - JoyProfits.com"
             });
 
             builder.HasData(new EmailTemplateEntity
             {
-                EmailTemplateId = Guid.Parse("75D772F5-9B6B-4634-B2EF-E544AE02102C"),
+                EmailTemplateId = Guid.Parse("284D5A55-9E72-4BB8-9810-40F22D46DAAE"),
                 SenderName = "JoyProfits - Earn with us",
                 Subject = "Resetowanie hasła JoyProfits.com",
                 Active = true,
                 Content = "",
                 EmailTemplate = Commander.Domain.Enums.EmailTemplateType.RecoverPassword,
-                EmailAccountId = Guid.Parse("75D772F5-9B6B-4634-B2EF-E544AE02102C"),
+                EmailAccountId = Guid.Parse("428BA167-51C8-422B-9248-0FA681E744A4"),
                 EmailName = "Resetowanie hasła - JoyProfits.com"
             });
 
@@ -59,7 +59,7 @@ namespace Jookli.Commander.Infrastructure.Domain.EmailTemplate.Config
                 Active = true,
                 Content = "",
                 EmailTemplate = Commander.Domain.Enums.EmailTemplateType.SendQuestion,
-                EmailAccountId = Guid.Parse("4AA53C7A-B208-4ADA-8340-B0D429BB7880"),
+                EmailAccountId = Guid.Parse("428BA167-51C8-422B-9248-0FA681E744A4"),
                 EmailName = "Potwierdzenie otrzymania wiadomości - JoyProfits.com"
             });
         }
