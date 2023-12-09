@@ -1,4 +1,5 @@
 ﻿using Jookli.BuildingBlocks.Domain;
+using Jookli.Commander.Domain.Entites.Email;
 using Jookli.Commander.Domain.Entites.EmailTemplate;
 using System;
 using System.Collections.Generic;
@@ -26,5 +27,6 @@ namespace Jookli.Commander.Domain.Entites.EmailAccount
         public string? ImapLogin { get; set; }
         public string? ImapPassword { get; set; }
         public ICollection<EmailTemplateEntity> EmailTemplates { get; set; }
+        public ICollection<EmailEntity> Emails { get; set; }
     }
 }
