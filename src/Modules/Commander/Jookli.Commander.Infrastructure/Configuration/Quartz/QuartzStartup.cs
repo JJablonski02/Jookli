@@ -1,4 +1,5 @@
-﻿using Jookli.Commander.Infrastructure.Configuration.Processing.Inbox;
+﻿using Jookli.Commander.Infrastructure.Configuration.Processing.Emails;
+using Jookli.Commander.Infrastructure.Configuration.Processing.Inbox;
 using Jookli.Commander.Infrastructure.Configuration.Processing.InternalCommands;
 using Jookli.Commander.Infrastructure.Configuration.Processing.Outbox;
 using Quartz;
@@ -25,6 +26,30 @@ namespace Jookli.Commander.Infrastructure.Configuration.Quartz
             LogProvider.SetCurrentLogProvider(new SerilogLogProvider(logger));
 
             scheduler.Start().GetAwaiter().GetResult();
+
+            var processEmailJob = JobBuilder.Create<ProcessEmailJob>().Build();
+
+            ITrigger processEmailTrigger;
+
+            if (internalProcessingPoolingInterval.HasValue)
+            {
+                processEmailTrigger = TriggerBuilder
+                    .Create()
+                    .StartNow()
+                    .WithSimpleSchedule(x => x.WithInterval(TimeSpan.FromMilliseconds(internalProcessingPoolingInterval.Value))
+                    .RepeatForever())
+                    .Build();
+            }
+            else
+            {
+                processEmailTrigger = TriggerBuilder
+                    .Create().
+                    StartNow()
+                    .WithCronSchedule("0/2 * * ? * *")
+                    .Build();
+            }
+
+            scheduler.ScheduleJob(processEmailJob, processEmailTrigger).GetAwaiter().GetResult();
 
             var processOutboxJob = JobBuilder.Create<ProcessOutboxJob>().Build();
             ITrigger trigger;
