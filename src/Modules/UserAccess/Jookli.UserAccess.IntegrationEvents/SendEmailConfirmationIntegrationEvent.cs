@@ -9,8 +9,14 @@ namespace Jookli.UserAccess.IntegrationEvents
 {
     public class SendEmailConfirmationIntegrationEvent : IntegrationEvent
     {
-        public SendEmailConfirmationIntegrationEvent(Guid id, DateTime occuredOn) : base(id, occuredOn)
+        public Guid UserId { get; }
+        public string Email { get; }
+        public string CallbackUrl { get; }
+        public SendEmailConfirmationIntegrationEvent(Guid id, DateTime occuredOn, Guid userId, string email, string callbackUrl) : base(id, occuredOn)
         {
+            UserId = userId;
+            Email = email;
+            CallbackUrl = callbackUrl;
         }
     }
 }
