@@ -26,17 +26,17 @@ namespace Jookli.Commander.Infrastructure.Configuration.Processing.Emails
             var connection = _sqlConnectionFactory.GetOpenConnection();
 
             var sqlQuery = "SELECT " +
-                        $"Email.Id AS {nameof(EmailDto.EmailJobQueueId)}, " +
+                        $"Email.EmailId AS {nameof(EmailDto.EmailId)}, " +
                         $"Email.EmailAccountId AS {nameof(EmailDto.EmailAccountId)}, " +
                         $"Email.EmailName AS {nameof(EmailDto.EmailName)}, " +
                         $"Email.Subject AS {nameof(EmailDto.Subject)}, " +
                         $"Email.Content AS {nameof(EmailDto.Content)}, " +
-                        $"Email.Recipient AS {nameof(EmailDto.Recipient)}, " +
-                        $"EmailAttached.Id AS {nameof(EmailAttachedDto.EmailAttachedId)}, " +
+                        $"Email.Receiver AS {nameof(EmailDto.Receiver)}, " +
+                        $"EmailAttached.EmailAttachedId AS {nameof(EmailAttachedDto.EmailAttachedId)}, " +
                         $"EmailAttached.EmailId AS {nameof(EmailAttachedDto.EmailId)}, " +
                         $"EmailAttached.FilePath AS {nameof(EmailAttachedDto.FilePath)}, " +
                         $"EmailAttached.Name AS {nameof(EmailAttachedDto.Name)}, " +
-                        $"EmailAccount.Id AS {nameof(EmailAccountDto.EmailAccountId)}, " +
+                        $"EmailAccount.EmailAccountId AS {nameof(EmailAccountDto.EmailAccountId)}, " +
                         $"EmailAccount.Name AS {nameof(EmailAccountDto.Name)}, " +
                         $"EmailAccount.EmailAddress AS {nameof(EmailAccountDto.EmailAddress)}, " +
                         $"EmailAccount.SmtpServer AS {nameof(EmailAccountDto.SmtpServer)}, " +
@@ -45,10 +45,12 @@ namespace Jookli.Commander.Infrastructure.Configuration.Processing.Emails
                         $"EmailAccount.SmtpPassword AS {nameof(EmailAccountDto.SmtpPassword)} " +
                         $"FROM Commander_Email AS Email " +
                         $"LEFT JOIN Commander_EmailAccount AS EmailAccount ON Email.EmailAccountId = EmailAccount.EmailAccountId " +
-                        $"LEFT JOIN Commander_EmailAttached AS EmailAttached ON Email.Id = EmailAttached.EmailAttachedId " +
+                        $"LEFT JOIN Commander_EmailAttached AS EmailAttached ON Email.EmailId = EmailAttached.EmailId " +
                         "WHERE Email.ProcessedDate IS NULL";
 
             dynamic emailJobs = await connection.QueryAsync<dynamic>(sqlQuery);
+
+
 
             return Unit.Value;
         }
