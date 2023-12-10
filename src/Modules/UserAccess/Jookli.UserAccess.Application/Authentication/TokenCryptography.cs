@@ -11,13 +11,14 @@ namespace Jookli.UserAccess.Application.Authentication
     {
         public static string sha256(string input)
         {
-            var crypt = SHA256.Create();
-
-            byte[] inputByes = Encoding.UTF8.GetBytes(input);
-            byte[] hashBytes = crypt.ComputeHash(inputByes);
-            var result = hashBytes.ToString();
-
-            return result;
+            var crypt = new System.Security.Cryptography.SHA256Managed();
+            var hash = new System.Text.StringBuilder();
+            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(input));
+            foreach (byte theByte in crypto)
+            {
+                hash.Append(theByte.ToString("x2"));
+            }
+            return hash.ToString();
         }
     }
 }
