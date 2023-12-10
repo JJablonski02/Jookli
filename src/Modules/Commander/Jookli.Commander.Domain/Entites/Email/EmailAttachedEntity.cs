@@ -10,7 +10,7 @@ namespace Jookli.Commander.Domain.Entites.Email
     public class EmailAttachedEntity : Entity
     {
         public Guid EmailAttachedId { get; set; }
-        public Guid EmailEntityId { get; set; }
+        public Guid EmailId { get; set; }
         public EmailEntity Email { get; set; }
         public string FilePath { get; set; }
         public string? Name { get; set; }

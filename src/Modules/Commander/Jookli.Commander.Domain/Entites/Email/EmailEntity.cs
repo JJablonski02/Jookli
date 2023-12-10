@@ -16,7 +16,7 @@ namespace Jookli.Commander.Domain.Entites.Email
         public string? EmailName { get; set; }
         public string? Subject { get; set; }
         public string? Content { get; set; }
-        public string? Recipement { get; set; }
+        public string? Receiver { get; set; }
         public string? Error { get; set; }
         public DateTime? ProcessedDate { get; set; }
         public ICollection<EmailAttachedEntity> EmailAttacheds { get; set; }

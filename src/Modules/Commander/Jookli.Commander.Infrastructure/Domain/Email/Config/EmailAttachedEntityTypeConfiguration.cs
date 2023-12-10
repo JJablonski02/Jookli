@@ -19,7 +19,7 @@ namespace Jookli.Commander.Infrastructure.Domain.Email.Config
 
             builder.HasOne(e => e.Email)
                 .WithMany(e => e.EmailAttacheds)
-                .HasForeignKey(e => e.EmailEntityId)
+                .HasForeignKey(e => e.EmailId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

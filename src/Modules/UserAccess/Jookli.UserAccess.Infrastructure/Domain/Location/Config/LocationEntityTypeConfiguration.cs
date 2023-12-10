@@ -20,6 +20,10 @@ namespace Jookli.UserAccess.Infrastructure.Domain.Location.Config
             builder.HasOne(x => x.User)
                 .WithOne(user => user.Location)
                 .HasForeignKey<LocationEntity>(e => e.UserId);
+
+            builder.HasMany(x => x.Services)
+                .WithOne(x => x.Location)
+                .HasForeignKey(x => x.UserId);
         }
     }
 }

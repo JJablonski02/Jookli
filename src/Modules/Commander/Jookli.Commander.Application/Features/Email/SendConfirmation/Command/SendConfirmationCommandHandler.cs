@@ -36,15 +36,16 @@ namespace Jookli.Commander.Application.Features.Email.SendConfirmation.Command
             {
                 throw new ArgumentException($"User with id {command.UserId} does not exist");
             }
+            string content = command.CallbackUrl;
 
             var email = new EmailEntity
             {
                 EmailId = Guid.NewGuid(),
-                Content = template.Content,
-                Subject = template.Subject,
-                Recipement = command.Email,
-                EmailName = template.EmailName,
                 EmailAccountId = template.EmailAccountId,
+                Content = content,
+                Subject = template.Subject,
+                Receiver = command.Email,
+                EmailName = template.EmailName,
                 Error = null,
                 ProcessedDate = null,
                 EmailAttacheds = template.EmailTemplateAttacheds.Select(c => new EmailAttachedEntity

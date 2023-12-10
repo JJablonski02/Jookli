@@ -9,7 +9,7 @@ namespace Jookli.UserAccess.Domain.Entities.Location
 {
     public class LocationServicesEntity : Entity
     {
-        public Guid LocationId { get; set; }
+        public Guid UserId { get; set; }
         public Guid LocationServiceId { get; set; }
 
         public double Latitude { get; set; }

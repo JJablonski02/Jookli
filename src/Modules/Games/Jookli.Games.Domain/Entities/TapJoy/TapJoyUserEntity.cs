@@ -1,4 +1,5 @@
 ﻿using Jookli.BuildingBlocks.Domain;
+using Jookli.Games.Domain.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace Jookli.Games.Domain.Entities.TapJoy
 {
     public class TapJoyUserEntity : Entity
     {
-
+        public Guid UserId { get; set; }
+        public Guid TapJoyUserId { get; set; }
+        public UserEntity User { get; set; }
     }
 }

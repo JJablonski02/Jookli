@@ -33,9 +33,9 @@ namespace Jookli.Commander.Infrastructure.Domain.EmailAccount.Config
                 EmailAccountId = Guid.Parse("428BA167-51C8-422B-9248-0FA681E744A4"),
                 Name = "Support",
                 SmtpLogin = "support@joyprofits.com",
-                SmtpPassword = "",
-                SmtpServer = "",
-                SmtpPort = 0,
+                SmtpPassword = "b_DPKkOK",
+                SmtpServer = "serwer2377612.home.pl ",
+                SmtpPort = 587,
             });
 
         }

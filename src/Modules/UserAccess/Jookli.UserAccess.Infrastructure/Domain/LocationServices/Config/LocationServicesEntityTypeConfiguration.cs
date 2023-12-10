@@ -18,7 +18,7 @@ namespace Jookli.UserAccess.Infrastructure.Domain.LocationServices.Config
 
             builder.HasOne(t => t.Location)
                 .WithMany(location => location.Services)
-                .HasForeignKey(t => t.LocationId);
+                .HasForeignKey(t => t.UserId);
         }
     }
 }

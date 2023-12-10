@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Jookli.BuildingBlocks.Domain;
+using Jookli.Games.Domain.Entities.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Jookli.Games.Domain.Entities.AyeTStudios
 {
-    public class AyetUserEntity
+    public class AyetUserEntity : Entity
     {
         public Guid UserId { get; set; }
         public Guid AyetUserId { get; set; }
@@ -16,6 +18,7 @@ namespace Jookli.Games.Domain.Entities.AyeTStudios
         public int UserIntId { get; set; }
         public string PlacementIdentifier { get; set; }
         public int AdslotId { get; set; }
-        public ICollection<string> TransactionId { get; set; }  
+        public string TransactionId { get; set; } 
+        public UserEntity User { get; set; }
     }
 }
