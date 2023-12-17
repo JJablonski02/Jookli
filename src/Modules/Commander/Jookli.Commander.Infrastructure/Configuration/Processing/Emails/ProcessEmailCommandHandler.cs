@@ -1,8 +1,11 @@
-﻿using Dapper;
+﻿using AutoMapper;
+using AutoMapper.Internal;
+using Dapper;
 using Jookli.BuildingBlocks.Application.Data;
 using Jookli.Commander.Application.Configuration.Command;
 using Jookli.Commander.Infrastructure.Configuration.Processing.Emails.Dto;
 using MediatR;
+using Polly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,24 +35,38 @@ namespace Jookli.Commander.Infrastructure.Configuration.Processing.Emails
                         $"Email.Subject AS {nameof(EmailDto.Subject)}, " +
                         $"Email.Content AS {nameof(EmailDto.Content)}, " +
                         $"Email.Receiver AS {nameof(EmailDto.Receiver)}, " +
-                        $"EmailAttached.EmailAttachedId AS {nameof(EmailAttachedDto.EmailAttachedId)}, " +
-                        $"EmailAttached.EmailId AS {nameof(EmailAttachedDto.EmailId)}, " +
-                        $"EmailAttached.FilePath AS {nameof(EmailAttachedDto.FilePath)}, " +
-                        $"EmailAttached.Name AS {nameof(EmailAttachedDto.Name)}, " +
-                        $"EmailAccount.EmailAccountId AS {nameof(EmailAccountDto.EmailAccountId)}, " +
-                        $"EmailAccount.Name AS {nameof(EmailAccountDto.Name)}, " +
-                        $"EmailAccount.EmailAddress AS {nameof(EmailAccountDto.EmailAddress)}, " +
-                        $"EmailAccount.SmtpServer AS {nameof(EmailAccountDto.SmtpServer)}, " +
-                        $"EmailAccount.SmtpPort AS {nameof(EmailAccountDto.SmtpPort)}, " +
-                        $"EmailAccount.SmtpLogin AS {nameof(EmailAccountDto.SmtpLogin)}, " +
-                        $"EmailAccount.SmtpPassword AS {nameof(EmailAccountDto.SmtpPassword)} " +
+                        $"EmailAttached.EmailAttachedId AS EmailAttached_{nameof(EmailAttachedDto.EmailAttachedId)}, " +
+                        $"EmailAttached.EmailId AS EmailAttached_{nameof(EmailAttachedDto.EmailId)}, " +
+                        $"EmailAttached.FilePath AS EmailAttached_{nameof(EmailAttachedDto.FilePath)}, " +
+                        $"EmailAttached.Name AS EmailAttached_{nameof(EmailAttachedDto.Name)}, " +
+                        $"EmailAccount.EmailAccountId AS EmailAccount_{nameof(EmailAccountDto.EmailAccountId)}, " +
+                        $"EmailAccount.Name AS EmailAccount_{nameof(EmailAccountDto.Name)}, " +
+                        $"EmailAccount.EmailAddress AS EmailAccount_{nameof(EmailAccountDto.EmailAddress)}, " +
+                        $"EmailAccount.SmtpServer AS EmailAccount_{nameof(EmailAccountDto.SmtpServer)}, " +
+                        $"EmailAccount.SmtpPort AS EmailAccount_{nameof(EmailAccountDto.SmtpPort)}, " +
+                        $"EmailAccount.SmtpLogin AS EmailAccount_{nameof(EmailAccountDto.SmtpLogin)}, " +
+                        $"EmailAccount.SmtpPassword AS EmailAccount_{nameof(EmailAccountDto.SmtpPassword)} " +
                         $"FROM Commander_Email AS Email " +
                         $"LEFT JOIN Commander_EmailAccount AS EmailAccount ON Email.EmailAccountId = EmailAccount.EmailAccountId " +
                         $"LEFT JOIN Commander_EmailAttached AS EmailAttached ON Email.EmailId = EmailAttached.EmailId " +
                         "WHERE Email.ProcessedDate IS NULL";
 
-            dynamic emailJobs = await connection.QueryAsync<dynamic>(sqlQuery);
+            dynamic emailJobs = await connection.QueryAsync(sqlQuery);
 
+            Slapper.AutoMapper.Configuration.AddIdentifiers(typeof(EmailDto), new[] { "EmailId" });
+            Slapper.AutoMapper.Configuration.AddIdentifiers(typeof(EmailAttachedDto), new[] { "EmailAttachedId" });
+            Slapper.AutoMapper.Configuration.AddIdentifiers(typeof(EmailAccountDto), new[] { "EmailAccountId" });
+
+            var emailJobsList = (Slapper.AutoMapper.MapDynamic<EmailDto>(emailJobs) as IEnumerable<EmailDto>).ToList();
+
+            var policy = Policy
+               .Handle<Exception>()
+               .WaitAndRetryAsync(new[]
+               {
+                    TimeSpan.FromSeconds(1),
+                    TimeSpan.FromSeconds(2),
+                    TimeSpan.FromSeconds(3)
+               });
 
 
             return Unit.Value;
