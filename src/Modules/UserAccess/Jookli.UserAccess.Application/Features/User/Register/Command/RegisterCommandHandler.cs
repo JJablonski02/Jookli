@@ -76,7 +76,7 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
                 TokenValue = TokenCryptography.sha256(Guid.NewGuid().ToString())
             };
 
-            string callbackUrl = $"wagefun.com/ConfirmAccount?token={token.TokenValue}";
+            string callbackUrl = $"joyprofits.com/ConfirmAccount?token={token.TokenValue}";
 
             user.AddDomainEvent(
                 new NewUserRegisteredDomainEvent(
