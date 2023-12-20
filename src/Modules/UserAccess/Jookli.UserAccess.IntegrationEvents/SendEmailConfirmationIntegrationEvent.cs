@@ -12,11 +12,15 @@ namespace Jookli.UserAccess.IntegrationEvents
         public Guid UserId { get; }
         public string Email { get; }
         public string CallbackUrl { get; }
-        public SendEmailConfirmationIntegrationEvent(Guid id, DateTime occuredOn, Guid userId, string email, string callbackUrl) : base(id, occuredOn)
+        public string FirstName { get; }
+        public string LastName { get; }
+        public SendEmailConfirmationIntegrationEvent(Guid id, DateTime occuredOn, Guid userId, string email, string callbackUrl, string firstName, string lastName) : base(id, occuredOn)
         {
             UserId = userId;
             Email = email;
             CallbackUrl = callbackUrl;
+            FirstName = firstName;
+            LastName = lastName;
         }
     }
 }
