@@ -18,6 +18,8 @@ namespace Jookli.Commander.Infrastructure.Configuration.EventsBus
 
             SubscribeToIntegrationEvent<NewUserRegisteredIntegrationEvent>(eventBus, logger);
             SubscribeToIntegrationEvent<SendEmailConfirmationIntegrationEvent>(eventBus, logger);
+            SubscribeToIntegrationEvent<UserPasswordChangedIntegrationEvent>(eventBus, logger);
+            SubscribeToIntegrationEvent<UserRecoverPasswordIntegrationEvent>(eventBus, logger);
         }
 
         private static void SubscribeToIntegrationEvent<T>(IEventsBus eventBus, ILogger logger) where T : IntegrationEvent
