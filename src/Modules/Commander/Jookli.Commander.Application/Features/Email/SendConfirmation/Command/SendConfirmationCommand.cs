@@ -13,11 +13,15 @@ namespace Jookli.Commander.Application.Features.Email.SendConfirmation.Command
         public Guid UserId { get; set; }
         public string Email { get; set; }   
         public string CallbackUrl { get; set; }
-        public SendConfirmationCommand(Guid id, Guid userId, string email, string callbackUrl) : base(id)
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public SendConfirmationCommand(Guid id, Guid userId, string email, string callbackUrl, string firstName, string lastName) : base(id)
         {
             UserId = userId;
             Email = email;
             CallbackUrl = callbackUrl;
+            FirstName = firstName;
+            LastName = lastName;
         }
     }
 }
