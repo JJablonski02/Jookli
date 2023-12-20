@@ -4,6 +4,7 @@ using Jookli.Commander.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jookli.Commander.Infrastructure.Migrations
 {
     [DbContext(typeof(CommanderContext))]
-    partial class CommanderContextModelSnapshot : ModelSnapshot
+    [Migration("20231211193131_Mig111223")]
+    partial class Mig111223
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -295,7 +298,7 @@ namespace Jookli.Commander.Infrastructure.Migrations
                             EmailName = "Aktywacja konta - JoyProfits.com",
                             EmailTemplate = 0,
                             SenderName = "JoyProfits - Earn with us",
-                            Subject = "Rejestracja konta - JoyProfits"
+                            Subject = "Rejestracja konta JoyProfits.com"
                         },
                         new
                         {
@@ -303,21 +306,10 @@ namespace Jookli.Commander.Infrastructure.Migrations
                             Active = true,
                             Content = "",
                             EmailAccountId = new Guid("428ba167-51c8-422b-9248-0fa681e744a4"),
-                            EmailName = "Resetowanie hasła - JoyProfits",
-                            EmailTemplate = 2,
-                            SenderName = "JoyProfits - Earn with us",
-                            Subject = "Hasło zresetowane - JoyProfits"
-                        },
-                        new
-                        {
-                            EmailTemplateId = new Guid("aaefb675-15a3-4776-9ce9-0184ef577014"),
-                            Active = true,
-                            Content = "",
-                            EmailAccountId = new Guid("428ba167-51c8-422b-9248-0fa681e744a4"),
-                            EmailName = "Próba odzyskania hasła - JoyProfits",
+                            EmailName = "Resetowanie hasła - JoyProfits.com",
                             EmailTemplate = 1,
                             SenderName = "JoyProfits - Earn with us",
-                            Subject = "Odzyskiwanie hasła - JoyProfits"
+                            Subject = "Resetowanie hasła JoyProfits.com"
                         },
                         new
                         {
@@ -325,10 +317,10 @@ namespace Jookli.Commander.Infrastructure.Migrations
                             Active = true,
                             Content = "",
                             EmailAccountId = new Guid("428ba167-51c8-422b-9248-0fa681e744a4"),
-                            EmailName = "Potwierdzenie wysłania wiadomości - JoyProfits",
+                            EmailName = "Potwierdzenie otrzymania wiadomości - JoyProfits.com",
                             EmailTemplate = 5,
                             SenderName = "JoyProfits - Earn with us",
-                            Subject = "Dziękujemy za kontakt z JoyProfits"
+                            Subject = "Dziękujemy za kontakt z JoyProfits.com"
                         });
                 });
 
@@ -348,10 +340,6 @@ namespace Jookli.Commander.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
