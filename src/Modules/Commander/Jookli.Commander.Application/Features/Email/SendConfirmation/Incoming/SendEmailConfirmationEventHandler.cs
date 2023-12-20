@@ -24,7 +24,9 @@ namespace Jookli.Commander.Application.Features.Email.SendConfirmation.Incoming
                 notification.Id,
                 notification.UserId,
                 notification.Email,
-                notification.CallbackUrl
+                notification.CallbackUrl,
+                notification.FirstName,
+                notification.LastName
                 ));
         }
     }
