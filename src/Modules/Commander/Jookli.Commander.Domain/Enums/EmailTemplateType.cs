@@ -10,6 +10,7 @@ namespace Jookli.Commander.Domain.Enums
     {
         ConfirmAccount = 0,
         RecoverPassword = 1,
+        ResetPassword = 2,
         SendQuestion = 5,
     }
 }
