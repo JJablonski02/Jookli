@@ -6,6 +6,8 @@ using Jookli.Commander.Domain.Entites.Email.Repository;
 using Jookli.Commander.Domain.Entites.EmailTemplate.Repository;
 using Jookli.Commander.Domain.Entites.User.Repository;
 using MediatR;
+using System.Net.Http;
+using System.Text;
 
 namespace Jookli.Commander.Application.Features.Email.SendConfirmation.Command
 {
@@ -36,7 +38,8 @@ namespace Jookli.Commander.Application.Features.Email.SendConfirmation.Command
             {
                 throw new ArgumentException($"User with id {command.UserId} does not exist");
             }
-            string content = command.CallbackUrl;
+
+            string content = ContentBuilder(command);
 
             var email = new EmailEntity
             {
@@ -60,6 +63,19 @@ namespace Jookli.Commander.Application.Features.Email.SendConfirmation.Command
             await _emailRepository.AddAsync(email);
 
             return Unit.Value;
+        }
+
+        private string ContentBuilder(SendConfirmationCommand command)
+        {
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/html/EmailConfirmationPage.html");
+            string body = System.IO.File.ReadAllText(path);
+
+            StringBuilder content = new StringBuilder(body);
+            content.Replace("[FirstName]", command.FirstName);
+            content.Replace("[LastName]", command.LastName);
+            content.Replace("[Link]", command.CallbackUrl);
+
+            return content.ToString();
         }
     }
 }
