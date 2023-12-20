@@ -1,8 +1,10 @@
 ﻿using Jookli.Api.Configuration.Authorization;
 using Jookli.UserAccess.Application.Authentication.Authenticate;
 using Jookli.UserAccess.Application.Contracts;
+using Jookli.UserAccess.Application.Features.User.RecoverPassword.Command;
 using Jookli.UserAccess.Application.Features.User.Register.Command;
 using Jookli.UserAccess.Application.Features.User.Remove.Command;
+using Jookli.UserAccess.Application.Features.User.ResendEmailConfirmation.Command;
 using Jookli.UserAccess.Application.Features.User.ResetPassword.Command;
 using Jookli.UserAccess.Application.Features.UserDetails.Add;
 using Jookli.UserAccess.Application.Features.UserDetails.Add.Command;
@@ -72,6 +74,28 @@ namespace Jookli.Api.Modules.UserAccess.Controllers
         [HttpPut]
         [Route("UpdateDetails")]
         public async Task<IActionResult> UpdateUserDetails(UpdateDetailsCommand command)
+        {
+            await _userAccessModule.ExecuteCommandAsync(command);
+
+            return Ok();
+        }
+
+        [NoPermissionRequired]
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("RecoverPassword")]
+        public async Task<IActionResult> RecoverPassword(SendRecoverPasswordCommand command)
+        {
+            await _userAccessModule.ExecuteCommandAsync(command);
+
+            return Ok();
+        }
+
+        [NoPermissionRequired]
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("ResendEmailConfirmation")]
+        public async Task<IActionResult> ResendEmailConfirmation(ResendEmailConfirmationCommand command)
         {
             await _userAccessModule.ExecuteCommandAsync(command);
 

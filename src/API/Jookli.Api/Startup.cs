@@ -15,9 +15,7 @@ using Jookli.Games.Infrastructure;
 using Jookli.Games.Infrastructure.Configuration;
 using Jookli.Payments.Infrastructure;
 using Jookli.Payments.Infrastructure.Configuration;
-using Jookli.UserAccess.Application.Contracts;
 using Jookli.UserAccess.Application.IdentityServer;
-using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
 using Jookli.UserAccess.Infrastructure;
 using Jookli.UserAccess.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authorization;
@@ -87,7 +85,6 @@ namespace Jookli.Api
                     policyBuilder.AddAuthenticationSchemes(IdentityServerAuthenticationDefaults.AuthenticationScheme);
                 });
             });
-
             services.AddScoped<IAuthorizationHandler, HasPermissionAuthorizationHandler>();
         }
 
@@ -105,7 +102,7 @@ namespace Jookli.Api
             {
                 options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
             });
-
+ 
             app.UseDefaultFiles();
 
             app.UseStaticFiles(new StaticFileOptions

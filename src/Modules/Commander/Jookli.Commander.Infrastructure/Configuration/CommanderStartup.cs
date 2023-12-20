@@ -12,6 +12,7 @@ using Jookli.Commander.Infrastructure.Configuration.Quartz;
 using Jookli.Commander.Infrastructure.Configuration.Mediation;
 using Serilog;
 using Serilog.Extensions.Logging;
+using Jookli.Commander.Infrastructure.Configuration.Mapper;
 
 namespace Jookli.Commander.Infrastructure.Configuration
 {
@@ -57,6 +58,7 @@ namespace Jookli.Commander.Infrastructure.Configuration
             containerBuilder.RegisterModule(new ProcessingModule());
             containerBuilder.RegisterModule(new EventsBusModule(eventsBus));
             containerBuilder.RegisterModule(new MediatorModule());
+            containerBuilder.RegisterModule(new MapperModule());
 
             var domainNotificationsMap = new BiDictionary<string, Type>();
  

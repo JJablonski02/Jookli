@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Configuration\Query\" />
-    <Folder Include="Features\User\ResetPassword\Notification\" />
   </ItemGroup>
 
 

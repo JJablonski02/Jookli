@@ -44,4 +44,11 @@
     <ProjectReference Include="..\..\Modules\UserAccess\Jookli.UserAccess.Infrastructure\Jookli.UserAccess.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\html\EmailRecoverPasswordPage.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

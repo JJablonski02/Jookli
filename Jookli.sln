@@ -55,11 +55,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Payments.Integration
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commander", "Commander", "{DAD6441C-44CC-4D6A-8E21-FB25BBA51814}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Commander.Infrastructure", "src\Modules\Commander\Jookli.Commander.Infrastructure\Jookli.Commander.Infrastructure.csproj", "{3D9D5CBB-CCB4-4E30-A519-E1656ED2DA5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Commander.Infrastructure", "src\Modules\Commander\Jookli.Commander.Infrastructure\Jookli.Commander.Infrastructure.csproj", "{3D9D5CBB-CCB4-4E30-A519-E1656ED2DA5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Commander.Application", "src\Modules\Commander\Jookli.Commander.Application\Jookli.Commander.Application.csproj", "{F803453D-E490-4963-9251-8A25889AB26F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Commander.Application", "src\Modules\Commander\Jookli.Commander.Application\Jookli.Commander.Application.csproj", "{F803453D-E490-4963-9251-8A25889AB26F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Commander.Domain", "src\Modules\Commander\Jookli.Commander.Domain\Jookli.Commander.Domain.csproj", "{AAF030FF-6D97-4CDB-BB11-2A6CD51494B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Commander.Domain", "src\Modules\Commander\Jookli.Commander.Domain\Jookli.Commander.Domain.csproj", "{AAF030FF-6D97-4CDB-BB11-2A6CD51494B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
