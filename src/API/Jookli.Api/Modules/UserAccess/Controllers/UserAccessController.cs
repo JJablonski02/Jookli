@@ -1,6 +1,7 @@
 ﻿using Jookli.Api.Configuration.Authorization;
 using Jookli.UserAccess.Application.Authentication.Authenticate;
 using Jookli.UserAccess.Application.Contracts;
+using Jookli.UserAccess.Application.Features.User.ConfirmAccount.Command;
 using Jookli.UserAccess.Application.Features.User.RecoverPassword.Command;
 using Jookli.UserAccess.Application.Features.User.Register.Command;
 using Jookli.UserAccess.Application.Features.User.Remove.Command;
@@ -102,13 +103,15 @@ namespace Jookli.Api.Modules.UserAccess.Controllers
             return Ok();
         }
 
-        //[NoPermissionRequired]
-        //[AllowAnonymous]
-        //[HttpPost]
-        //[Route("ConfirmAccount")]
-        //public async Task<IActionResult> ConfirmAccount([FromQuery]Guid UserId, [FromQuery]string token)
-        //{
-        //    await _userAccessModule.ExecuteQueryAsync();
-        //}
+        [NoPermissionRequired]
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("ConfirmAccount")]
+        public async Task<IActionResult> ConfirmAccount(ConfirmAccountCommand command)
+        {
+            await _userAccessModule.ExecuteCommandAsync(command);
+
+            return Ok();
+        }
     }
 }
