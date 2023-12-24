@@ -1,5 +1,6 @@
 ﻿using Jookli.BuildingBlocks.Domain;
 using Jookli.UserAccess.Domain.Entities.Address;
+using Jookli.UserAccess.Domain.Entities.Emails;
 using Jookli.UserAccess.Domain.Entities.Location;
 using Jookli.UserAccess.Domain.Entities.LoginAttempts;
 using Jookli.UserAccess.Domain.Entities.Token;
@@ -24,6 +25,7 @@ namespace Jookli.UserAccess.Domain.Entities.User
         public UserDetailsEntity UserDetails { get; set; }
         public ICollection<UsersDeviceEntity> UsersDevice { get; set; }
         public ICollection<LoginAttemptEntity> LoginAttempts { get; set; }
+        public ICollection<EmailEntity> Reports { get; set; }
         public ICollection<TokenEntity> Token { get; set; }
         public LocationEntity Location { get; set; }
         public DateTime DateOfLastActivity { get; set; }

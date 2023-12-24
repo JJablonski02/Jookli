@@ -10,4 +10,9 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.Domain\Jookli.BuildingBlocks.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entites\ReceivedEmail\Events\" />
+    <Folder Include="Entites\ReceivedEmail\Repository\" />
+  </ItemGroup>
+
 </Project>

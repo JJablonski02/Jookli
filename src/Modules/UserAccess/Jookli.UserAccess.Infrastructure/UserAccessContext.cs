@@ -12,6 +12,7 @@ using Jookli.UserAccess.Domain.Entities.UserDetails;
 using Jookli.UserAccess.Domain.Entities.LoginAttempts;
 using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
 using Jookli.UserAccess.Domain.Entities.Token;
+using Jookli.UserAccess.Domain.Entities.Emails;
 
 namespace Jookli.UserAccess.Infrastructure
 {
@@ -27,6 +28,8 @@ namespace Jookli.UserAccess.Infrastructure
         public DbSet<InternalCommand> InternalCommands { get; set; }
         public DbSet<InboxMessage> InboxMessage { get; set; }
         public DbSet<TokenEntity> Token { get; set; }
+        public DbSet<EmailEntity> Email { get; set; }
+        public DbSet<AnonymousEmailEntity> AnonymousEmail { get; set; }
 
 
         private readonly ILoggerFactory _logger;
