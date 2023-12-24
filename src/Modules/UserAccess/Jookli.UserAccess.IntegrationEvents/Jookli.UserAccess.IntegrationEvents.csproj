@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\Jookli.BuildingBlocks.Infrastructure\Jookli.BuildingBlocks.Infrastructure.csproj" />
+    <ProjectReference Include="..\Jookli.UserAccess.Domain\Jookli.UserAccess.Domain.csproj" />
   </ItemGroup>
 
 </Project>

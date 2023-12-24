@@ -18,6 +18,7 @@ using Jookli.UserAccess.Application.Features.User.Remove.Notification;
 using Jookli.UserAccess.Application.Features.User.RecoverPassword.Notification;
 using Jookli.UserAccess.Application.Features.User.ResetPassword.Notification;
 using Jookli.UserAccess.Application.Features.User.ResendEmailConfirmation.Notification;
+using Jookli.UserAccess.Application.Features.User.ConfirmAccount.Notification;
 
 namespace Jookli.UserAccess.Infrastructure.Configuration
 {
@@ -77,6 +78,7 @@ namespace Jookli.UserAccess.Infrastructure.Configuration
             domainNotificationsMap.Add("SendRecoverPasswordNotification", typeof(SendRecoverPasswordNotification));
             domainNotificationsMap.Add("ResetPasswordNotification ", typeof(ResetPasswordNotification));
             domainNotificationsMap.Add("ResendEmailConfirmationNotification", typeof(ResendEmailConfirmationNotification));
+            domainNotificationsMap.Add("ConfirmAccountNotification", typeof(ConfirmAccountNotification));
 
             containerBuilder.RegisterModule(new OutboxModule(domainNotificationsMap));
             containerBuilder.RegisterModule(new QuartzModule());
