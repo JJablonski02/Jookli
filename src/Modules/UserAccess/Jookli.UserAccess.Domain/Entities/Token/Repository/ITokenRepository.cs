@@ -9,5 +9,6 @@ namespace Jookli.UserAccess.Domain.Entities.Token.Repository
     public interface ITokenRepository
     {
         Task AddAsync(TokenEntity tokenEntity, CancellationToken cancellationToken);
+        Task<TokenEntity?> GetByValue(string tokenValue,  CancellationToken cancellationToken);
     }
 }
