@@ -9,12 +9,13 @@ namespace Jookli.UserAccess.Application.Authentication.Authenticate
 {
     public class UserDTO
     {
-        public Guid Id { get; set; }
-        public string Login { get; set; }
-        public bool IsActive { get; set; }
-        public string Name { get; set; }
+        public Guid UserId { get; set; }
         public string Email { get; set; }
-        public List<Claim> Claims { get; set; } 
         public string Password { get; set; }
+        public bool IsDeleted { get; set; }
+        public List<Claim> Claims { get; set; }
+        public bool IsAccountBlocked { get; set; }
+        public DateTime? AccountBlockedSince { get; set; }
+        public DateTime? AccountBlockedUntil { get; set; }
     }
 }

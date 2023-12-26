@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Jookli.Commander.Domain.Entites.ReceivedEmail
 {
-    internal class ReceivedEmailEntity : Entity
+    public class ReceivedEmailEntity : Entity
     {
+
     }
 }

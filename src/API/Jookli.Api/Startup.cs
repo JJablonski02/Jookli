@@ -5,6 +5,7 @@ using IdentityServer4.Validation;
 using Jookli.Api.Configuration.Authorization;
 using Jookli.Api.Configuration.ExecutionContext;
 using Jookli.Api.Configuration.Extensions;
+using Jookli.Api.Modules.Games;
 using Jookli.Api.Modules.Payments;
 using Jookli.Api.Modules.UserAccess;
 using Jookli.BuildingBlocks.Application;
@@ -92,6 +93,7 @@ namespace Jookli.Api
         {
             containerBuilder.RegisterModule(new UserAccessAutofacModule());
             containerBuilder.RegisterModule(new PaymentsAutofacModule());
+            containerBuilder.RegisterModule(new GamesAutofacModule());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment, IServiceProvider provider)

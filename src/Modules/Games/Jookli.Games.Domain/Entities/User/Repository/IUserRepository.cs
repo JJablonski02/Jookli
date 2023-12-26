@@ -9,6 +9,6 @@ namespace Jookli.Games.Domain.Entities.User.Repository
     public interface IUserRepository
     {
         Task AddAsync(UserEntity userEntity, CancellationToken cancellationToken);
-        Task<bool> ExistsAsync(Guid Id, CancellationToken cancellationToken);
+        Task<bool> ExistsAsync(Guid userId, CancellationToken cancellationToken);
     }
 }

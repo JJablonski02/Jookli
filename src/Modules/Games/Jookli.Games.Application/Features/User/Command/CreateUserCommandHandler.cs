@@ -21,14 +21,19 @@ namespace Jookli.Games.Application.Features.User.Command
         
         public async Task<Unit> Handle(CreateUserCommand command, CancellationToken cancellationToken)
         {
-            if(await _userRepository.ExistsAsync(command.UserId, cancellationToken))
+            var exists = await _userRepository.ExistsAsync(command.UserId, cancellationToken);
+
+            if (exists is true)
             {
-                return Unit.Value;
+                throw new ArgumentException($"User with id {command.UserId} exists");
             }
+
+            string id = GenerateRandom();
 
             var user = new UserEntity
             {
                 UserId = command.UserId,
+                UserGamesId = id,
                 Email = command.Email,
                 FirstName = command.FirstName,
                 LastName = command.LastName,
@@ -38,6 +43,17 @@ namespace Jookli.Games.Application.Features.User.Command
             await _userRepository.AddAsync(user, cancellationToken);
 
             return Unit.Value;
+        }
+
+        private static string GenerateRandom()
+        {
+            Random random = new Random();
+
+            long randomNumber = random.NextInt64(0, 10000000000);
+
+            string id = randomNumber.ToString("D10");
+
+            return id;
         }
     }
 }
