@@ -11,7 +11,20 @@ namespace Jookli.UserAccess.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
+            migrationBuilder.Sql(@"CREATE VIEW UserAccess_AuthV
+                                   AS 
+                                   SELECT 
+                                    User.UserId, 
+                                    User.Email, 
+                                    User.Password, 
+                                    User.IsDeleted,
+                                    User.IsAccountBlocked
+                                    User.AccountBlockedSince
+                                    User.AccountBlockedUntil
+                                   FROM UserAccess_User AS User");
+            
+
+        migrationBuilder.CreateTable(
                 name: "UserAccess_InboxMessage",
                 columns: table => new
                 {
@@ -245,6 +258,8 @@ namespace Jookli.UserAccess.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.Sql("DROP VIEW IF EXISTS dbo.UserAccess_AuthV;");
+
             migrationBuilder.DropTable(
                 name: "UserAccess_Address");
 
