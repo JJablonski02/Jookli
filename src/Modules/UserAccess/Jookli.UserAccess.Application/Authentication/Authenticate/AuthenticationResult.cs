@@ -11,7 +11,13 @@ namespace Jookli.UserAccess.Application.Authentication.Authenticate
         public AuthenticationResult(string authenticationError)
         {
             IsAuthenticated = false;
+            AuthenticationError = authenticationError;
+        }
 
+        public AuthenticationResult(UserDTO user)
+        {
+            IsAuthenticated = true;
+            User = user;
         }
 
         public bool IsAuthenticated { get; }
