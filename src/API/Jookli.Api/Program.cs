@@ -13,11 +13,14 @@ namespace Jookli.Api
         public static IHostBuilder CreateWebHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args).UseServiceProviderFactory(new AutofacServiceProviderFactory())
-                .ConfigureWebHostDefaults(webBuilder =>
+                .ConfigureWebHostDefaults(async webBuilder =>
             {
-                webBuilder.ConfigureAppConfiguration(async (hostbuilder, builder) =>
+                await Task.Run(() =>
                 {
-                    var configuration =  AWSConfigurator.ConfigureBuilderAsync(builder).Result;
+                    webBuilder.ConfigureAppConfiguration((hostbuilder, builder) =>
+                    {
+                        var configuration = AWSConfigurator.ConfigureBuilderAsync(builder);
+                    });
                 });
                 webBuilder.UseStartup<Startup>();
                 webBuilder.UseContentRoot(Directory.GetCurrentDirectory());

@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.11" />
     <PackageReference Include="MediatR" Version="11.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configuration\Query\" />
-    <Folder Include="Features\User\Incoming\" />
+    <Folder Include="Features\User\Create\Incoming\" />
   </ItemGroup>
 
   <ItemGroup>

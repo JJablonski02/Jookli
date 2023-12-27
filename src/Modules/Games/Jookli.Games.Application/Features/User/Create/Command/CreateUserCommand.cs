@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Games.Application.Features.User.Command
+namespace Jookli.Games.Application.Features.User.Create.Command
 {
     internal class CreateUserCommand : InternalCommandBase
     {

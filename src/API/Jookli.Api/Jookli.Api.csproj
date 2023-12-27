@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BuildingBlocks\Jookli.BuildingBlocks.Application\Jookli.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\Administrator\Jookli.Administrator.Infrastructure\Jookli.Administrator.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Modules\Commander\Jookli.Commander.Infrastructure\Jookli.Commander.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Modules\Games\Jookli.Games.Application\Jookli.Games.Application.csproj" />
     <ProjectReference Include="..\..\Modules\Games\Jookli.Games.Infrastructure\Jookli.Games.Infrastructure.csproj" />

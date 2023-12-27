@@ -1,5 +1,5 @@
 ﻿using Jookli.Games.Application.Configuration.Command;
-using Jookli.Games.Application.Features.User.Command;
+using Jookli.Games.Application.Features.User.Create.Command;
 using Jookli.UserAccess.IntegrationEvents;
 using MediatR;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Games.Application.Features.User.Notification
+namespace Jookli.Games.Application.Features.User.Create.Incoming
 {
     internal class CreateUserEventHandler : INotificationHandler<NewUserRegisteredIntegrationEvent>
     {
