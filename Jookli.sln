@@ -61,6 +61,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Commander.Applicatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jookli.Commander.Domain", "src\Modules\Commander\Jookli.Commander.Domain\Jookli.Commander.Domain.csproj", "{AAF030FF-6D97-4CDB-BB11-2A6CD51494B2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Administrator", "Administrator", "{2931C48E-B058-4306-B50E-6C7FA666DDFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Administrator.Application", "src\Modules\Administrator\Jookli.Administrator.Application\Jookli.Administrator.Application.csproj", "{1A6C99E1-F7A4-45B7-B65A-A8035DFB3C1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Administrator.Infrastructure", "src\Modules\Administrator\Jookli.Administrator.Infrastructure\Jookli.Administrator.Infrastructure.csproj", "{92EA4AE4-65F2-4C54-A455-DBD3A9B89754}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Administrator.Domain", "src\Modules\Administrator\Jookli.Administrator.Domain\Jookli.Administrator.Domain.csproj", "{46395AF5-8454-4886-91AD-BC09EFAEFF14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jookli.Administrator.IntegrationEvents", "src\Modules\Administrator\Jookli.Administrator.IntegrationEvents\Jookli.Administrator.IntegrationEvents.csproj", "{D4869ABD-D850-45B2-B1AB-45C4E5F4C3F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +157,22 @@ Global
 		{AAF030FF-6D97-4CDB-BB11-2A6CD51494B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAF030FF-6D97-4CDB-BB11-2A6CD51494B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAF030FF-6D97-4CDB-BB11-2A6CD51494B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A6C99E1-F7A4-45B7-B65A-A8035DFB3C1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A6C99E1-F7A4-45B7-B65A-A8035DFB3C1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A6C99E1-F7A4-45B7-B65A-A8035DFB3C1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A6C99E1-F7A4-45B7-B65A-A8035DFB3C1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92EA4AE4-65F2-4C54-A455-DBD3A9B89754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92EA4AE4-65F2-4C54-A455-DBD3A9B89754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92EA4AE4-65F2-4C54-A455-DBD3A9B89754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92EA4AE4-65F2-4C54-A455-DBD3A9B89754}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46395AF5-8454-4886-91AD-BC09EFAEFF14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46395AF5-8454-4886-91AD-BC09EFAEFF14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46395AF5-8454-4886-91AD-BC09EFAEFF14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46395AF5-8454-4886-91AD-BC09EFAEFF14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4869ABD-D850-45B2-B1AB-45C4E5F4C3F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4869ABD-D850-45B2-B1AB-45C4E5F4C3F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4869ABD-D850-45B2-B1AB-45C4E5F4C3F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4869ABD-D850-45B2-B1AB-45C4E5F4C3F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -179,6 +205,11 @@ Global
 		{3D9D5CBB-CCB4-4E30-A519-E1656ED2DA5A} = {DAD6441C-44CC-4D6A-8E21-FB25BBA51814}
 		{F803453D-E490-4963-9251-8A25889AB26F} = {DAD6441C-44CC-4D6A-8E21-FB25BBA51814}
 		{AAF030FF-6D97-4CDB-BB11-2A6CD51494B2} = {DAD6441C-44CC-4D6A-8E21-FB25BBA51814}
+		{2931C48E-B058-4306-B50E-6C7FA666DDFA} = {D402F66F-ABCF-4D64-9D76-5EDDF2E6ECF7}
+		{1A6C99E1-F7A4-45B7-B65A-A8035DFB3C1A} = {2931C48E-B058-4306-B50E-6C7FA666DDFA}
+		{92EA4AE4-65F2-4C54-A455-DBD3A9B89754} = {2931C48E-B058-4306-B50E-6C7FA666DDFA}
+		{46395AF5-8454-4886-91AD-BC09EFAEFF14} = {2931C48E-B058-4306-B50E-6C7FA666DDFA}
+		{D4869ABD-D850-45B2-B1AB-45C4E5F4C3F8} = {2931C48E-B058-4306-B50E-6C7FA666DDFA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16D4570E-8509-4038-8064-B67E153DDB0D}
