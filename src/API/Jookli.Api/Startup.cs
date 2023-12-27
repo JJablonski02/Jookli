@@ -2,9 +2,12 @@
 using Autofac.Extensions.DependencyInjection;
 using IdentityServer4.AccessTokenValidation;
 using IdentityServer4.Validation;
+using Jookli.Administrator.Infrastructure;
 using Jookli.Api.Configuration.Authorization;
 using Jookli.Api.Configuration.ExecutionContext;
 using Jookli.Api.Configuration.Extensions;
+using Jookli.Api.Modules.Administrator;
+using Jookli.Api.Modules.Commander;
 using Jookli.Api.Modules.Games;
 using Jookli.Api.Modules.Payments;
 using Jookli.Api.Modules.UserAccess;
@@ -78,6 +81,11 @@ namespace Jookli.Api
                 options.UseSqlServer(_configuration[JookliConnectionString], x => x.MigrationsHistoryTable("__CommanderMigrationsHistory", "dbo"));
             });
 
+            services.AddDbContext<AdministratorContext>(options =>
+            {
+                options.UseSqlServer(_configuration[JookliConnectionString], x => x.MigrationsHistoryTable("__AdministratorMigrationsHistory", "dbo"));
+            });
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(HasPermissionAttribute.HasPermissionPolicyName, policyBuilder =>
@@ -94,6 +102,8 @@ namespace Jookli.Api
             containerBuilder.RegisterModule(new UserAccessAutofacModule());
             containerBuilder.RegisterModule(new PaymentsAutofacModule());
             containerBuilder.RegisterModule(new GamesAutofacModule());
+            containerBuilder.RegisterModule(new AdministratorAutofacModule());
+            containerBuilder.RegisterModule(new CommanderAutofacModule());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment webHostEnvironment, IServiceProvider provider)
