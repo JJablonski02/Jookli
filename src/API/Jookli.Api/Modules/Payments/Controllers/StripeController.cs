@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Jookli.Api.Modules.Payments.Controllers
 {
     [ApiController]
-    [Route("api/payments")]
+    [Route("api/payments/stripe")]
     public class StripeController : ControllerBase
     {
         private readonly IPaymentsModule _paymentsModule;

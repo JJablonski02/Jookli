@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Jookli.Api.Modules.UserAccess.Controllers
 {
-    [Route("api/email")]
+    [Route("api/useraccess/email")]
     [ApiController]
     public class EmailsController : ControllerBase
     {

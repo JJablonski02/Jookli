@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Jookli.Api.Modules.UserAccess.Controllers
 {
-    [Route("api/user")]
+    [Route("api/useraccess")]
     [ApiController]
     public class UserAccessController : ControllerBase
     {

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Jookli.Api.Modules.Games.Controllers
 {
     [ApiController]
-    [Route("api/ayetstudios")]
+    [Route("api/games/ayetstudios")]
     public class AyeTStudiosController : ControllerBase
     {
         private readonly IGamesModule _gamesModule;

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Jookli.Api.Modules.Payments.Controllers
 {
-    [Route("api/cardsManager")]
+    [Route("api/payments/card")]
     [ApiController]
     public class CardsManagerController : ControllerBase
     {
