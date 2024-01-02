@@ -14,13 +14,13 @@ namespace Jookli.UserAccess.Application.Authentication
         {
             byte[] salt;
             byte[] buffer2;
-            
-            if(password == null)
+
+            if (password == null)
             {
                 throw new ArgumentNullException(nameof(password));
             }
 
-            using(Rfc2898DeriveBytes bytes = new Rfc2898DeriveBytes(password, 0x10, 0x3e8))
+            using (Rfc2898DeriveBytes bytes = new Rfc2898DeriveBytes(password, 0x10, 0x3e8))
             {
                 salt = bytes.Salt;
                 buffer2 = bytes.GetBytes(0x20);
@@ -55,11 +55,13 @@ namespace Jookli.UserAccess.Application.Authentication
             }
 
             byte[] dst = new byte[0x10];
-            Buffer.BlockCopy(src, 1, dst, 0, 0x20);
+
+            Buffer.BlockCopy(src, 1, dst, 0, 0x10);
+
             byte[] buffer3 = new byte[0x20];
             Buffer.BlockCopy(src, 0x11, buffer3, 0, 0x20);
 
-            using(Rfc2898DeriveBytes bytes = new Rfc2898DeriveBytes(password, dst, 0x3e8))
+            using (Rfc2898DeriveBytes bytes = new Rfc2898DeriveBytes(password, dst, 0x3e8))
             {
                 buffer4 = bytes.GetBytes(0x20);
             }
@@ -75,14 +77,14 @@ namespace Jookli.UserAccess.Application.Authentication
                 return true;
             }
 
-            if(a== null || b == null || a.Length != b.Length)
+            if (a == null || b == null || a.Length != b.Length)
             {
                 return false;
             }
 
             var areSame = true;
 
-            for(var i =0; i< a.Length; i++)
+            for (var i = 0; i < a.Length; i++)
             {
                 areSame &= a[i] == b[i];
             }

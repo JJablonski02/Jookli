@@ -10,6 +10,7 @@ using Jookli.Payments.Infrastructure.Configuration.Mediation;
 using Jookli.Payments.Infrastructure.Configuration.Processing;
 using Jookli.Payments.Infrastructure.Configuration.Processing.Outbox;
 using Jookli.Payments.Infrastructure.Configuration.Quartz;
+using Jookli.Payments.Infrastructure.Configuration.StripeAccess;
 using Serilog;
 using Serilog.Extensions.Logging;
 
@@ -22,6 +23,7 @@ namespace Jookli.Payments.Infrastructure.Configuration
 
         public static void Initialize(
             string connectionString,
+            string stripeSecret,
             IExecutionContextAccessor executionContextAccessor,
             ILogger logger,
             IEventsBus eventsBus,
@@ -31,6 +33,7 @@ namespace Jookli.Payments.Infrastructure.Configuration
 
             ConfigureCompositionRoot(
                 connectionString,
+                stripeSecret,
                 executionContextAccessor,
                 logger,
                 eventsBus);
@@ -44,6 +47,7 @@ namespace Jookli.Payments.Infrastructure.Configuration
 
         private static void ConfigureCompositionRoot(
             string connectionString,
+            string stripeSecret,
             IExecutionContextAccessor executionContextAccessor,
             ILogger logger,
             IEventsBus eventsBus)
@@ -54,6 +58,7 @@ namespace Jookli.Payments.Infrastructure.Configuration
 
             var loggerFactory = new SerilogLoggerFactory(logger);
             containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));
+            containerBuilder.RegisterModule(new StripeAccessModule(stripeSecret));
             containerBuilder.RegisterModule(new DomainModule());
             containerBuilder.RegisterModule(new ProcessingModule());
             containerBuilder.RegisterModule(new EventsBusModule(eventsBus));

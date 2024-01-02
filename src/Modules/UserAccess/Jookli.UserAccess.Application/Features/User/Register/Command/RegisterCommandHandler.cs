@@ -12,6 +12,7 @@ using Jookli.UserAccess.Domain.Entities.User.RepositoryContract;
 using Jookli.UserAccess.Domain.Entities.UserDetails;
 using Jookli.UserAccess.Domain.Enums;
 using MediatR;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Jookli.UserAccess.Application.Features.User.Register.Command
 {
@@ -46,7 +47,6 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
             }
 
             var password = PasswordManager.HashPassword(command.Password);
-
             var user = new UserEntity()
             {
                 UserId = Guid.NewGuid(),
@@ -62,7 +62,7 @@ namespace Jookli.UserAccess.Application.Features.User.Register.Command
                 IsDeleted = false,
                 IsAccountBlocked = false,
                 DateOfLastActivity = DateTime.Now,
-                DateOfLastActivityUtc= DateTime.UtcNow
+                DateOfLastActivityUtc= DateTime.UtcNow,
             };
 
             var token = new TokenEntity()

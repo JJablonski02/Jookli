@@ -26,7 +26,7 @@ namespace Jookli.Administrator.Infrastructure.Configuration
             IEventsBus eventsBus,
             long? internalProcessingPoolingInterval = null)
         {
-            var moduleLogger = logger.ForContext("Module", "Games");
+            var moduleLogger = logger.ForContext("Module", "Administrator");
 
             ConfigureCompositionRoot(
                 connectionString,
@@ -49,7 +49,7 @@ namespace Jookli.Administrator.Infrastructure.Configuration
         {
             var containerBuilder = new ContainerBuilder();
 
-            containerBuilder.RegisterModule(new LoggingModule(logger.ForContext("Module", "Games")));
+            containerBuilder.RegisterModule(new LoggingModule(logger.ForContext("Module", "Administrator")));
 
             var loggerFactory = new SerilogLoggerFactory(logger);
             containerBuilder.RegisterModule(new DataAccessModule(connectionString, loggerFactory));

@@ -29,8 +29,9 @@ namespace Jookli.Api.Modules.UserAccess
             context.Result = new GrantValidationResult(
 
                 authenticationResult.User.UserId.ToString(),
-                "forms",
-                authenticationResult.User.Claims
+                "system",
+                authenticationResult.User.Claims,
+                "system"
                 );
         }
     }

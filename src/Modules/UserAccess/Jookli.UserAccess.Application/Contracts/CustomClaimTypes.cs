@@ -10,6 +10,6 @@ namespace Jookli.UserAccess.Application.Contracts
     {
         internal const string Roles = "roles";
         internal const string Email = "email";
-        internal const string Name = "name";
+        internal const string UserName = "username";
     }
 }

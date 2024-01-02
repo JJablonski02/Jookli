@@ -1,4 +1,4 @@
-﻿using Jookli.Payments.Domain.Entities.Card;
+﻿using Jookli.Payments.Domain.Entities.Stripe.Card;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

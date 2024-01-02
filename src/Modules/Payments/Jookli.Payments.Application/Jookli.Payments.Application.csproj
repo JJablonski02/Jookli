@@ -14,6 +14,7 @@
     <Folder Include="Features\Stripe\Card\Add\Notification\" />
     <Folder Include="Features\Stripe\Card\Remove\Incoming\" />
     <Folder Include="Features\Stripe\Card\Update\Incoming\" />
+    <Folder Include="Features\Stripe\Customer\Create\Notification\" />
     <Folder Include="Features\Stripe\Transactions\Register\Notification\" />
     <Folder Include="Features\Stripe\Transactions\Verify\Notification\" />
     <Folder Include="Features\Stripe\Transactions\Withdraw\Notification\" />

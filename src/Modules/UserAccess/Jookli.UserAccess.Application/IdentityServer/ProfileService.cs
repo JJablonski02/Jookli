@@ -14,7 +14,6 @@ namespace Jookli.UserAccess.Application.IdentityServer
         public Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
             context.IssuedClaims.AddRange(context.Subject.Claims.Where(c => c.Type == CustomClaimTypes.Roles).ToList());
-            context.IssuedClaims.Add(context.Subject.Claims.Single(c => c.Type == CustomClaimTypes.Name));
             context.IssuedClaims.Add(context.Subject.Claims.Single(c => c.Type == CustomClaimTypes.Email));
 
             return Task.CompletedTask;

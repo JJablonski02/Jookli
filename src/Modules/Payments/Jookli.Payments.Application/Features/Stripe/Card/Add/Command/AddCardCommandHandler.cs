@@ -1,5 +1,5 @@
 ﻿using Jookli.Payments.Application.Configuration.Command;
-using Jookli.Payments.Domain.Entities.Card.RepositoryContract;
+using Jookli.Payments.Domain.Entities.Stripe.Card.Repository;
 using MediatR;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 

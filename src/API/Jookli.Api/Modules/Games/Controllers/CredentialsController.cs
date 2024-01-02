@@ -1,4 +1,5 @@
-﻿using Jookli.Games.Application.Contracts;
+﻿using Jookli.Api.Configuration.Authorization;
+using Jookli.Games.Application.Contracts;
 using Jookli.Games.Application.Features.User.Credentials.Command;
 using Jookli.Games.Application.Features.User.Credentials.Query;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ namespace Jookli.Api.Modules.Games.Controllers
 
         [HttpGet]
         [Route("GetCredentials")]
+        [NoPermissionRequired]
         public async Task<IActionResult> GetUserCredentials(string token)
         {
             var result = await _gamesModule.ExecuteQueryAsync(new GetCredentialsQuery(token));

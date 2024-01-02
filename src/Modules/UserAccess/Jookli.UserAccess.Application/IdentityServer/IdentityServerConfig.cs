@@ -15,9 +15,9 @@ namespace Jookli.UserAccess.Application.IdentityServer
         {
             return new List<ApiResource>
             {
-                new ApiResource("JookliAPI", "Jookli API")
+                new ApiResource("jookliApi")
                 {
-                    Scopes = new List<string>{"JookliAPI"},
+                    Scopes = new List<string>{"jookliApi"},
                     ApiSecrets = new List<Secret>{new Secret("secret".Sha256())}
                 }
             };
@@ -26,7 +26,7 @@ namespace Jookli.UserAccess.Application.IdentityServer
         {
             return new List<ApiScope>
             {
-                new ApiScope("JookliApi", "Jookli API")
+                new ApiScope("jookliApi", "JookliAPI")
             };
         }
 
@@ -58,10 +58,12 @@ namespace Jookli.UserAccess.Application.IdentityServer
                     },
                     AllowedScopes =
                     {
-                        "JookliAPI",
+                        "jookliApi",
+                        IdentityServerConstants.StandardScopes.Email,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile
-                    }
+                    },
+                    AccessTokenType = AccessTokenType.Reference
                 }
             };
         }

@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using IdentityServer4.AccessTokenValidation;
 using IdentityServer4.Validation;
 using Jookli.Administrator.Infrastructure;
+using Jookli.Administrator.Infrastructure.Configuration;
 using Jookli.Api.Configuration.Authorization;
 using Jookli.Api.Configuration.ExecutionContext;
 using Jookli.Api.Configuration.Extensions;
@@ -68,7 +69,7 @@ namespace Jookli.Api
 
             services.AddDbContext<GamesContext>(options =>
             {
-                options.UseSqlServer(_configuration[JookliConnectionString], x => x.MigrationsHistoryTable("__GamesMigrationsHistory","dbo"));
+                options.UseSqlServer(_configuration[JookliConnectionString], x => x.MigrationsHistoryTable("__GamesMigrationsHistory", "dbo"));
             });
 
             services.AddDbContext<PaymentsContext>(options =>
@@ -81,10 +82,10 @@ namespace Jookli.Api
                 options.UseSqlServer(_configuration[JookliConnectionString], x => x.MigrationsHistoryTable("__CommanderMigrationsHistory", "dbo"));
             });
 
-            services.AddDbContext<AdministratorContext>(options =>
-            {
-                options.UseSqlServer(_configuration[JookliConnectionString], x => x.MigrationsHistoryTable("__AdministratorMigrationsHistory", "dbo"));
-            });
+            //services.AddDbContext<AdministratorContext>(options =>
+            //{
+            //    options.UseSqlServer(_configuration[JookliConnectionString], x => x.MigrationsHistoryTable("__AdministratorMigrationsHistory", "dbo"));
+            //});
 
             services.AddAuthorization(options =>
             {
@@ -181,6 +182,7 @@ namespace Jookli.Api
                 .AddProfileService<ProfileService>()
                 .AddDeveloperSigningCredential();
 
+
             services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
 
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
@@ -209,6 +211,7 @@ namespace Jookli.Api
                 null);
 
             PaymentsStartup.Initialize(_configuration[JookliConnectionString],
+                _configuration[StripeSecret],
                 executionContextAccessor,
                 _logger,
                 null,
@@ -221,6 +224,12 @@ namespace Jookli.Api
                 null);
 
             CommanderStartup.Initialize(_configuration[JookliConnectionString],
+                executionContextAccessor,
+                _logger,
+                null,
+                null);
+
+            AdministratorStartup.Initialize(_configuration[JookliConnectionString],
                 executionContextAccessor,
                 _logger,
                 null,

@@ -1,6 +1,6 @@
 ﻿using Jookli.BuildingBlocks.Domain;
-using Jookli.Payments.Domain.Entities.Card;
 using Jookli.Payments.Domain.Entities.Game;
+using Jookli.Payments.Domain.Entities.Stripe.Card;
 
 namespace Jookli.Payments.Domain.Entities.User
 {

@@ -1,5 +1,5 @@
-﻿using Jookli.Payments.Domain.Entities.Card;
-using Jookli.Payments.Domain.Entities.Card.RepositoryContract;
+﻿using Jookli.Payments.Domain.Entities.Stripe.Card;
+using Jookli.Payments.Domain.Entities.Stripe.Card.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

@@ -22,13 +22,13 @@ namespace Jookli.UserAccess.Application.Authentication.Authenticate
         }
         public async Task<AuthenticationResult> Handle(AuthenticateCommand command, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetByUserEmailAsync(command.Login, cancellationToken);
+            var user = await _userRepository.GetUserAndLoginAttemptsAsync(command.Login, cancellationToken);
 
             if(user == null)
             {
                 return new AuthenticationResult($"User with {command.Login} does not exist");
             }
-
+            var temporaryPassword = PasswordManager.HashPassword(command.Password);
             bool isPasswordCorrect = PasswordManager.VerifyHashedPassword(user.Password, command.Password);
 
             if(!isPasswordCorrect)
@@ -84,7 +84,7 @@ namespace Jookli.UserAccess.Application.Authentication.Authenticate
                 Password = command.Password,
                 SuccessfullAuthorizationDate = DateTime.UtcNow,
             };
-            user.LoginAttempts.Add(loginAttempt);
+           // user.LoginAttempts.Add(loginAttempt);
 
             UserDTO userDTO = new UserDTO
             {

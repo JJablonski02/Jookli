@@ -27,6 +27,11 @@ namespace Jookli.UserAccess.Infrastructure.Domain.User
             return await _dbContext.User.Where(temp => temp.Email == email).FirstOrDefaultAsync(cancellationToken);
         }
 
+        public async Task<UserEntity?> GetUserAndLoginAttemptsAsync(string email, CancellationToken cancellationToken)
+        {
+            return await _dbContext.User.Where(x => x.Email == email).Include(x => x.LoginAttempts).FirstOrDefaultAsync(cancellationToken);
+        }
+
         public async Task<UserEntity?> GetByUserIdAsync(Guid userID, CancellationToken cancellationToken)
         {
             return await _dbContext.User.Where(temp => temp.UserId == userID).FirstOrDefaultAsync(cancellationToken);

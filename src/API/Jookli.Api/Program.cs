@@ -15,13 +15,10 @@ namespace Jookli.Api
             return Host.CreateDefaultBuilder(args).UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureWebHostDefaults(async webBuilder =>
             {
-                await Task.Run(() =>
-                {
                     webBuilder.ConfigureAppConfiguration((hostbuilder, builder) =>
                     {
-                        var configuration = AWSConfigurator.ConfigureBuilderAsync(builder);
+                        var configuration = AWSConfigurator.ConfigureBuilderAsync(builder).Result;
                     });
-                });
                 webBuilder.UseStartup<Startup>();
                 webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
             });

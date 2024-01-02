@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jookli.Payments.Domain.Entities.Card.RepositoryContract
+namespace Jookli.Payments.Domain.Entities.Stripe.Card.Repository
 {
     public interface ICardRepository
     {

@@ -1,7 +1,7 @@
 ﻿using Jookli.BuildingBlocks.Application.Outbox;
 using Jookli.BuildingBlocks.Infrastructure.Inbox;
 using Jookli.BuildingBlocks.Infrastructure.InternalCommands;
-using Jookli.Payments.Domain.Entities.Card;
+using Jookli.Payments.Domain.Entities.Stripe.Card;
 using Jookli.Payments.Domain.Entities.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;

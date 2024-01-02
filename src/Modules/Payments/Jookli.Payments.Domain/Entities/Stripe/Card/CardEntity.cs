@@ -2,7 +2,7 @@
 using Jookli.Payments.Domain.Entities.User;
 using Jookli.Payments.Domain.Interfaces;
 
-namespace Jookli.Payments.Domain.Entities.Card
+namespace Jookli.Payments.Domain.Entities.Stripe.Card
 {
     public class CardEntity : Entity, IHasId, IHasObject
     {
